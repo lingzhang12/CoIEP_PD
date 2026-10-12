@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Disclosing GenAI Use: Practice Page</title>
+<style>
+:root{--navy:#1B365D;--gold:#C9A227;--goldt:#9a7b17;--teal:#2E7D6B;--coral:#C05850;--slate:#6b7a90;--bg:#f6f7f9;--card:#fff;--text:#212529;--text2:#5f6b7a;--r:10px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Times New Roman',Times,Georgia,serif;background:var(--bg);color:var(--text);line-height:1.55}
+.wrap{max-width:1180px;width:100%;margin:0 auto;padding:18px 24px 40px}
+header{background:var(--navy);color:#fff;padding:22px 26px;border-radius:var(--r);margin-bottom:16px}
+h1{font-size:24px;font-weight:600}
+.sub{font-size:15.5px;color:rgba(255,255,255,.75);margin-top:4px}
+.chips{margin-top:10px}
+.chip{display:inline-block;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:13.5px;font-weight:600;padding:3px 10px;border-radius:20px;margin-right:6px}
+.card{background:var(--card);border-radius:var(--r);padding:20px 24px;box-shadow:0 1px 3px rgba(0,0,0,.08);margin-bottom:16px}
+h2{font-size:17.5px;font-weight:600;color:var(--navy);margin-bottom:6px}
+.note{font-size:15px;color:var(--text2);margin-bottom:12px}
+/* compare */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.side{border:1px solid #e6e9ee;border-radius:8px;padding:14px}
+.side h3{font-size:15.5px;margin-bottom:6px}
+.side.dis h3{color:var(--coral)} .side.dsc h3{color:var(--teal)}
+.side p{font-size:15px;color:var(--text2)}
+.side .ex{font-size:14.5px;font-style:italic;margin-top:8px;padding:8px;border-radius:6px;background:#f8f9fb}
+/* scenarios */
+.scen{border:1px solid #e6e9ee;border-radius:8px;padding:14px 16px;margin-bottom:12px}
+.scen .q{font-size:16px;margin-bottom:10px}
+.opt{display:block;width:100%;text-align:left;font-size:15px;padding:9px 12px;margin-bottom:6px;border:1px solid #dfe3ea;border-radius:7px;background:#fbfcfd;cursor:pointer;font-family:inherit}
+.opt:hover{border-color:var(--navy)}
+.opt.good{background:#e8f4f1;border-color:var(--teal)}
+.opt.bad{background:#fdecea;border-color:var(--coral)}
+.fb{display:none;font-size:15px;margin-top:8px;padding:10px 12px;border-radius:7px;line-height:1.5}
+.fb.show{display:block}
+.fb.good{background:#e8f4f1;color:#1d5145}
+.fb.bad{background:#fdecea;color:#7c3128}
+.ctag{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.5px;background:var(--navy);color:#fff;padding:1px 8px;border-radius:10px;margin-left:6px;vertical-align:1px}
+/* builder */
+.opts label{display:flex;gap:9px;align-items:flex-start;font-size:15.5px;padding:7px 0;cursor:pointer}
+.opts input{margin-top:3px}
+#built{width:100%;min-height:120px;margin-top:12px;padding:12px;border:1px solid #dfe3ea;border-radius:8px;font-size:16px;font-family:'Times New Roman',Times,serif;line-height:1.6;background:#fffdf7}
+.btn{padding:9px 18px;border:none;border-radius:7px;background:var(--navy);color:#fff;font-size:15.5px;cursor:pointer;margin-top:10px}
+.btn:hover{background:#2d4d7c}
+.rule{background:#fdf6e3;border-left:4px solid var(--gold);padding:12px 16px;border-radius:6px;font-size:16.5px}
+.rule b{color:var(--goldt)}
+footer{font-size:14px;color:var(--text2);text-align:center;padding-top:6px}
+@media(max-width:640px){.compare{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Disclosing GenAI Use</h1>
+  <div class="sub">A GenAI-literacy practice page &middot; grounded in the National AI Safety &amp; Privacy Standard for Schools (2026)</div>
+  <div class="chips"><span class="chip">C5 Collaborative Decision Making</span><span class="chip">C4 Privacy &amp; Data-Handling</span><span class="chip">C1 Professional Judgment</span></div>
+</header>
+
+<div class="card">
+  <h2>1 &middot; Disclaimer or Disclosure?</h2>
+  <div class="note">The Standard asks for plain language, not legal language (Principle 7). These are not the same thing:</div>
+  <div class="compare">
+    <div class="side dis"><h3>A disclaimer protects the writer</h3>
+      <p>Fine print. Added to satisfy a requirement. Nobody is expected to read it.</p>
+      <div class="ex">“Portions of this document may have been generated with the assistance of artificial intelligence technologies.”</div>
+    </div>
+    <div class="side dsc"><h3>A disclosure informs the reader</h3>
+      <p>Communication. Says what happened, who decided, and welcomes questions.</p>
+      <div class="ex">“We drafted parts of this with a GenAI tool, reviewed and individualized everything ourselves, and we’re happy to talk about how.”</div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>2 &middot; What Would You Do?</h2>
+  <div class="note">Click the response closest to your instinct. Feedback connects each situation to the competencies and the Standard.</div>
+  <div id="scens">
+  <div class='scen'><div class='q'><b>1.</b> A colleague at another school asks you to send the SDI a GenAI tool drafted for one of your students, “just to see what it looks like.”</div><button class='opt' id='o0_0' onclick='pick(0,0)'>Send it - it’s just a draft, and it’s AI-generated anyway.</button><button class='opt' id='o0_1' onclick='pick(0,1)'>Decline to share the student’s draft, but offer to demo the tool with a hypothetical case.</button><button class='opt' id='o0_2' onclick='pick(0,2)'>Send it after deleting the student’s name.</button><div class='fb' id='f0'></div></div>
+  <div class='scen'><div class='q'><b>2.</b> In an IEP meeting, a parent asks: “Did a computer write this?”</div><button class='opt' id='o1_0' onclick='pick(1,0)'>“No, I wrote it.” (You did revise it heavily.)</button><button class='opt' id='o1_1' onclick='pick(1,1)'>“A GenAI tool helped me draft parts of it. I reviewed and individualized everything for your child, and I’m glad to walk you through how.”</button><button class='opt' id='o1_2' onclick='pick(1,2)'>Read the district’s disclaimer paragraph aloud.</button><div class='fb' id='f1'></div></div>
+  <div class='scen'><div class='q'><b>3.</b> Your district has no policy yet on AI disclaimers in IEP documents. What is the professional move this month?</div><button class='opt' id='o2_0' onclick='pick(2,0)'>Add nothing to documents until a policy exists.</button><button class='opt' id='o2_1' onclick='pick(2,1)'>Write your own legal-sounding disclaimer and paste it into every IEP.</button><button class='opt' id='o2_2' onclick='pick(2,2)'>Disclose in conversation and team process now; raise the document-language question with leadership, framework in hand.</button><div class='fb' id='f2'></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>3 &middot; Build Your Disclosure</h2>
+  <div class="note">Check the elements you want; a complete disclosure usually has all four. The statement builds as you check, and you can edit it to sound like you.</div>
+  <div class="opts">
+    <label><input type="checkbox" id="b1" onchange="build()"> <span><b>What the AI did (and didn’t do)</b> - names the tool’s role honestly</span></label>
+    <label><input type="checkbox" id="b2" onchange="build()"> <span><b>Human review affirmed</b> - every element reviewed, individualized, and approved by the team (C1)</span></label>
+    <label><input type="checkbox" id="b3" onchange="build()"> <span><b>Data reassurance</b> - used under district oversight; student information is not used to train AI or shared (C4; Principles 1 and 3)</span></label>
+    <label><input type="checkbox" id="b4" onchange="build()"> <span><b>Invitation for questions</b> - transparency as conversation, not fine print (C5; Principle 7)</span></label>
+  </div>
+  <textarea id="built"></textarea>
+  <button class="btn" onclick="copyIt()">Copy statement</button>
+  <span id="copied" style="font-size:14.5px;color:var(--teal);margin-left:8px"></span>
+</div>
+
+<div class="card">
+  <h2>4 &middot; The Log Behind the Disclosure</h2>
+  <div class="note">A disclosure says “every element was reviewed and individualized.” Your Instructional Decision Log is what makes that sentence true - it is the record of the reviewing and individualizing.</div>
+  <div class="compare">
+    <div class="side dsc"><h3>With a GenAI tool</h3>
+      <p>The log records your prompt, what the tool returned, what you accepted, modified, or rejected, and why. It is the evidence that AI drafted and you decided.</p>
+    </div>
+    <div class="side dsc"><h3>Without a GenAI tool</h3>
+      <p>Drafts from templates, colleagues, or your own writing carry the same risks: generic content, unverified sources, criteria you never wrote down. The log asks the same questions of every draft, whatever its origin.</p>
+    </div>
+  </div>
+  <div class="note" style="margin-top:12px;margin-bottom:0">Why it matters: it turns your reasoning into a record you can stand on with families, teams, and reviewers; it shows your own growth as Guessed entries become Confident; and it enacts the non-negotiable - no edit without a record. Declining to use AI is a legitimate professional position; the log documents that reasoning with exactly the same respect.</div>
+</div>
+
+<div class="card rule">
+  The Standard’s guiding principle: <b>when in doubt, protect the student.</b> Applied to this page: <b>when in doubt, disclose.</b>
+</div>
+
+<footer><a href="index.html" style="color:inherit">All pages</a> &middot; Part of the CoIEP professional learning series &middot; competencies from the Practice-Based GenAI Competencies (2026) &middot; principles from the National AI Safety &amp; Privacy Standard for Schools (2026)</footer>
+</div>
+
+<script>
+const SCENS=[
+ {
+  "q": "A colleague at another school asks you to send the SDI a GenAI tool drafted for one of your students, “just to see what it looks like.”",
+  "opts": [
+   {
+    "t": "Send it - it’s just a draft, and it’s AI-generated anyway.",
+    "good": false,
+    "fb": "AI-generated or not, it was built from a real student’s information and is part of their record. Share the PROCESS, never the content."
+   },
+   {
+    "t": "Decline to share the student’s draft, but offer to demo the tool with a hypothetical case.",
+    "good": true,
+    "fb": "Right. C4: the student’s information stays protected. C5: you still collaborate, using a hypothetical case. This mirrors the Standard’s rule that student data is never shared beyond its purpose."
+   },
+   {
+    "t": "Send it after deleting the student’s name.",
+    "good": false,
+    "fb": "Removing a name rarely de-identifies a record; details can still identify a student. When in doubt, treat it as student data (the Standard’s own definition)."
+   }
+  ]
+ },
+ {
+  "q": "In an IEP meeting, a parent asks: “Did a computer write this?”",
+  "opts": [
+   {
+    "t": "“No, I wrote it.” (You did revise it heavily.)",
+    "good": false,
+    "fb": "Heavy revision is real, but “no” hides the process. If discovered later, trust is hard to rebuild. Principle 7: families deserve to know how AI is used."
+   },
+   {
+    "t": "“A GenAI tool helped me draft parts of it. I reviewed and individualized everything for your child, and I’m glad to walk you through how.”",
+    "good": true,
+    "fb": "That is a disclosure: what the AI did, your judgment affirmed (C1), invitation to talk (C5). Notice it makes you sound MORE professional, not less."
+   },
+   {
+    "t": "Read the district’s disclaimer paragraph aloud.",
+    "good": false,
+    "fb": "Legal language in a family conversation is a wall, not a window. Plain language, not legal language (Principle 7)."
+   }
+  ]
+ },
+ {
+  "q": "Your district has no policy yet on AI disclaimers in IEP documents. What is the professional move this month?",
+  "opts": [
+   {
+    "t": "Add nothing to documents until a policy exists.",
+    "good": false,
+    "fb": "Absence of policy is not absence of responsibility. You can disclose in conversation and in your team process now; that is within your professional control."
+   },
+   {
+    "t": "Write your own legal-sounding disclaimer and paste it into every IEP.",
+    "good": false,
+    "fb": "Improvised legal language in a legal document creates risk instead of managing it. Document language is a district decision."
+   },
+   {
+    "t": "Disclose in conversation and team process now; raise the document-language question with leadership, framework in hand.",
+    "good": true,
+    "fb": "Right split: disclosure is yours (C5), document policy is the district’s. The Standard gives leadership a ready framework, which is exactly what we are bringing them."
+   }
+  ]
+ }
+];
+// Scenarios are static HTML (one source of truth); SCENS supplies the feedback text.
+function pick(i,j){
+  const o=SCENS[i].opts[j];
+  SCENS[i].opts.forEach((x,k)=>{
+    const b=document.getElementById("o"+i+"_"+k);
+    b.classList.remove("good","bad");
+    if(k===j) b.classList.add(o.good?"good":"bad");
+    if(x.good) b.classList.add("good");
+  });
+  const f=document.getElementById("f"+i);
+  f.className="fb show "+(o.good?"good":"bad");
+  f.textContent=o.fb;
+}
+const PARTS={
+ b1:"Some components of this draft were developed with support from a generative AI tool.",
+ b2:"Every element was reviewed, individualized, and approved by your child’s IEP team.",
+ b3:"The tool is used under district oversight, and student information is not used to train AI or shared.",
+ b4:"We’re glad to answer any questions about how we used it."
+};
+function build(){
+  const t=["b1","b2","b3","b4"].filter(id=>document.getElementById(id).checked).map(id=>PARTS[id]).join(" ");
+  document.getElementById("built").value=t;
+}
+function copyIt(){
+  const ta=document.getElementById("built"); ta.select();
+  try{ document.execCommand("copy"); document.getElementById("copied").textContent="Copied"; 
+    setTimeout(()=>{document.getElementById("copied").textContent="";},2000);}catch(e){}
+}
+build();
+</script>
+</body>
+</html>

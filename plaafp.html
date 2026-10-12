@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PLAAFP Practice Capture Sheet</title>
+<style>
+:root{--navy:#1B365D;--gold:#C9A227;--goldt:#9a7b17;--teal:#2E7D6B;--coral:#C05850;--bg:#f6f7f9;--card:#fff;--text:#212529;--text2:#5f6b7a;--line:#dfe3ea;--r:10px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Times New Roman',Times,Georgia,serif;background:var(--bg);color:var(--text);line-height:1.55}
+.wrap{max-width:1180px;width:100%;margin:0 auto;padding:18px 24px 40px}
+header{background:var(--navy);color:#fff;padding:22px 26px;border-radius:var(--r);margin-bottom:16px}
+h1{font-size:24px;font-weight:600}
+.sub{font-size:15.5px;color:rgba(255,255,255,.8);margin-top:6px;font-style:italic}
+.privacy{margin-top:10px;font-size:14.5px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);border-radius:8px;padding:8px 12px}
+.card{background:var(--card);border-radius:var(--r);padding:20px 24px;box-shadow:0 1px 3px rgba(0,0,0,.08);margin-bottom:16px}
+h2{font-size:17.5px;font-weight:600;color:var(--navy);margin-bottom:6px}
+.note{font-size:15px;color:var(--text2);margin-bottom:12px}
+label.f{display:block;font-size:15px;font-weight:600;color:var(--navy);margin:10px 0 4px}
+input[type=text],textarea,select{width:100%;font:inherit;font-size:15.5px;padding:8px 10px;border:1px solid var(--line);border-radius:7px;background:#fbfcfd;color:var(--text)}
+textarea{min-height:80px;resize:vertical;line-height:1.5}
+input:focus,textarea:focus,select:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+table{width:100%;border-collapse:collapse;font-size:15px;margin-top:6px}
+th{background:var(--navy);color:#fff;text-align:left;padding:8px 9px;font-weight:600;font-size:14.5px}
+td{padding:6px 7px;border-bottom:1px solid var(--line);vertical-align:middle}
+td.el{font-weight:600;width:30%}
+td input,td select{padding:6px 8px}
+.tally{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px}
+.tally .box{border:1px solid var(--line);border-radius:8px;padding:10px;text-align:center}
+.tally .box b{display:block;font-size:14.5px;color:var(--navy);margin-bottom:6px}
+.tally .row{display:flex;justify-content:center;align-items:center;gap:8px}
+.tally button{width:30px;height:30px;border:1px solid var(--line);background:#fbfcfd;border-radius:7px;font-size:19px;cursor:pointer}
+.tally button:hover{border-color:var(--navy)}
+.tally .n{font-size:23px;font-weight:700;min-width:30px}
+.tally .box.acc b{color:var(--navy)} .tally .box.rej b{color:var(--teal)}
+.freeze{background:#fdf6e3;border-left:4px solid var(--gold);padding:12px 16px;border-radius:6px;font-size:15.5px;margin-bottom:12px}
+.freeze b{color:var(--goldt)}
+.freeze label{display:flex;gap:8px;align-items:flex-start;margin-top:8px;cursor:pointer;font-weight:600}
+.check label{display:flex;gap:9px;align-items:flex-start;font-size:15.5px;padding:6px 0;cursor:pointer}
+.check input{margin-top:3px}
+.gap{margin-top:12px}
+.gapfill{display:none;font-size:15px;margin-top:8px;padding:10px 12px;border-radius:7px;background:#e8f4f1;color:#1d5145}
+.gapfill.show{display:block}
+.rule{background:#fdf6e3;border-left:4px solid var(--gold);padding:12px 16px;border-radius:6px;font-size:16px}
+.rule b{color:var(--goldt)}
+.actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.btn{padding:8px 16px;border:none;border-radius:7px;background:var(--navy);color:#fff;font-size:15.5px;cursor:pointer;font-family:inherit}
+.btn:hover{background:#2d4d7c}
+.btn.sec{background:#fff;color:var(--navy);border:1px solid var(--navy)}
+.btn.sec:hover{background:#eef2f7}
+.btn.danger{background:#fff;color:var(--coral);border:1px solid var(--coral)}
+.status{font-size:14.5px;color:var(--teal);min-height:16px;margin-top:6px}
+.lock{background:#eef2f7;border-color:#c9d2df;color:#4a5568}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pair textarea{min-height:170px;font-family:'Times New Roman',Times,serif;background:#fffdf7}
+.locked-note{font-size:14.5px;color:var(--teal);margin-top:4px}
+@media(max-width:640px){.pair{grid-template-columns:1fr}}
+footer{font-size:14px;color:var(--text2);text-align:center;padding-top:6px}
+@media(max-width:640px){.two{grid-template-columns:1fr}.tally{grid-template-columns:1fr}
+ table,thead,tbody,tr,td,th{display:block} thead{display:none}
+ tr{border:1px solid var(--line);border-radius:8px;padding:8px;margin-bottom:8px;background:#fff}
+ td{border:none;padding:4px 0} td.el{width:auto;color:var(--navy)}
+ td[data-l]::before{content:attr(data-l);display:block;font-size:13.5px;color:var(--text2);margin-bottom:2px}}
+@media print{body{background:#fff}.card{box-shadow:none;border:1px solid #ccc;page-break-inside:avoid}.actions,.privacy,.btn,.status,.locked-note{display:none}textarea{overflow:visible;resize:none}.pair{grid-template-columns:1fr}
+ input[type=text],textarea,select{border:1px solid #999;background:#fff}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>PLAAFP Practice Capture Sheet</h1>
+  <div class="sub">Keep this sheet. You will use it for this month’s reflection prompts and Self-Report Log, and it will make both faster.</div>
+  <div class="sub" style="font-style:normal;margin-top:8px">How it works: Round A, predict and then evaluate; Round B, evaluate the reports; Round C, revise; then save your sheet as a PDF and submit it through the Qualtrics form.</div>
+  <div class="privacy">Your entries stay on this device only (saved in this browser as you type). Nothing is sent anywhere. Use Save my sheet at the end to keep a copy you can reopen. Use a hypothetical case; no student information.</div>
+</header>
+
+<div class="card">
+  <div class="two">
+    <div><label class="f" for="name">Name (for your own records only; this sheet is yours to keep)</label><input type="text" id="name" data-k="name" placeholder="Your name"></div>
+    <div><label class="f" for="case">Case (hypothetical)</label><input type="text" id="case" data-k="case" placeholder="Case name or code"></div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Round A: Predict, Then Evaluate</h2>
+  <div class="note">Rate how sure you are about each part, run the Evaluator, then record what it said and whether that surprised you.</div>
+  <table id="ta">
+    <thead><tr><th>Part of the PLAAFP</th><th>How sure am I?</th><th>What the Evaluator said (fine / needs work: what?)</th><th>Did that surprise me?</th></tr></thead>
+    <tbody id="tbodyA">
+      <tr><td class='el'>Current performance: data on needs AND strengths</td><td data-l='How sure am I?'><select data-k='a_r0'><option value=''>Select</option><option>Confident</option><option>Unsure</option><option>Guessed</option></select></td><td data-l='What the Evaluator said'><input type='text' data-k='a_v0' placeholder='fine / needs work: what?'></td><td data-l='Did that surprise me?'><select data-k='a_s0'><option value=''>Y/N</option><option>Y</option><option>N</option></select></td></tr>
+      <tr><td class='el'>Parental input included</td><td data-l='How sure am I?'><select data-k='a_r1'><option value=''>Select</option><option>Confident</option><option>Unsure</option><option>Guessed</option></select></td><td data-l='What the Evaluator said'><input type='text' data-k='a_v1' placeholder='fine / needs work: what?'></td><td data-l='Did that surprise me?'><select data-k='a_s1'><option value=''>Y/N</option><option>Y</option><option>N</option></select></td></tr>
+      <tr><td class='el'>Classroom observations included</td><td data-l='How sure am I?'><select data-k='a_r2'><option value=''>Select</option><option>Confident</option><option>Unsure</option><option>Guessed</option></select></td><td data-l='What the Evaluator said'><input type='text' data-k='a_v2' placeholder='fine / needs work: what?'></td><td data-l='Did that surprise me?'><select data-k='a_s2'><option value=''>Y/N</option><option>Y</option><option>N</option></select></td></tr>
+      <tr><td class='el'>Disability impact statement (how the disability affects involvement and progress)</td><td data-l='How sure am I?'><select data-k='a_r3'><option value=''>Select</option><option>Confident</option><option>Unsure</option><option>Guessed</option></select></td><td data-l='What the Evaluator said'><input type='text' data-k='a_v3' placeholder='fine / needs work: what?'></td><td data-l='Did that surprise me?'><select data-k='a_s3'><option value=''>Y/N</option><option>Y</option><option>N</option></select></td></tr>
+      <tr><td class='el'>Bias-free, family-friendly, current language</td><td data-l='How sure am I?'><select data-k='a_r4'><option value=''>Select</option><option>Confident</option><option>Unsure</option><option>Guessed</option></select></td><td data-l='What the Evaluator said'><input type='text' data-k='a_v4' placeholder='fine / needs work: what?'></td><td data-l='Did that surprise me?'><select data-k='a_s4'><option value=''>Y/N</option><option>Y</option><option>N</option></select></td></tr>
+    </tbody>
+  </table>
+  <div class="gap">
+    <label class="f" for="gapq">Where was the biggest difference between what you thought and what the Evaluator said?</label>
+    <div class="gapfill" id="gaphint"></div>
+    <textarea id="gapq" data-k="gap"></textarea>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Round B: Evaluate Reports</h2>
+  <div class="freeze"><b>BEFORE YOU CHANGE ANYTHING:</b> save a copy of your PLAAFP exactly as it is now and name it ORIGINAL. If you edit without saving a copy first, the before version is gone and we cannot see your growth.
+    <label class="f" for="orig" style="margin-top:10px">Paste your ORIGINAL PLAAFP here (it locks when you check the box below)</label>
+    <textarea id="orig" data-k="orig" style="min-height:150px;font-family:'Times New Roman',Times,serif;background:#fffdf7" placeholder="Paste the PLAAFP exactly as it stands before any revision."></textarea>
+    <label><input type="checkbox" id="frozen" data-k="frozen" onchange="lockOrig()"> I have saved a copy named ORIGINAL (locks the box above)</label>
+    <div class="locked-note" id="locknote"></div>
+  </div>
+  <label class="f">Count the Evaluator’s suggestions</label>
+  <div class="tally">
+    <div class="box acc"><b>How many suggestions provided</b><div class="row"><button type="button" onclick="tally('acc',-1)" aria-label="minus">&minus;</button><span class="n" id="n_acc">0</span><button type="button" onclick="tally('acc',1)" aria-label="plus">+</button></div></div>
+    <div class="box"><b>How many were valid</b><div class="row"><button type="button" onclick="tally('mod',-1)" aria-label="minus">&minus;</button><span class="n" id="n_mod">0</span><button type="button" onclick="tally('mod',1)" aria-label="plus">+</button></div></div>
+    <div class="box rej"><b>How many will you implement</b><div class="row"><button type="button" onclick="tally('rej',-1)" aria-label="minus">&minus;</button><span class="n" id="n_rej">0</span><button type="button" onclick="tally('rej',1)" aria-label="plus">+</button></div></div>
+  </div>
+  <label class="f" for="pushback">One piece of Evaluator feedback I disagree with, and my reasons (based on the case information or my professional judgment):</label>
+  <textarea id="pushback" data-k="pushback" style="min-height:110px"></textarea>
+</div>
+
+<div class="card">
+  <h2>Round C: Revise</h2>
+  <div class="note">Describe how you revised the PLAAFP statement based on the evaluation report.</div>
+  <textarea id="revnote" data-k="revnote" style="min-height:130px"></textarea>
+</div>
+
+<div class="card">
+  <h2>Before You Leave</h2>
+  <div class="note">If you have consented to the study: use Print / Save as PDF below. The PDF contains your ORIGINAL and REVISED PLAAFP together with your notes from all three rounds. Upload that file through the artifact submission link (link and QR code from the facilitator). Today's drafts are hypothetical-case content with no student information. Keep this sheet for your monthly reflection sitting.</div>
+  <div class="pair" style="margin-top:10px">
+    <div><label class="f" for="origview">ORIGINAL (from Round B, locked)</label><textarea id="origview" readonly class="lock" placeholder="Your ORIGINAL appears here once you paste it in Round B and check the box."></textarea></div>
+    <div><label class="f" for="revised">REVISED (paste your final version)</label><textarea id="revised" data-k="revised" placeholder="Paste the PLAAFP after your revisions."></textarea></div>
+  </div>
+  <div class="actions" style="margin-top:12px">
+    <button class="btn" type="button" onclick="printSheet()">Print / Save as PDF</button>
+    <button class="btn sec" type="button" onclick="openFull()">Open in a new tab</button>
+  </div>
+  <div class="status" id="status2" style="margin-top:6px"></div>
+  <div class="note" style="margin-top:8px;margin-bottom:0">Print / Save as PDF opens your browser's print window; choose "Save as PDF" as the destination. Nothing you type leaves this page on its own.</div>
+</div>
+<footer><a href="index.html" style="color:inherit">All pages</a> &middot; Part of the CoIEP professional learning series &middot; PLAAFP session practice</footer>
+</div>
+
+<script id="embedded" type="application/json"></script>
+<script>
+const ELEMENTS=["Current performance: data on needs AND strengths","Parental input included","Classroom observations included","Disability impact statement (how the disability affects involvement and progress)","Bias-free, family-friendly, current language"];
+const KEY="coiep_plaafp_capture_v1";
+let state={acc:0,mod:0,rej:0};
+
+// Round A rows are static HTML (one source of truth); ELEMENTS is used for hints and export only.
+
+function fields(){return document.querySelectorAll("[data-k]");}
+function load(){
+  try{let s={};
+    const emb=document.getElementById("embedded").textContent.trim();
+    if(emb){ s=JSON.parse(emb); try{localStorage.setItem(KEY,JSON.stringify(s));}catch(e){} }
+    else { s=JSON.parse(localStorage.getItem(KEY)||"{}"); }
+    fields().forEach(f=>{const v=s[f.dataset.k]; if(v===undefined) return; if(f.type==="checkbox") f.checked=!!v; else f.value=v;});
+    ["acc","mod","rej"].forEach(k=>{state[k]=s["t_"+k]||0; document.getElementById("n_"+k).textContent=state[k];});
+  }catch(e){}
+  hint();
+}
+function collect(){ const s={}; fields().forEach(f=>{s[f.dataset.k]=f.type==="checkbox"?f.checked:f.value;}); ["acc","mod","rej"].forEach(k=>s["t_"+k]=state[k]); return s; }
+function save(){
+  const s=collect();
+  try{localStorage.setItem(KEY,JSON.stringify(s)); setStatus("Saved on this device");}catch(e){}
+  hint();
+}
+function hint(){
+  // Surface Round A rows where a Confident rating met a flagged verdict
+  const gaps=[];
+  ELEMENTS.forEach((e,i)=>{
+    const r=(document.querySelector("[data-k=a_r"+i+"]")||{}).value||"";
+    const v=((document.querySelector("[data-k=a_v"+i+"]")||{}).value||"").toLowerCase();
+    if(r==="Confident" && (v.includes("needs work")||v.includes("flag"))) gaps.push(e);
+  });
+  const g=document.getElementById("gaphint");
+  if(gaps.length){g.textContent="You were Confident but the Evaluator said needs work: "+gaps.join("; ")+". Worth starting there."; g.className="gapfill show";}
+  else g.className="gapfill";
+}
+function tally(k,d){state[k]=Math.max(0,state[k]+d); document.getElementById("n_"+k).textContent=state[k]; save();}
+let t; function setStatus(m){const s=document.getElementById("status"); s.textContent=m; clearTimeout(t); t=setTimeout(()=>s.textContent="",2000);}
+document.addEventListener("input",e=>{if(e.target.dataset.k!==undefined) save(); if(e.target.id==="orig"&&document.getElementById("frozen").checked) document.getElementById("origview").value=e.target.value;});
+document.addEventListener("change",e=>{if(e.target.dataset.k!==undefined) save();});
+
+function val(k){const f=document.querySelector("[data-k="+k+"]"); if(!f) return ""; return f.type==="checkbox"?(f.checked?"Yes":"No"):(f.value||"");}
+function toText(){
+  const L=[];
+  L.push("PLAAFP PRACTICE CAPTURE SHEET"); L.push("Date exported: "+new Date().toLocaleDateString());
+  L.push("Name: "+val("name")); L.push("Case (hypothetical): "+val("case")); L.push("");
+  L.push("ROUND A: PREDICT, THEN EVALUATE");
+  ELEMENTS.forEach((e,i)=>L.push("- "+e+" | How sure: "+val("a_r"+i)+" | Evaluator said: "+val("a_v"+i)+" | Surprised: "+val("a_s"+i)));
+  L.push("Biggest difference: "+val("gap")); L.push("");
+  L.push("ROUND B: EVALUATE REPORTS");
+  L.push("Saved a copy named ORIGINAL: "+val("frozen"));
+  L.push("Evaluator suggestions: provided "+state.acc+", valid "+state.mod+", will implement "+state.rej);
+  L.push("One piece of Evaluator feedback I disagree with, and my reasons: "+val("pushback")); L.push(""); L.push("ROUND C: REVISE"); L.push(val("revnote")); L.push("");
+  L.push("BEFORE YOU LEAVE"); L.push("Submitted my sheet: "+val("c1")); L.push("Keeping this sheet for reflection: "+val("c2"));
+  return L.join("\n");
+}
+function downloadTxt(){
+  const b=new Blob([toText()],{type:"text/plain"}); const a=document.createElement("a");
+  a.href=URL.createObjectURL(b); a.download="PLAAFP Capture Sheet notes"+(val("case")?" - "+val("case").trim():"")+".txt"; document.body.appendChild(a); a.click(); a.remove();
+  setStatus("Downloaded");
+}
+function copyTxt(){
+  const t=toText();
+  if(navigator.clipboard){navigator.clipboard.writeText(t).then(()=>setStatus("Copied"),()=>fallbackCopy(t));} else fallbackCopy(t);
+}
+function fallbackCopy(t){const ta=document.createElement("textarea"); ta.value=t; document.body.appendChild(ta); ta.select(); try{document.execCommand("copy"); setStatus("Copied");}catch(e){} ta.remove();}
+function clearAll(){
+  if(!confirm("Clear everything on this sheet? This cannot be undone.")) return;
+  fields().forEach(f=>{if(f.type==="checkbox") f.checked=false; else f.value="";});
+  state={acc:0,mod:0,rej:0}; ["acc","mod","rej"].forEach(k=>document.getElementById("n_"+k).textContent=0);
+  try{localStorage.removeItem(KEY);}catch(e){} hint(); lockOrig(); setStatus("Cleared");
+}
+function lockOrig(){
+  const f=document.getElementById("frozen"), o=document.getElementById("orig"), v=document.getElementById("origview"), n=document.getElementById("locknote");
+  if(f.checked && !o.value.trim()){ f.checked=false; n.textContent="Paste your ORIGINAL first, then check the box."; save(); return; }
+  o.readOnly=f.checked; o.classList.toggle("lock",f.checked);
+  v.value=f.checked?o.value:""; n.textContent=f.checked?"ORIGINAL locked. Uncheck to edit it (only if you have not started revising).":"";
+}
+function pairText(){
+  return ["PLAAFP PRACTICE PAIR (hypothetical case; no student information)","Case: "+val("case"),"Exported: "+new Date().toLocaleDateString(),"",
+   "===== ORIGINAL (before any revision) =====",val("orig"),"","===== REVISED (after revision) =====",val("revised"),"",
+   "Evaluator suggestions: provided "+state.acc+", valid "+state.mod+", will implement "+state.rej].join("\n");
+}
+function downloadPair(){
+  if(!val("frozen")||!val("orig").trim()){ setStatus("Lock your ORIGINAL in Round B first."); return; }
+  if(!val("revised").trim()){ setStatus("Paste your REVISED PLAAFP first."); return; }
+  const b=new Blob([pairText()],{type:"text/plain"}); const a=document.createElement("a");
+  a.href=URL.createObjectURL(b); a.download="PLAAFP pair"+(val("case")?" - "+val("case").trim():"")+".txt"; document.body.appendChild(a); a.click(); a.remove(); setStatus("Pair file downloaded");
+}
+function stateHtml(){
+  const json=JSON.stringify(collect()).replace(/<\//g,"<\\/");
+  let html="<!DOCTYPE html>\n"+document.documentElement.outerHTML;
+  return html.replace(/<script id="embedded" type="application\/json">[\s\S]*?<\/script>/, '<script id="embedded" type="application/json">'+json+'</script'+'>');
+}
+function openFull(){
+  const b=new Blob([stateHtml()],{type:"text/html"}); const u=URL.createObjectURL(b);
+  const w=window.open(u,"_blank");
+  if(!w){ setStatus("Your browser blocked the new tab. Allow pop-ups for this page, or use Save as a reopenable web page and open that file."); return; }
+  setStatus("Opened in a new tab. Use Save as PDF there.");
+}
+function saveSheet(){
+  const html=stateHtml();
+  const b=new Blob([html],{type:"text/html"}); const a=document.createElement("a");
+  a.href=URL.createObjectURL(b); a.download="PLAAFP Capture Sheet"+(val("case")?" - "+val("case").trim():"")+".html"; document.body.appendChild(a); a.click(); a.remove();
+  setStatus("Sheet saved as a file. Reopen it in any browser to continue.");
+}
+
+// ---- Built-in PDF writer (no print dialog, no external library) ----
+function pdfEsc(t){
+  // Map to WinAnsi (cp1252) so curly quotes and apostrophes render in Times-Roman
+  const map={"‘":"\x91","’":"\x92","“":"\x93","”":"\x94","–":"\x96","—":"\x97","•":"\x95","…":"\x85"};
+  let o=""; for(const ch of t){ const c=ch.charCodeAt(0); let x=map[ch]||ch; if(!map[ch] && c>255) x="?"; o+=x; }
+  return o.replace(/\\/g,"\\\\").replace(/\(/g,"\\(").replace(/\)/g,"\\)");
+}
+function pdfWrap(text,max){
+  const out=[]; for(const para of String(text||"").split(/\r?\n/)){ let line="";
+    for(const w of para.split(/\s+/)){ if(!w){continue;} if((line+" "+w).trim().length>max){ if(line) out.push(line); line=w; while(line.length>max){ out.push(line.slice(0,max)); line=line.slice(max);} } else line=(line?line+" ":"")+w; }
+    out.push(line); }
+  return out;
+}
+function buildPdfLines(){
+  const B=(t)=>({t,b:true}), N=(t)=>({t,b:false}), H=(t)=>({t,b:true,big:true}), S=()=>({t:"",b:false});
+  const L=[];
+  L.push(H("PLAAFP Practice Capture Sheet"));
+  L.push(N("Hypothetical case; no student information. Exported "+new Date().toLocaleDateString()+"."));
+  L.push(N("Name: "+val("name")+"     Case: "+val("case"))); L.push(S());
+  L.push(B("Round A: Predict, Then Evaluate"));
+  ELEMENTS.forEach((e,i)=>{ L.push(B(e)); L.push(N("How sure am I: "+(val("a_r"+i)||"(blank)")+"   |   Surprised: "+(val("a_s"+i)||"(blank)"))); L.push(N("What the Evaluator said: "+(val("a_v"+i)||"(blank)"))); });
+  L.push(B("Biggest difference between what I thought and what the Evaluator said:")); L.push(N(val("gap")||"(blank)")); L.push(S());
+  L.push(B("Round B: Evaluate Reports"));
+  L.push(N("Saved a copy named ORIGINAL: "+val("frozen")));
+  L.push(N("Evaluator suggestions: provided "+state.acc+"   |   valid "+state.mod+"   |   will implement "+state.rej));
+  L.push(B("One piece of Evaluator feedback I disagree with, and my reasons:")); L.push(N(val("pushback")||"(blank)")); L.push(S()); L.push(B("Round C: Revise, how I revised the PLAAFP based on the evaluation report")); L.push(N(val("revnote")||"(blank)")); L.push(S());
+  L.push(B("ORIGINAL PLAAFP (before any revision)")); L.push(N(val("orig")||"(blank)")); L.push(S());
+  L.push(B("REVISED PLAAFP")); L.push(N(val("revised")||"(blank)")); L.push(S());
+  L.push(N("Submitted my sheet: "+val("c1")+"   |   Keeping this sheet for my reflection sitting: "+val("c2")));
+  return L;
+}
+function makePdf(){
+  const W=612,Hh=792,M=60,lead=14,maxChars=92;
+  const items=buildPdfLines();
+  const pages=[]; let cur=[], y=Hh-M;
+  const push=(txt,bold,size)=>{ if(y<M){ pages.push(cur); cur=[]; y=Hh-M; } cur.push({txt,bold,size,y}); y-=(size>12?lead+6:lead); };
+  for(const it of items){ const size=it.big?16:11; const lines=it.t===""?[""]:pdfWrap(it.t,it.big?60:maxChars); for(const ln of lines) push(ln,it.b,size); }
+  pages.push(cur);
+  const objs=[]; const add=(s)=>{objs.push(s); return objs.length;};
+  const fontR=add("<< /Type /Font /Subtype /Type1 /BaseFont /Times-Roman /Encoding /WinAnsiEncoding >>");
+  const fontB=add("<< /Type /Font /Subtype /Type1 /BaseFont /Times-Bold /Encoding /WinAnsiEncoding >>");
+  const pagesId=objs.length+1+pages.length*2; // computed after
+  const pageIds=[];
+  const contentIds=[];
+  pages.forEach(pg=>{
+    let stream="BT\n";
+    pg.forEach(l=>{ stream+="/"+(l.bold?"F2":"F1")+" "+l.size+" Tf 1 0 0 1 "+M+" "+l.y.toFixed(1)+" Tm ("+pdfEsc(l.txt)+") Tj\n"; });
+    stream+="ET";
+    const cid=add("<< /Length "+stream.length+" >>\nstream\n"+stream+"\nendstream"); contentIds.push(cid);
+  });
+  const pagesObjId=objs.length+pages.length+1;
+  pages.forEach((pg,i)=>{ pageIds.push(add("<< /Type /Page /Parent "+pagesObjId+" 0 R /MediaBox [0 0 "+W+" "+Hh+"] /Resources << /Font << /F1 "+fontR+" 0 R /F2 "+fontB+" 0 R >> >> /Contents "+contentIds[i]+" 0 R >>")); });
+  const kids=pageIds.map(id=>id+" 0 R").join(" ");
+  const pid=add("<< /Type /Pages /Kids ["+kids+"] /Count "+pageIds.length+" >>");
+  const cat=add("<< /Type /Catalog /Pages "+pid+" 0 R >>");
+  let out="%PDF-1.4\n%\xE2\xE3\xCF\xD3\n"; const offs=[];
+  objs.forEach((o,i)=>{ offs.push(out.length); out+=(i+1)+" 0 obj\n"+o+"\nendobj\n"; });
+  const xref=out.length;
+  out+="xref\n0 "+(objs.length+1)+"\n0000000000 65535 f \n"; offs.forEach(o=>{ out+=String(o).padStart(10,"0")+" 00000 n \n"; });
+  out+="trailer\n<< /Size "+(objs.length+1)+" /Root "+cat+" 0 R >>\nstartxref\n"+xref+"\n%%EOF";
+  const bytes=new Uint8Array(out.length); for(let i=0;i<out.length;i++) bytes[i]=out.charCodeAt(i)&0xff;
+  const b=new Blob([bytes],{type:"application/pdf"}); const a=document.createElement("a");
+  a.href=URL.createObjectURL(b); a.download="PLAAFP Capture Sheet"+(val("case")?" - "+val("case").trim():"")+".pdf"; document.body.appendChild(a); a.click(); a.remove();
+  setStatus("PDF downloaded. If nothing appeared, click Open in a new tab and use Save as PDF there.");
+}
+function printSheet(){
+  let fired=false; const mark=()=>{fired=true;};
+  window.addEventListener("beforeprint",mark,{once:true});
+  try{ window.print(); }catch(e){}
+  setTimeout(()=>{ if(!fired) setStatus("If no print dialog appeared, click Open in a new tab and use Save as PDF there."); },1500);
+}
+if(window.top!==window.self){ document.addEventListener("DOMContentLoaded",()=>{ const h=document.getElementById("framehint"); if(h) h.textContent="This page is shown inside another site; if a button does nothing here, click Open in a new tab and use the same button there."; }); }
+window.addEventListener("beforeprint",()=>{document.querySelectorAll("textarea").forEach(t=>{t.dataset.h=t.style.height; t.style.height="auto"; t.style.height=(t.scrollHeight+4)+"px";});});
+window.addEventListener("afterprint",()=>{document.querySelectorAll("textarea").forEach(t=>{t.style.height=t.dataset.h||"";});});
+load(); lockOrig();
+</script>
+</body>
+</html>
