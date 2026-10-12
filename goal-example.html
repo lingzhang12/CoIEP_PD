@@ -269,7 +269,7 @@ select:disabled{opacity:1;color:var(--text);background:#eef2f7}
 
 <div class="card" id="leave">
   <h2>Before You Leave</h2>
-  <div class="note">On your own sheet, the Submit my sheet button copies the packet below and opens the form; you paste it, check the attestation, and submit. This is what the packet for this example looks like. The last line is the data row: your ratings and checks as codes, with no free text.</div>
+  <div class="note">On your own sheet, the Submit my sheet button copies the sheet summary below and opens the form; you paste it, check the attestation, and continue to the exit ticket. You can upload a saved PDF instead. This is what the sheet summary for this example looks like. The last line is the data row: your ratings and checks as codes, with no free text.</div>
   <div class="prompt" id="packetbox"></div>
   <div class="actions" style="margin-top:12px">
     <button class="btn sec" type="button" onclick="printSheet()">Print / Save as PDF</button>
@@ -285,7 +285,7 @@ select:disabled{opacity:1;color:var(--text);background:#eef2f7}
 const KEY="coiep_goal_capture_example_v1"; const EXEMPLAR=true;
 const SESSION=3; const ROW_VERSION="GC1";
 // Facilitator: paste the Qualtrics artifact form link here (anonymous link). Leave empty to use copy-and-paste only.
-const FORM_URL="";
+const FORM_URL="https://uwyo.sjc1.qualtrics.com/jfe/form/SV_aaFdhImLhG0cTno";
 let qa={};
 const QUIZ=[
  ["The PLAAFP should describe how the student's exceptionality affects access to and progress in the general education curriculum.",true,"That is the disability impact statement, one of the five parts you evaluated in Session 2."],
@@ -383,7 +383,7 @@ function dataRow(){
   return vals.map(csvq).join(",");
 }
 function packetText(){
-  return ["COIEP GOAL CAPTURE PACKET (Session "+SESSION+"; hypothetical case; no student information)",
+  return ["COIEP GOAL CAPTURE SHEET SUMMARY (Session "+SESSION+"; hypothetical case; no student information)",
    "Project code: "+val("code").trim(), "Case: "+val("case").trim(), "Standard: "+(val("stdcode").trim()||"(none)")+" | grade "+val("grade")+" | "+val("subject"),
    "Target component: "+val("target").trim(), "",
    "COMPONENTS SET BEFORE DRAFTING", "Behavior: "+val("c_b").trim(), "Condition: "+val("c_c").trim(), "Criteria: "+val("c_k").trim(), "Timeframe: "+val("c_t").trim(), "",
@@ -392,15 +392,15 @@ function packetText(){
    "DATA ROW", dataRow()].join("\n");
 }
 function copyRow(){ copyText(dataRow(),"Data row copied"); }
-function copyPacket(){ copyText(packetText(),"Packet copied. Paste it into the form's packet box."); }
+function copyPacket(){ copyText(packetText(),"Sheet summary copied. Paste it into the box on the form that says Paste your sheet summary here."); }
 function copyText(t,msg){ if(navigator.clipboard){navigator.clipboard.writeText(t).then(()=>setStatus(msg),()=>fallbackCopy(t));} else fallbackCopy(t); }
 function submitForm(){
   if(!val("code").trim()){ setStatus("Enter your project code first (top of the page)."); document.getElementById("code").focus(); return; }
   if(!val("orig").trim()){ setStatus("Paste the Goal Writer draft and freeze it first."); return; }
   copyPacket();
-  if(!FORM_URL){ setStatus("Packet copied. Open the form from the QR code or link your facilitator shared, paste the packet into the packet box, check the attestation, and submit."); return; }
-  const u=FORM_URL+(FORM_URL.includes("?")?"&":"?")+"code="+encodeURIComponent(val("code").trim())+"&session="+SESSION;
-  const w=window.open(u,"_blank"); setStatus(w?"Packet copied and the form opened in a new tab. Paste the packet into the packet box, check the attestation, and submit.":"Packet copied. Your browser blocked the new tab; open the form from the QR code and paste.");
+  if(!FORM_URL){ setStatus("Sheet summary copied. Open the form from the QR code or link your facilitator shared, paste it into the box that says Paste your sheet summary here, check the attestation, and continue."); return; }
+  const u=FORM_URL+(FORM_URL.includes("?")?"&":"?")+"session="+SESSION;   // the code is not put in the web address
+  const w=window.open(u,"_blank"); setStatus(w?"Sheet summary copied and the form opened in a new tab. Paste it into the box that says Paste your sheet summary here, check the attestation, and continue to the exit ticket.":"Sheet summary copied. Your browser blocked the new tab; open the form from the QR code and paste.");
 }
 let t; function setStatus(m){const s=document.getElementById("status"); s.textContent=m; clearTimeout(t); t=setTimeout(()=>s.textContent="",2500);}
 function save(){ try{localStorage.setItem(KEY,JSON.stringify(collect()));}catch(e){} hints(); buildPrompt(); }

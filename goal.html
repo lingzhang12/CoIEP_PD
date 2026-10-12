@@ -261,15 +261,15 @@ footer{font-size:14px;color:var(--text2);text-align:center;padding-top:6px}
 
 <div class="card" id="leave">
   <h2>Before You Leave</h2>
-  <div class="note">Submit before you leave the room; it takes under a minute. Click <b>Submit my sheet</b>: it copies your submission packet (your project code, the four components you set, the ORIGINAL goal, and one data row) and opens the form. Paste the packet into the form's packet box, check the attestation, and submit. Everyone submits; today's goal is hypothetical-case content with no student information. No PDF and no file upload are needed; the PDF is for your own records.</div>
+  <div class="note">Submit before you leave the room; it takes under a minute. There are two ways, and either one is fine. <b>Fastest:</b> click <b>Submit my sheet</b>. It copies your sheet summary (your project code, the four components you set, the ORIGINAL goal, and one data row) and opens the form. Paste it into the box that says &ldquo;Paste your sheet summary here,&rdquo; check the attestation, then answer the short exit ticket on the next page. <b>Or upload a PDF:</b> click Print / Save as PDF below, save the file, and upload it on the form. Everyone submits; today's goal is hypothetical-case content with no student information.</div>
   <div class="actions" style="margin-top:12px">
-    <button class="btn" type="button" onclick="submitForm()">Submit my sheet (copies the packet and opens the form)</button>
-    <button class="btn sec" type="button" onclick="copyPacket()">Copy the packet only</button>
+    <button class="btn" type="button" onclick="submitForm()">Submit my sheet (copies your sheet summary and opens the form)</button>
+    <button class="btn sec" type="button" onclick="copyPacket()">Copy my sheet summary only</button>
     <button class="btn sec" type="button" onclick="copyRow()">Copy the data row only</button>
   </div>
   <div class="status" id="status"></div>
   <div class="note" style="margin-top:10px">Between sessions: start Decision Log Entry 2 tonight; its first two sections (How you made this draft; Before I started) are already on this sheet. Then the monthly reflection prompts and the Self-Report Log in the same sitting.</div>
-  <h3>For your own records</h3>
+  <h3>To upload a PDF, or for your own records</h3>
   <div class="actions" style="margin-top:6px">
     <button class="btn sec" type="button" onclick="printSheet()">Print / Save as PDF</button>
     <button class="btn sec" type="button" onclick="makePdf()">Download PDF directly</button>
@@ -288,7 +288,7 @@ footer{font-size:14px;color:var(--text2);text-align:center;padding-top:6px}
 const KEY="coiep_goal_capture_v1";
 const SESSION=3; const ROW_VERSION="GC1";
 // Facilitator: paste the Qualtrics artifact form link here (anonymous link). Leave empty to use copy-and-paste only.
-const FORM_URL="";
+const FORM_URL="https://uwyo.sjc1.qualtrics.com/jfe/form/SV_aaFdhImLhG0cTno";
 let qa={};
 const QUIZ=[
  ["The PLAAFP should describe how the student's exceptionality affects access to and progress in the general education curriculum.",true,"That is the disability impact statement, one of the five parts you evaluated in Session 2."],
@@ -386,7 +386,7 @@ function dataRow(){
   return vals.map(csvq).join(",");
 }
 function packetText(){
-  return ["COIEP GOAL CAPTURE PACKET (Session "+SESSION+"; hypothetical case; no student information)",
+  return ["COIEP GOAL CAPTURE SHEET SUMMARY (Session "+SESSION+"; hypothetical case; no student information)",
    "Project code: "+val("code").trim(), "Case: "+val("case").trim(), "Standard: "+(val("stdcode").trim()||"(none)")+" | grade "+val("grade")+" | "+val("subject"),
    "Target component: "+val("target").trim(), "",
    "COMPONENTS SET BEFORE DRAFTING", "Behavior: "+val("c_b").trim(), "Condition: "+val("c_c").trim(), "Criteria: "+val("c_k").trim(), "Timeframe: "+val("c_t").trim(), "",
@@ -395,15 +395,15 @@ function packetText(){
    "DATA ROW", dataRow()].join("\n");
 }
 function copyRow(){ copyText(dataRow(),"Data row copied"); }
-function copyPacket(){ copyText(packetText(),"Packet copied. Paste it into the form's packet box."); }
+function copyPacket(){ copyText(packetText(),"Sheet summary copied. Paste it into the box on the form that says Paste your sheet summary here."); }
 function copyText(t,msg){ if(navigator.clipboard){navigator.clipboard.writeText(t).then(()=>setStatus(msg),()=>fallbackCopy(t));} else fallbackCopy(t); }
 function submitForm(){
   if(!val("code").trim()){ setStatus("Enter your project code first (top of the page)."); document.getElementById("code").focus(); return; }
   if(!val("orig").trim()){ setStatus("Paste the Goal Writer draft and freeze it first."); return; }
   copyPacket();
-  if(!FORM_URL){ setStatus("Packet copied. Open the form from the QR code or link your facilitator shared, paste the packet into the packet box, check the attestation, and submit."); return; }
-  const u=FORM_URL+(FORM_URL.includes("?")?"&":"?")+"code="+encodeURIComponent(val("code").trim())+"&session="+SESSION;
-  const w=window.open(u,"_blank"); setStatus(w?"Packet copied and the form opened in a new tab. Paste the packet into the packet box, check the attestation, and submit.":"Packet copied. Your browser blocked the new tab; open the form from the QR code and paste.");
+  if(!FORM_URL){ setStatus("Sheet summary copied. Open the form from the QR code or link your facilitator shared, paste it into the box that says Paste your sheet summary here, check the attestation, and continue."); return; }
+  const u=FORM_URL+(FORM_URL.includes("?")?"&":"?")+"session="+SESSION;   // the code is not put in the web address
+  const w=window.open(u,"_blank"); setStatus(w?"Sheet summary copied and the form opened in a new tab. Paste it into the box that says Paste your sheet summary here, check the attestation, and continue to the exit ticket.":"Sheet summary copied. Your browser blocked the new tab; open the form from the QR code and paste.");
 }
 let t; function setStatus(m){const s=document.getElementById("status"); s.textContent=m; clearTimeout(t); t=setTimeout(()=>s.textContent="",2500);}
 function save(){ try{localStorage.setItem(KEY,JSON.stringify(collect()));}catch(e){} hints(); buildPrompt(); }
