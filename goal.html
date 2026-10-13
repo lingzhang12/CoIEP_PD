@@ -68,7 +68,20 @@ details li{margin:3px 0}
 .quiz .fb{font-size:14.5px;margin-top:4px;display:none;padding:6px 10px;border-radius:6px}
 .quiz .fb.ok{display:block;background:#e8f4f1;color:#1d5145}
 .quiz .fb.no{display:block;background:#fdf6e3;color:#7a5f0e}
-.comp-row{display:grid;grid-template-columns:1fr 170px 34px;gap:8px;align-items:center;margin-top:6px}
+.comp{margin-top:10px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:#fbfcfd}
+.comp-row{display:grid;grid-template-columns:1fr 170px 34px;gap:8px;align-items:center}
+.comp-row input,.comp-row select{background:#fff}
+.comp-j label{display:block;font-size:14.5px;font-weight:600;color:var(--navy);margin:8px 0 3px}
+.comp-j textarea{min-height:54px;background:#fff}
+#tcomp{table-layout:fixed}
+#tcomp th:nth-child(1){width:23%} #tcomp th:nth-child(2){width:38%} #tcomp th:nth-child(3){width:27%} #tcomp th:nth-child(4){width:12%}
+#tcomp td.el{width:auto}
+#tcheck{table-layout:fixed}
+#tcheck th:nth-child(1){width:27%} #tcheck th:nth-child(2){width:11%} #tcheck th:nth-child(3){width:48%} #tcheck th:nth-child(4){width:14%}
+#tcheck td.el{width:auto}
+@media(max-width:700px){#tcomp,#tcheck{table-layout:auto}}
+.src-ex{font-size:13.5px;font-style:italic;color:var(--text2);line-height:1.3;margin-top:4px}
+.comp-unsure{margin-top:8px;padding:7px 11px;border-radius:6px;background:#fdf6e3;border-left:4px solid var(--gold);color:#7a5f0e;font-size:15px;font-weight:600}
 .comp-row button{height:34px;border:1px solid var(--line);background:#fbfcfd;border-radius:7px;cursor:pointer;font-size:17px;color:var(--text2)}
 .prompt{background:#f3f6fa;border:1px dashed #b7c3d4;border-radius:7px;padding:10px 12px;font-size:14.5px;white-space:pre-wrap;margin-top:6px}
 .next{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -89,15 +102,15 @@ footer{font-size:14px;color:var(--text2);text-align:center;padding-top:6px}
 <header>
   <h1>Standards-Based Goal Capture Sheet</h1>
   <div class="sub">Session 3: Goal Writing. Keep this sheet. You will bring it back in November to evaluate and revise the goal you write today.</div>
-  <div class="sub" style="font-style:normal;margin-top:8px"><b>Today’s task.</b> Complete Steps 1 to 3 using the hypothetical case from Session 2. You will choose one skill to target, decide the four goal components, draft with the Goal Writer and keep that draft unchanged, and record your checks. The draft stays as it is for November’s revision. Before you leave, submit your sheet and save a copy. Steps 4 and 5 (objectives and progress monitoring) come in December.</div>
-  <div class="privacy">Your entries save automatically in this browser on this device. Nothing is sent until you submit at the end. Use a hypothetical case; no student, family, staff, school, or district information. Use your project code, not your name.</div>
+  <div class="sub" style="font-style:normal;margin-top:8px"><b>Today’s task.</b> Complete Steps 1 to 3 for one of your students, using an anonymous student name. You will choose one skill to target, decide the goal components, draft with the Goal Writer and keep that draft unchanged, and record your checks. The draft stays as it is for November’s revision. Before you leave, submit your sheet and save a copy. Steps 4 and 5 (objectives and progress monitoring) come in December.</div>
+  <div class="privacy">Your entries save automatically in this browser on this device. Nothing is sent until you submit at the end. Use anonymous names only, for yourself and for your student. Before you paste, take out real names of students, families, staff, schools, and districts, and other identifying details such as dates of birth.</div>
   <div class="steps"><a href="#s0">Warm-up</a><a href="#s1">Step 1: PLAAFP to standard</a><a href="#s2">Step 2: Gap and skill components</a><a href="#s3">Step 3: Goal</a><a href="#next">What comes next</a><a href="#ref">Reference</a><a href="#leave">Before you leave</a></div>
 </header>
 
 <div class="card">
   <div class="two">
-    <div><label class="f" for="code">Project code (from your consent card; not your name)</label><input type="text" id="code" data-k="code" placeholder="Project code"></div>
-    <div><label class="f" for="case">Case (hypothetical; the same case as your Session 2 PLAAFP)</label><input type="text" id="case" data-k="case" placeholder="Case name or code"></div>
+    <div><label class="f" for="code">Your anonymous name</label><input type="text" id="code" data-k="code" placeholder="The name you chose on the consent survey"></div>
+    <div><label class="f" for="case">Anonymous student name</label><input type="text" id="case" data-k="case" placeholder="A made-up name for your student"></div>
   </div>
 </div>
 
@@ -110,16 +123,15 @@ footer{font-size:14px;color:var(--text2);text-align:center;padding-top:6px}
 
 <div class="card" id="s1">
   <h2>Step 1: Link the PLAAFP to a Standard</h2>
-  <div class="note">Start from the PLAAFP you revised in Session 2. The standard you choose should be the one most essential to accelerating the student's progress in the general education curriculum, tied to a high-priority need.</div>
-  <label class="f" for="plaafp">Your REVISED PLAAFP from Session 2 (paste)</label>
-  <textarea id="plaafp" data-k="plaafp" style="min-height:120px" placeholder="Paste the REVISED PLAAFP for your hypothetical case."></textarea>
-  <div class="note" style="margin:4px 0 0">Cannot find it? Open your case in CoIEP and copy the PLAAFP from there, or check the PDF you saved in Session 2. As a last resort, use the PLAAFP from the completed example.</div>
+  <div class="note">Start from your student’s PLAAFP. The standard you choose should be the one most essential to accelerating the student's progress in the general education curriculum, tied to a high-priority need.</div>
+  <label class="f" for="plaafp">Your student’s PLAAFP (paste)</label>
+  <textarea id="plaafp" data-k="plaafp" style="min-height:120px" placeholder="Paste your student’s PLAAFP, with the anonymous student name in place of the real one."></textarea>
   <div class="two">
-    <div><label class="f" for="need">The highest-priority need in this PLAAFP (one need)</label><textarea id="need" data-k="need" style="min-height:60px" placeholder="The one need that presents the biggest obstacle to progress toward grade-level standards."></textarea></div>
+    <div><label class="f" for="need">Choose one of the highest-priority needs in this PLAAFP</label><textarea id="need" data-k="need" style="min-height:60px" placeholder="The one need that presents the biggest obstacle to progress toward grade-level standards."></textarea></div>
     <div><label class="f" for="needwhy">Why this need, and not another one?</label><textarea id="needwhy" data-k="needwhy" style="min-height:60px" placeholder="Which need, if addressed, most reduces the gap to grade level?"></textarea></div>
   </div>
   <h3>The standard</h3>
-  <div class="note" style="margin-bottom:6px">CoIEP lists the state standards for the case's grade. Open the standards for your case's grade and subject in CoIEP, choose one, and copy it here. If you prefer, use the Wyoming Content and Performance Standards from the Wyoming Department of Education.</div>
+  <div class="note" style="margin-bottom:6px">Choose the Wyoming Department of Education content and performance standard that most closely aligns with the identified student need: <a href="https://edu.wyoming.gov/transparency/content-performance-standards/" target="_blank" rel="noopener">edu.wyoming.gov/transparency/content-performance-standards</a></div>
   <div class="three">
     <div><label class="f" for="grade">Grade (the student's enrolled grade)</label><select id="grade" data-k="grade"><option value="">Select</option><option>K</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option></select></div>
     <div><label class="f" for="subject">Subject</label><select id="subject" data-k="subject"><option value="">Select</option><option>English Language Arts</option><option>Mathematics</option><option>Science</option><option>Social Studies</option><option>Other</option></select></div>
@@ -127,14 +139,14 @@ footer{font-size:14px;color:var(--text2);text-align:center;padding-top:6px}
   </div>
   <label class="f" for="stdtext">Standard text (paste the full standard)</label>
   <textarea id="stdtext" data-k="stdtext" style="min-height:90px" placeholder="Paste the standard exactly as written."></textarea>
-  <label class="f" for="stdwhy">Why this standard? (which high-priority need it serves; whether the student has already met the standard that comes just before it, such as the same skill one grade earlier)</label>
+  <label class="f" for="stdwhy">Deconstruct the standard: analyze and identify the skills needed to meet the standard</label>
   <textarea id="stdwhy" data-k="stdwhy" style="min-height:60px"></textarea>
   <div class="hint" id="h1"></div>
 </div>
 
 <div class="card" id="s2">
   <h2>Step 2: Gap Analysis and Skill Components</h2>
-  <div class="note">A gap analysis measures the distance between the student's present level and the grade-level standard, and names the prerequisite skills that close it. Answer the four questions, then break the standard into its skill components.</div>
+  <div class="note">A gap analysis measures the distance between the student's present level and the grade-level standard, and names the prerequisite skills that close it. Answer the question below, then rate each skill and justify your rating.</div>
   <details><summary>See the worked example (Richie, grade 4 mathematics)</summary>
     <div class="body">
       <div class="ex"><b>PLAAFP (excerpt).</b> Richie can add, subtract, and multiply single-digit numbers with 90% accuracy. He can add and multiply double-digit numbers with 50% accuracy, but he is unable to subtract double-digit numbers that require regrouping. He has not yet learned the process of division.</div>
@@ -142,49 +154,47 @@ footer{font-size:14px;color:var(--text2);text-align:center;padding-top:6px}
       <div class="ex"><b>Gaps.</b> Multi-digit subtraction with regrouping (not yet); multi-digit multiplication (50% on two-digit); division (not started). <b>Skills needed.</b> Regrouping across place values; multi-digit by one-digit multiplication with place-value strategies; division as the inverse of multiplication. <b>Where the prerequisites are taught.</b> Subtraction with regrouping and the concept of division are grade 3 standards; multi-digit multiplication begins in grade 4. <b>Component to target first.</b> Subtraction with regrouping, because it is the earliest missing prerequisite and the multiplication and division strategies depend on place-value fluency.</div>
     </div>
   </details>
-  <h3>The four gap questions</h3>
-  <label class="f" for="g1">1. Compare the student's present level to the expectations of the grade-level standard. What can the student already do that the standard asks for?</label>
-  <textarea id="g1" data-k="g1"></textarea>
-  <label class="f" for="g2">2. Where are the gaps between the present level and the standard?</label>
-  <textarea id="g2" data-k="g2"></textarea>
-  <label class="f" for="g3">3. What skills does the student need to move from the current level to the level of the standard?</label>
+  <h3>Gap analysis</h3>
+  <label class="f" for="g3">What skills does the student need to move from the current level to the level of the standard?</label>
   <textarea id="g3" data-k="g3"></textarea>
-  <label class="f" for="g4">4. At what grade level are the prerequisite skills the student needs normally taught?</label>
-  <textarea id="g4" data-k="g4" style="min-height:60px"></textarea>
 
   <h3>Skills the standard requires, and their prerequisites</h3>
-  <div class="note" style="margin-bottom:4px">List the skills the standard requires, and any prerequisite skills your gap analysis found (one skill per row). For each, say where the student stands.</div>
+  <div class="note" style="margin-bottom:4px">List the skills from your deconstruction of the standard, and any prerequisite skills your gap analysis found (one skill per row). For each, say where the student stands and justify your rating.</div>
   <div id="comps"></div>
   <div class="actions" style="margin-top:8px"><button type="button" class="btn sec sm" onclick="addComp()">Add a component</button></div>
   <div class="hint" id="h2"></div>
-  <label class="f" for="target">The one skill this goal will target</label>
-  <select id="target" data-k="target"><option value="">Select from your list above</option></select>
+  <label class="f" for="target">Of the identified skills that are missing or partly met, identify the skill the goal will target</label>
+  <select id="target" data-k="target"><option value="">Rate a skill Missing or Partly first</option></select>
   <label class="f" for="targetwhy">Why this skill first? (what it unlocks; what the student already does that it builds on)</label>
   <textarea id="targetwhy" data-k="targetwhy" style="min-height:60px"></textarea>
+  <label class="f" for="baseline">Baseline data for this skill</label>
+  <textarea id="baseline" data-k="baseline" style="min-height:60px" placeholder="What the student does now on this skill: the score or count, the measure used, and when it was taken. If you have no baseline yet, say so."></textarea>
 </div>
 
 <div class="card" id="s3">
   <h2>Step 3: Set the Goal Components, Then Draft</h2>
-  <div class="rule"><b>Criteria before drafting.</b> Decide the four components of the goal yourself before you open the Goal Writer. The draft is then checked against your decisions, not against your impression of it. A measurable annual goal names the student and states a behavior or skill, the condition, the criteria, and the timeframe. You decide the last four below; the student is your hypothetical case. The goal does not restate the standard, and it does not say what the teacher will do.</div>
+  <div class="rule"><b>Criteria before drafting.</b> Decide each part of the goal yourself before you open the Goal Writer. The draft is then checked against your decisions, not against your impression of it. A measurable annual goal names the student and states a behavior or skill, the condition, the criteria, and the timeframe. You decide each of these below, with the criteria in three parts: the mastery criterion, the retention criterion, and the measure. The student appears under the anonymous name you entered above. The goal does not restate the standard, and it does not say what the teacher will do.</div>
   <table id="tcomp">
     <thead><tr><th>Component</th><th>What I decided (before drafting)</th><th>Where it comes from (the data or source behind it)</th><th>How sure am I?</th></tr></thead>
     <tbody>
-      <tr><td class="el">Behavior or skill<div class="note" style="margin:2px 0 0;font-weight:normal">One observable performance: the skill you chose in Step 2.</div></td><td data-l="What I decided"><textarea data-k="c_b"></textarea></td><td data-l="Where it comes from"><input type="text" data-k="c_bs" placeholder="standard component; PLAAFP"></td><td data-l="How sure am I?"><select data-k="c_br"><option value="">Select</option><option>Confident</option><option>Unsure</option><option>Guessed</option></select></td></tr>
-      <tr><td class="el">Condition<div class="note" style="margin:2px 0 0;font-weight:normal">The task or materials, and the support available, when performance is measured. Include the details needed to measure the skill the same way each time.</div></td><td data-l="What I decided"><textarea data-k="c_c"></textarea></td><td data-l="Where it comes from"><input type="text" data-k="c_cs" placeholder="PLAAFP; classroom routine"></td><td data-l="How sure am I?"><select data-k="c_cr"><option value="">Select</option><option>Confident</option><option>Unsure</option><option>Guessed</option></select></td></tr>
-      <tr><td class="el">Criteria<div class="note" style="margin:2px 0 0;font-weight:normal">One primary measure (such as a rubric score or number correct), the target, and how consistently the student must meet it. Avoid a second measure of the same performance.</div></td><td data-l="What I decided"><textarea data-k="c_k"></textarea></td><td data-l="Where it comes from"><input type="text" data-k="c_ks" placeholder="baseline in PLAAFP; benchmark"></td><td data-l="How sure am I?"><select data-k="c_kr"><option value="">Select</option><option>Confident</option><option>Unsure</option><option>Guessed</option></select></td></tr>
-      <tr><td class="el">Timeframe<div class="note" style="margin:2px 0 0;font-weight:normal">By when; usually one IEP year.</div></td><td data-l="What I decided"><textarea data-k="c_t" style="min-height:40px"></textarea></td><td data-l="Where it comes from"><input type="text" data-k="c_ts" placeholder="IEP year"></td><td data-l="How sure am I?"><select data-k="c_tr"><option value="">Select</option><option>Confident</option><option>Unsure</option><option>Guessed</option></select></td></tr>
+      <tr><td class="el">Behavior or skill<div class="note" style="margin:2px 0 0;font-weight:normal">One observable performance: the skill you chose in Step 2.</div></td><td data-l="What I decided"><textarea data-k="c_b"></textarea></td><td data-l="Where it comes from"><input type="text" data-k="c_bs"><div class="src-ex">Example: RI.4.2, third component; PLAAFP need</div></td><td data-l="How sure am I?"><select data-k="c_br"><option value="">Select</option><option>Confident</option><option>Unsure</option><option>Guessed</option></select></td></tr>
+      <tr><td class="el">Condition<div class="note" style="margin:2px 0 0;font-weight:normal">The task or materials, and the support available, when performance is measured. Include the details needed to measure the skill the same way each time.</div></td><td data-l="What I decided"><textarea data-k="c_c"></textarea></td><td data-l="Where it comes from"><input type="text" data-k="c_cs"><div class="src-ex">Example: PLAAFP (grade-level content passages); class routine</div></td><td data-l="How sure am I?"><select data-k="c_cr"><option value="">Select</option><option>Confident</option><option>Unsure</option><option>Guessed</option></select></td></tr>
+      <tr><td class="el">Mastery criterion<div class="note" style="margin:2px 0 0;font-weight:normal">The level of performance that counts as mastery, such as 3 out of 4 on a rubric or 8 of 10 correct.</div></td><td data-l="What I decided"><textarea data-k="c_k"></textarea></td><td data-l="Where it comes from"><input type="text" data-k="c_ks"><div class="src-ex">Example: PLAAFP baseline (median 1 of 4)</div></td><td data-l="How sure am I?"><select data-k="c_kr"><option value="">Select</option><option>Confident</option><option>Unsure</option><option>Guessed</option></select></td></tr>
+      <tr><td class="el">Retention criterion<div class="note" style="margin:2px 0 0;font-weight:normal">How consistently the student must reach that level before the goal is met, such as on 4 of 5 consecutive weekly probes.</div></td><td data-l="What I decided"><textarea data-k="c_r"></textarea></td><td data-l="Where it comes from"><input type="text" data-k="c_rs"><div class="src-ex">Example: weekly passage routine; my judgment of what shows the skill has stuck</div></td><td data-l="How sure am I?"><select data-k="c_rr"><option value="">Select</option><option>Confident</option><option>Unsure</option><option>Guessed</option></select></td></tr>
+      <tr><td class="el">Measure<div class="note" style="margin:2px 0 0;font-weight:normal">How you will measure the criteria above: the tool and its unit, such as a rubric score, words correct per minute, or number correct out of ten. Choose one primary measure, the same one as your baseline.</div></td><td data-l="What I decided"><textarea data-k="c_m"></textarea></td><td data-l="Where it comes from"><input type="text" data-k="c_ms"><div class="src-ex">Example: class rubric; the same measure as the baseline</div></td><td data-l="How sure am I?"><select data-k="c_mr"><option value="">Select</option><option>Confident</option><option>Unsure</option><option>Guessed</option></select></td></tr>
+      <tr><td class="el">Timeframe<div class="note" style="margin:2px 0 0;font-weight:normal">By when; usually one IEP year.</div></td><td data-l="What I decided"><textarea data-k="c_t" style="min-height:40px"></textarea></td><td data-l="Where it comes from"><input type="text" data-k="c_ts"><div class="src-ex">Example: IEP year</div></td><td data-l="How sure am I?"><select data-k="c_tr"><option value="">Select</option><option>Confident</option><option>Unsure</option><option>Guessed</option></select></td></tr>
     </tbody>
   </table>
-  <div class="lockrow"><b>Lock your decisions.</b> Check this before you open the Goal Writer. The four boxes above lock; your criteria are now on paper.
-    <label class="chk"><input type="checkbox" id="lockc" data-k="lockc" onchange="lockComps()"> My four components are set (locks the table above)</label>
+  <div class="lockrow"><b>Lock your decisions.</b> Check this before you open the Goal Writer. The boxes above lock; your decisions are now on paper.
+    <label class="chk"><input type="checkbox" id="lockc" data-k="lockc" onchange="lockComps()"> My goal components are set (locks the table above)</label>
     <div class="locked-note" id="locknote1"></div>
   </div>
 
   <h3>Draft with the Goal Writer</h3>
-  <div class="note">Open the Goal Writer in CoIEP for your case. The prompt below is built from what you wrote above; copy it, add anything the case needs, and submit. Read the draft against your four components. Then paste it here exactly as CoIEP wrote it.</div>
+  <div class="note">Open the Goal Writer in CoIEP for your case. The prompt below is built from what you wrote above; copy it, add anything the case needs, and submit. Read the draft against your components. Then paste it here exactly as CoIEP wrote it.</div>
   <div class="prompt" id="promptbox"></div>
   <div class="actions" style="margin-top:6px"><button type="button" class="btn sec sm" onclick="copyPrompt()">Copy this prompt</button></div>
-  <div class="freeze" style="margin-top:12px"><b>FREEZE THE ORIGINAL.</b> Paste the Goal Writer's draft exactly as written. Do not edit it. The before version is what November's revision is measured against.
+  <div class="freeze" style="margin-top:12px"><b>FREEZE THE ORIGINAL.</b> Paste the CoIEP Goal Writer's 5. SMART IEP Goal draft exactly as written. Do not edit it.
     <label class="f" for="orig" style="margin-top:10px">ORIGINAL goal (the Goal Writer's draft, unedited)</label>
     <textarea id="orig" data-k="orig" style="min-height:110px;font-family:'Times New Roman',Times,serif;background:#fffdf7" placeholder="Paste the goal exactly as CoIEP drafted it."></textarea>
     <label class="chk"><input type="checkbox" id="frozen" data-k="frozen" onchange="lockOrig()"> This is the unedited draft; freeze it as ORIGINAL (locks the box above)</label>
@@ -198,7 +208,7 @@ footer{font-size:14px;color:var(--text2);text-align:center;padding-top:6px}
     <tbody>
       <tr><td class="el">Behavior matches the one I set</td><td data-l="Result"><select data-k="k_1"><option value="">Select</option><option>Yes</option><option>Partly</option><option>No</option></select></td><td data-l="Evidence"><input type="text" data-k="k_1e"></td><td data-l="How sure am I?"><select data-k="k_1r"><option value="">Select</option><option>Confident</option><option>Unsure</option><option>Guessed</option></select></td></tr>
       <tr><td class="el">Condition matches: the task, materials, and support I set</td><td data-l="Result"><select data-k="k_2"><option value="">Select</option><option>Yes</option><option>Partly</option><option>No</option></select></td><td data-l="Evidence"><input type="text" data-k="k_2e"></td><td data-l="How sure am I?"><select data-k="k_2r"><option value="">Select</option><option>Confident</option><option>Unsure</option><option>Guessed</option></select></td></tr>
-      <tr><td class="el">Criteria match: one primary measure, with the target and how consistently it must be met</td><td data-l="Result"><select data-k="k_3"><option value="">Select</option><option>Yes</option><option>Partly</option><option>No</option></select></td><td data-l="Evidence"><input type="text" data-k="k_3e"></td><td data-l="How sure am I?"><select data-k="k_3r"><option value="">Select</option><option>Confident</option><option>Unsure</option><option>Guessed</option></select></td></tr>
+      <tr><td class="el">Criteria and measure match: the mastery criterion, the retention criterion, and the measure I set</td><td data-l="Result"><select data-k="k_3"><option value="">Select</option><option>Yes</option><option>Partly</option><option>No</option></select></td><td data-l="Evidence"><input type="text" data-k="k_3e"></td><td data-l="How sure am I?"><select data-k="k_3r"><option value="">Select</option><option>Confident</option><option>Unsure</option><option>Guessed</option></select></td></tr>
       <tr><td class="el">Timeframe is stated</td><td data-l="Result"><select data-k="k_4"><option value="">Select</option><option>Yes</option><option>Partly</option><option>No</option></select></td><td data-l="Evidence"><input type="text" data-k="k_4e"></td><td data-l="How sure am I?"><select data-k="k_4r"><option value="">Select</option><option>Confident</option><option>Unsure</option><option>Guessed</option></select></td></tr>
       <tr><td class="el">One observable performance (it may have several quality features), with no second behavior that would need to be measured separately</td><td data-l="Result"><select data-k="k_5"><option value="">Select</option><option>Yes</option><option>Partly</option><option>No</option></select></td><td data-l="Evidence"><input type="text" data-k="k_5e"></td><td data-l="How sure am I?"><select data-k="k_5r"><option value="">Select</option><option>Confident</option><option>Unsure</option><option>Guessed</option></select></td></tr>
       <tr><td class="el">Practical to record: a few seconds during the lesson, or one line on a sheet right after it</td><td data-l="Result"><select data-k="k_6"><option value="">Select</option><option>Yes</option><option>Partly</option><option>No</option></select></td><td data-l="Evidence"><input type="text" data-k="k_6e"></td><td data-l="How sure am I?"><select data-k="k_6r"><option value="">Select</option><option>Confident</option><option>Unsure</option><option>Guessed</option></select></td></tr>
@@ -262,7 +272,7 @@ footer{font-size:14px;color:var(--text2);text-align:center;padding-top:6px}
 
 <div class="card" id="leave">
   <h2>Before You Leave</h2>
-  <div class="note">Submit before you leave the room; it takes under a minute. There are two ways, and either one is fine. <b>Fastest:</b> click <b>Submit my sheet</b>. It copies your sheet summary (your project code, the four components you set, the ORIGINAL goal, and one data row) and opens the form. Paste it into the box that says &ldquo;Paste your sheet summary here,&rdquo; check the attestation, then answer the short exit ticket on the next page. <b>Or upload a PDF:</b> click Print / Save as PDF below, save the file, and upload it on the form. Everyone submits; today's goal is hypothetical-case content with no student information.</div>
+  <div class="note">Submit before you leave the room; it takes under a minute. There are two ways, and either one is fine. <b>Fastest:</b> click <b>Submit my sheet</b>. It copies your sheet summary (your anonymous name, the goal components you set, the ORIGINAL goal, and one data row) and opens the form. Paste it into the box that says &ldquo;Paste your sheet summary here,&rdquo; check the attestation, then answer the short exit ticket on the next page. <b>Or upload a PDF:</b> click Print / Save as PDF below, save the file, and upload it on the form. Everyone submits. Before you do, check that your sheet uses anonymous names only.</div>
   <div class="actions" style="margin-top:12px">
     <button class="btn" type="button" onclick="submitForm()">Submit my sheet (copies your sheet summary and opens the form)</button>
     <button class="btn sec" type="button" onclick="copyPacket()">Copy my sheet summary only</button>
@@ -288,7 +298,7 @@ footer{font-size:14px;color:var(--text2);text-align:center;padding-top:6px}
 <script id="embedded" type="application/json"></script>
 <script>
 const KEY="coiep_goal_capture_v1";
-const SESSION=3; const ROW_VERSION="GC1";
+const SESSION=3; const ROW_VERSION="GC2";
 // Facilitator: paste the Qualtrics artifact form link here (anonymous link). Leave empty to use copy-and-paste only.
 const FORM_URL="https://uwyo.sjc1.qualtrics.com/jfe/form/SV_aaFdhImLhG0cTno";
 let qa={};
@@ -325,7 +335,7 @@ function checkComps(){
   qa[i]=[...picked]; try{save();}catch(e){}
   const fb=document.getElementById("fb"+i); if(!picked.size){fb.className="fb";return;}
   const extra=[...picked].filter(x=>!COMP_OK.has(x)); const missing=[...COMP_OK].filter(x=>!picked.has(x));
-  if(!extra.length&&!missing.length){fb.className="fb ok"; fb.textContent="Correct: student name, behavior or skill, condition, criteria, timeframe. Baseline data belong in the PLAAFP; what the teacher does and the methodology belong in SDI. On this page the student is your hypothetical case, never a real student\u2019s name.";}
+  if(!extra.length&&!missing.length){fb.className="fb ok"; fb.textContent="Correct: student name, behavior or skill, condition, criteria, timeframe. On this sheet the criteria have three parts: the mastery criterion, the retention criterion, and the measure. Baseline data belong in the PLAAFP; what the teacher does and the methodology belong in SDI. On this page, use the anonymous student name, never a real name.";}
   else {fb.className="fb no"; fb.textContent=(extra.length?"Not a goal component: "+extra.join(", ")+". ":"")+(missing.length?"Still missing: "+missing.join(", ")+".":"");}
 }
 
@@ -333,19 +343,26 @@ function fields(){return document.querySelectorAll("[data-k]");}
 function renderComps(){
   const box=document.getElementById("comps"); box.innerHTML="";
   comps.forEach((c,i)=>{
+    const wrap=document.createElement("div"); wrap.className="comp";
     const row=document.createElement("div"); row.className="comp-row";
     row.innerHTML='<input type="text" placeholder="Skill component '+(i+1)+'" value="'+esc(c.t)+'" oninput="comps['+i+'].t=this.value;save();syncTarget()">'
-     +'<select onchange="comps['+i+'].s=this.value;save();hintComps()"><option value="">Where the student stands</option><option'+(c.s==="Has it"?" selected":"")+'>Has it</option><option'+(c.s==="Partly"?" selected":"")+'>Partly</option><option'+(c.s==="Missing"?" selected":"")+'>Missing</option></select>'
+     +'<select onchange="comps['+i+'].s=this.value;save();hintComps();syncTarget();this.closest(\'.comp\').querySelector(\'.comp-unsure\').style.display=(this.value===\'Unsure\'?\'block\':\'none\')"><option value="">Where the student stands</option><option'+(c.s==="Has it"?" selected":"")+'>Has it</option><option'+(c.s==="Partly"?" selected":"")+'>Partly</option><option'+(c.s==="Missing"?" selected":"")+'>Missing</option><option'+(c.s==="Unsure"?" selected":"")+'>Unsure</option></select>'
      +'<button type="button" title="Remove" onclick="comps.splice('+i+',1);renderComps();save();syncTarget()">&times;</button>';
-    box.appendChild(row);
+    const j=document.createElement("div"); j.className="comp-j";
+    j.innerHTML='<label for="comp-j-'+i+'">Justification</label><textarea id="comp-j-'+i+'" placeholder="Why this rating? Point to what the PLAAFP shows." oninput="comps['+i+'].j=this.value;save()">'+esc(c.j||"")+'</textarea>';
+    const u=document.createElement("div"); u.className="comp-unsure"; u.style.display=(c.s==="Unsure"?"block":"none");
+    u.textContent="Do you need to collect more data to determine the mastery of the skill?";
+    wrap.appendChild(row); wrap.appendChild(u); wrap.appendChild(j); box.appendChild(wrap);
   });
   syncTarget(); hintComps();
 }
 function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;");}
-function addComp(){comps.push({t:"",s:""}); renderComps(); save();}
+function addComp(){comps.push({t:"",s:"",j:""}); renderComps(); save();}
 function syncTarget(){
-  const sel=document.getElementById("target"); const cur=sel.value; sel.innerHTML='<option value="">Select from your list above</option>';
-  comps.forEach(c=>{ if(c.t.trim()){ const o=document.createElement("option"); o.textContent=c.t.trim(); sel.appendChild(o);} });
+  const sel=document.getElementById("target"); const cur=sel.value;
+  const ok=comps.filter(c=>c.t.trim()&&(c.s==="Missing"||c.s==="Partly"));
+  sel.innerHTML='<option value="">'+(ok.length?"Select from the skills you rated Missing or Partly":"Rate a skill Missing or Partly first")+'</option>';
+  ok.forEach(c=>{ const o=document.createElement("option"); o.textContent=c.t.trim(); sel.appendChild(o); });
   sel.value=cur; if(sel.value!==cur) sel.value="";
 }
 function hintComps(){
@@ -378,20 +395,24 @@ function words(t){ t=String(t||"").trim(); return t?t.split(/\s+/).length:0; }
 function dataRow(){
   const q=quizScore(); const nH=comps.filter(c=>c.t.trim()&&c.s==="Has it").length, nP=comps.filter(c=>c.t.trim()&&c.s==="Partly").length, nM=comps.filter(c=>c.t.trim()&&c.s==="Missing").length, nC=comps.filter(c=>c.t.trim()).length;
   const vals=[ROW_VERSION, val("code").trim(), SESSION, new Date().toISOString().slice(0,10), val("grade"), val("subject"), val("stdcode").trim(),
-    val("plaafp").trim()?1:0, val("need").trim()?1:0, val("stdtext").trim()?1:0, [1,2,3,4].filter(i=>val("g"+i).trim()).length,
+    val("plaafp").trim()?1:0, val("need").trim()?1:0, val("stdtext").trim()?1:0, val("g3").trim()?1:0,
     nC, nH, nP, nM, val("target").trim()?1:0,
     val("lockc")==="Yes"?1:0, cug(val("c_br")), cug(val("c_cr")), cug(val("c_kr")), cug(val("c_tr")),
     val("frozen")==="Yes"?1:0, words(val("orig")),
     ypn(val("k_1")), ypn(val("k_2")), ypn(val("k_3")), ypn(val("k_4")), ypn(val("k_5")), ypn(val("k_6")), ypn(val("k_7")),
     cug(val("k_1r")), cug(val("k_2r")), cug(val("k_3r")), cug(val("k_4r")), cug(val("k_5r")), cug(val("k_6r")), cug(val("k_7r")),
-    val("expect").trim()?1:0, q.answered, q.score];
+    val("expect").trim()?1:0, q.answered, q.score,
+    comps.filter(c=>c.t.trim()&&c.j&&c.j.trim()).length,
+    comps.filter(c=>c.t.trim()&&c.s==="Unsure").length,
+    val("baseline").trim()?1:0,
+    cug(val("c_mr")), cug(val("c_rr"))];
   return vals.map(csvq).join(",");
 }
 function packetText(){
-  return ["COIEP GOAL CAPTURE SHEET SUMMARY (Session "+SESSION+"; hypothetical case; no student information)",
-   "Project code: "+val("code").trim(), "Case: "+val("case").trim(), "Standard: "+(val("stdcode").trim()||"(none)")+" | grade "+val("grade")+" | "+val("subject"),
-   "Target component: "+val("target").trim(), "",
-   "COMPONENTS SET BEFORE DRAFTING", "Behavior: "+val("c_b").trim(), "Condition: "+val("c_c").trim(), "Criteria: "+val("c_k").trim(), "Timeframe: "+val("c_t").trim(), "",
+  return ["COIEP GOAL CAPTURE SHEET SUMMARY (Session "+SESSION+"; anonymous names only)",
+   "Anonymous name: "+val("code").trim(), "Anonymous student name: "+val("case").trim(), "Standard: "+(val("stdcode").trim()||"(none)")+" | grade "+val("grade")+" | "+val("subject"),
+   "Target skill: "+val("target").trim(), "Baseline data: "+val("baseline").trim(), "",
+   "COMPONENTS SET BEFORE DRAFTING", "Behavior: "+val("c_b").trim(), "Condition: "+val("c_c").trim(), "Mastery criterion: "+val("c_k").trim(), "Retention criterion: "+val("c_r").trim(), "Measure: "+val("c_m").trim(), "Timeframe: "+val("c_t").trim(), "",
    "ORIGINAL GOAL (Goal Writer draft, unedited; frozen: "+val("frozen")+")", val("orig").trim(), "",
    "EXPECT THE EVALUATOR TO FLAG: "+val("expect").trim(), "",
    "DATA ROW", dataRow()].join("\n");
@@ -400,7 +421,7 @@ function copyRow(){ copyText(dataRow(),"Data row copied"); }
 function copyPacket(){ copyText(packetText(),"Sheet summary copied. Paste it into the box on the form that says Paste your sheet summary here."); }
 function copyText(t,msg){ if(navigator.clipboard){navigator.clipboard.writeText(t).then(()=>setStatus(msg),()=>fallbackCopy(t));} else fallbackCopy(t); }
 function submitForm(){
-  if(!val("code").trim()){ setStatus("Enter your project code first (top of the page)."); document.getElementById("code").focus(); return; }
+  if(!val("code").trim()){ setStatus("Enter your anonymous name first (top of the page)."); document.getElementById("code").focus(); return; }
   if(!val("orig").trim()){ setStatus("Paste the Goal Writer draft and freeze it first."); return; }
   copyPacket();
   if(!FORM_URL){ setStatus("Sheet summary copied. Open the form from the QR code or link your facilitator shared, paste it into the box that says Paste your sheet summary here, check the attestation, and continue."); return; }
@@ -412,9 +433,9 @@ function save(){ try{localStorage.setItem(KEY,JSON.stringify(collect()));}catch(
 function val(k){const f=document.querySelector("[data-k="+k+"]"); if(!f) return ""; return f.type==="checkbox"?(f.checked?"Yes":"No"):(f.value||"");}
 function hints(){
   const h1=document.getElementById("h1");
-  if(val("stdtext").trim()&&val("need").trim()&&!val("stdwhy").trim()){h1.className="hint show"; h1.textContent="You have a need and a standard. Say in one line how the standard serves that need.";} else h1.className="hint";
+  if(val("stdtext").trim()&&val("need").trim()&&!val("stdwhy").trim()){h1.className="hint show"; h1.textContent="You have a need and a standard. Now deconstruct the standard: list the skills a student needs in order to meet it.";} else h1.className="hint";
   const h3=document.getElementById("h3"); const flags=[];
-  const names={k_1:"behavior",k_2:"condition",k_3:"criteria",k_4:"timeframe",k_5:"one performance",k_6:"practical to record",k_7:"targets my skill"};
+  const names={k_1:"behavior",k_2:"condition",k_3:"criteria and measure",k_4:"timeframe",k_5:"one performance",k_6:"practical to record",k_7:"targets my skill"};
   Object.keys(names).forEach(k=>{ if(val(k)==="No"||val(k)==="Partly") flags.push(names[k]); });
   if(flags.length){h3.className="hint show"; h3.textContent="Checks that did not fully pass: "+flags.join("; ")+". Leave the goal as it is; these are what November's revision is for.";}
   else h3.className="hint";
@@ -426,9 +447,10 @@ function buildPrompt(){
   if(val("need").trim()) p.push("Priority need: "+val("need").trim());
   if(val("stdtext").trim()) p.push("Align the goal to this grade "+(val("grade")||"[grade]")+" standard"+(val("stdcode")?" ("+val("stdcode")+")":"")+": "+val("stdtext").trim());
   if(val("target").trim()) p.push("Target this selected skill: "+val("target").trim());
-  const parts=[]; if(val("c_b").trim()) parts.push("behavior: "+val("c_b").trim()); if(val("c_c").trim()) parts.push("condition: "+val("c_c").trim()); if(val("c_k").trim()) parts.push("criteria: "+val("c_k").trim()); if(val("c_t").trim()) parts.push("timeframe: "+val("c_t").trim());
+  if(val("baseline").trim()) p.push("Baseline for this skill: "+val("baseline").trim());
+  const parts=[]; if(val("c_b").trim()) parts.push("behavior: "+val("c_b").trim()); if(val("c_c").trim()) parts.push("condition: "+val("c_c").trim()); if(val("c_k").trim()) parts.push("mastery criterion: "+val("c_k").trim()); if(val("c_r").trim()) parts.push("retention criterion: "+val("c_r").trim()); if(val("c_m").trim()) parts.push("measure: "+val("c_m").trim()); if(val("c_t").trim()) parts.push("timeframe: "+val("c_t").trim());
   if(parts.length) p.push("The goal must use these components as I set them: "+parts.join("; ")+".");
-  p.push("State one observable performance, with the condition, one primary measure with its target and how consistently it must be met, and the timeframe. Do not simply copy the wording of the standard, and do not describe what the teacher will do.");
+  p.push("State one observable performance, with the condition, the mastery criterion, the retention criterion, the measure, and the timeframe. Use one measure only. Do not simply copy the wording of the standard, and do not describe what the teacher will do.");
   document.getElementById("promptbox").textContent=p.join("\n");
 }
 function copyPrompt(){const t=document.getElementById("promptbox").textContent; if(navigator.clipboard){navigator.clipboard.writeText(t).then(()=>setStatus("Prompt copied"),()=>fallbackCopy(t));} else fallbackCopy(t);}
@@ -438,8 +460,8 @@ document.addEventListener("change",e=>{if(e.target.dataset.k!==undefined) save()
 
 function lockComps(){
   const f=document.getElementById("lockc"), n=document.getElementById("locknote1");
-  const filled=["c_b","c_c","c_k","c_t"].every(k=>val(k).trim());
-  if(f.checked&&!filled){ f.checked=false; n.textContent="Fill in all four components first, then lock."; save(); return; }
+  const filled=["c_b","c_c","c_m","c_k","c_r","c_t"].every(k=>val(k).trim());
+  if(f.checked&&!filled){ f.checked=false; n.textContent="Fill in every component first, then lock."; save(); return; }
   document.querySelectorAll("#tcomp textarea, #tcomp input, #tcomp select").forEach(el=>{ if(el.tagName==="SELECT") el.disabled=f.checked; else el.readOnly=f.checked; el.classList.toggle("lock",f.checked); });
   n.textContent=f.checked?"Components locked. Uncheck only if you have not opened the Goal Writer yet.":"";
 }
@@ -452,16 +474,16 @@ function lockOrig(){
 
 function toText(){
   const L=[]; const d=new Date().toLocaleDateString();
-  L.push("STANDARDS-BASED GOAL CAPTURE SHEET (Session 3)"); L.push("Exported: "+d); L.push("Project code: "+val("code")+"   Case (hypothetical): "+val("case")); L.push("");
-  L.push("STEP 1: PLAAFP TO STANDARD"); L.push("REVISED PLAAFP: "+val("plaafp")); L.push("Priority need: "+val("need")); L.push("Why this need: "+val("needwhy"));
-  L.push("Grade: "+val("grade")+"   Subject: "+val("subject")+"   Standard code: "+val("stdcode")); L.push("Standard: "+val("stdtext")); L.push("Why this standard: "+val("stdwhy")); L.push("");
-  L.push("STEP 2: GAP ANALYSIS AND SKILL COMPONENTS"); L.push("1. Compare: "+val("g1")); L.push("2. Gaps: "+val("g2")); L.push("3. Skills needed: "+val("g3")); L.push("4. Prerequisites taught at grade: "+val("g4"));
-  L.push("Skill components:"); comps.forEach((c,i)=>{ if(c.t.trim()) L.push("  "+(i+1)+". "+c.t.trim()+" ["+(c.s||"not rated")+"]"); });
-  L.push("Target component: "+val("target")); L.push("Why this component: "+val("targetwhy")); L.push("");
+  L.push("STANDARDS-BASED GOAL CAPTURE SHEET (Session 3)"); L.push("Exported: "+d); L.push("Anonymous name: "+val("code")+"   Anonymous student name: "+val("case")); L.push("");
+  L.push("STEP 1: PLAAFP TO STANDARD"); L.push("PLAAFP: "+val("plaafp")); L.push("Priority need: "+val("need")); L.push("Why this need: "+val("needwhy"));
+  L.push("Grade: "+val("grade")+"   Subject: "+val("subject")+"   Standard code: "+val("stdcode")); L.push("Standard: "+val("stdtext")); L.push("Standard deconstructed: "+val("stdwhy")); L.push("");
+  L.push("STEP 2: GAP ANALYSIS AND SKILL COMPONENTS"); L.push("Skills the student needs: "+val("g3"));
+  L.push("Skill components:"); comps.forEach((c,i)=>{ if(c.t.trim()){ L.push("  "+(i+1)+". "+c.t.trim()+" ["+(c.s||"not rated")+"]"); if(c.j&&c.j.trim()) L.push("     Justification: "+c.j.trim()); } });
+  L.push("Target skill: "+val("target")); L.push("Why this skill: "+val("targetwhy")); L.push("Baseline data: "+val("baseline")); L.push("");
   L.push("STEP 3: GOAL COMPONENTS (set before drafting; locked: "+val("lockc")+")");
-  [["Behavior","c_b","c_bs","c_br"],["Condition","c_c","c_cs","c_cr"],["Criteria","c_k","c_ks","c_kr"],["Timeframe","c_t","c_ts","c_tr"]].forEach(r=>L.push("- "+r[0]+": "+val(r[1])+" | from: "+val(r[2])+" | sure: "+val(r[3])));
+  [["Behavior","c_b","c_bs","c_br"],["Condition","c_c","c_cs","c_cr"],["Mastery criterion","c_k","c_ks","c_kr"],["Retention criterion","c_r","c_rs","c_rr"],["Measure","c_m","c_ms","c_mr"],["Timeframe","c_t","c_ts","c_tr"]].forEach(r=>L.push("- "+r[0]+": "+val(r[1])+" | from: "+val(r[2])+" | sure: "+val(r[3])));
   L.push(""); L.push("ORIGINAL GOAL (Goal Writer draft, frozen: "+val("frozen")+")"); L.push(val("orig")); L.push("");
-  L.push("CHECKS"); const names=["Behavior matches","Condition matches","Criteria: one primary measure, target, consistency","Timeframe stated","One observable performance","Practical to record","Targets the skill I chose"];
+  L.push("CHECKS"); const names=["Behavior matches","Condition matches","Mastery criterion, retention criterion, measure","Timeframe stated","One observable performance","Practical to record","Targets the skill I chose"];
   names.forEach((n,i)=>L.push("- "+n+": "+val("k_"+(i+1))+" | evidence: "+val("k_"+(i+1)+"e")+" | sure: "+val("k_"+(i+1)+"r")));
   L.push("Expect the Evaluator to flag: "+val("expect")); L.push("Goal Writer missed / did better: "+val("missed"));
   L.push(""); L.push("DATA ROW ("+ROW_VERSION+")"); L.push(dataRow());
@@ -499,17 +521,17 @@ function buildPdfLines(){
   const B=(t)=>({t,b:true}), N=(t)=>({t,b:false}), H=(t)=>({t,b:true,big:true}), S=()=>({t:"",b:false});
   const L=[]; const v=(k)=>val(k)||"(blank)";
   L.push(H("Standards-Based Goal Capture Sheet (Session 3)"));
-  L.push(N("Hypothetical case; no student information. Exported "+new Date().toLocaleDateString()+"."));
-  L.push(N("Project code: "+v("code")+"     Case: "+v("case"))); L.push(S());
-  L.push(B("Step 1: PLAAFP to standard")); L.push(N("REVISED PLAAFP: "+v("plaafp"))); L.push(N("Priority need: "+v("need"))); L.push(N("Why this need: "+v("needwhy")));
-  L.push(N("Grade "+v("grade")+"   |   "+v("subject")+"   |   "+v("stdcode"))); L.push(N("Standard: "+v("stdtext"))); L.push(N("Why this standard: "+v("stdwhy"))); L.push(S());
-  L.push(B("Step 2: Gap analysis and skill components")); L.push(N("1. Compare: "+v("g1"))); L.push(N("2. Gaps: "+v("g2"))); L.push(N("3. Skills needed: "+v("g3"))); L.push(N("4. Prerequisites taught at grade: "+v("g4")));
-  comps.forEach((c,i)=>{ if(c.t.trim()) L.push(N("Component "+(i+1)+": "+c.t.trim()+" ["+(c.s||"not rated")+"]")); });
-  L.push(N("Target component: "+v("target"))); L.push(N("Why this component: "+v("targetwhy"))); L.push(S());
+  L.push(N("Anonymous names only. Exported "+new Date().toLocaleDateString()+"."));
+  L.push(N("Anonymous name: "+v("code")+"     Anonymous student name: "+v("case"))); L.push(S());
+  L.push(B("Step 1: PLAAFP to standard")); L.push(N("PLAAFP: "+v("plaafp"))); L.push(N("Priority need: "+v("need"))); L.push(N("Why this need: "+v("needwhy")));
+  L.push(N("Grade "+v("grade")+"   |   "+v("subject")+"   |   "+v("stdcode"))); L.push(N("Standard: "+v("stdtext"))); L.push(N("Standard deconstructed: "+v("stdwhy"))); L.push(S());
+  L.push(B("Step 2: Gap analysis and skill components")); L.push(N("Skills the student needs: "+v("g3")));
+  comps.forEach((c,i)=>{ if(c.t.trim()){ L.push(N("Skill "+(i+1)+": "+c.t.trim()+" ["+(c.s||"not rated")+"]")); L.push(N("   Justification: "+((c.j&&c.j.trim())||"(blank)"))); } });
+  L.push(N("Target skill: "+v("target"))); L.push(N("Why this skill: "+v("targetwhy"))); L.push(N("Baseline data: "+v("baseline"))); L.push(S());
   L.push(B("Step 3: Goal components set before drafting (locked: "+val("lockc")+")"));
-  [["Behavior","c_b","c_bs","c_br"],["Condition","c_c","c_cs","c_cr"],["Criteria","c_k","c_ks","c_kr"],["Timeframe","c_t","c_ts","c_tr"]].forEach(r=>L.push(N(r[0]+": "+v(r[1])+"   |   from: "+v(r[2])+"   |   sure: "+v(r[3]))));
+  [["Behavior","c_b","c_bs","c_br"],["Condition","c_c","c_cs","c_cr"],["Mastery criterion","c_k","c_ks","c_kr"],["Retention criterion","c_r","c_rs","c_rr"],["Measure","c_m","c_ms","c_mr"],["Timeframe","c_t","c_ts","c_tr"]].forEach(r=>L.push(N(r[0]+": "+v(r[1])+"   |   from: "+v(r[2])+"   |   sure: "+v(r[3]))));
   L.push(S()); L.push(B("ORIGINAL goal (Goal Writer draft, frozen: "+val("frozen")+")")); L.push(N(v("orig"))); L.push(S());
-  L.push(B("Checks")); const names=["Behavior matches","Condition matches","Criteria: one primary measure, target, consistency","Timeframe stated","One observable performance","Practical to record","Targets the skill I chose"];
+  L.push(B("Checks")); const names=["Behavior matches","Condition matches","Mastery criterion, retention criterion, measure","Timeframe stated","One observable performance","Practical to record","Targets the skill I chose"];
   names.forEach((n,i)=>L.push(N(n+": "+v("k_"+(i+1))+"   |   evidence: "+v("k_"+(i+1)+"e")+"   |   sure: "+v("k_"+(i+1)+"r"))));
   L.push(N("Expect the Evaluator to flag: "+v("expect"))); L.push(N("Goal Writer missed or did better: "+v("missed")));
   L.push(S()); L.push(B("Data row ("+ROW_VERSION+")")); L.push(N(dataRow()));
