@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Standards-Based Goal Capture Sheet</title>
+<title>Standards-Based Goal Development Sheet</title>
 <style>
 :root{--navy:#1B365D;--gold:#C9A227;--goldt:#9a7b17;--teal:#2E7D6B;--bg:#f6f7f9;--card:#fff;--text:#212529;--text2:#5f6b7a;--line:#dfe3ea;--r:10px}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -100,7 +100,7 @@ footer{font-size:14px;color:var(--text2);text-align:center;padding-top:6px}
 <body>
 <div class="wrap">
 <header>
-  <h1>Standards-Based Goal Capture Sheet</h1>
+  <h1>Standards-Based Goal Development Sheet</h1>
   <div class="sub">Session 3: Goal Writing. Keep this sheet. You will bring it back in November to evaluate and revise the goal you write today.</div>
   <div class="sub" style="font-style:normal;margin-top:8px"><b>Today’s task.</b> Complete Steps 1 to 3 for one of your students, using an anonymous student name. You will choose one skill to target, decide the goal components, draft with the Goal Writer and keep that draft unchanged, and record your checks. The draft stays as it is for November’s revision. Before you leave, submit your sheet and save a copy. Steps 4 and 5 (objectives and progress monitoring) come in December.</div>
   <div class="privacy">Your entries save automatically in this browser on this device. Nothing is sent until you submit at the end. Use anonymous names only, for yourself and for your student. Before you paste, take out real names of students, families, staff, schools, and districts, and other identifying details such as dates of birth.</div>
@@ -409,7 +409,7 @@ function dataRow(){
   return vals.map(csvq).join(",");
 }
 function packetText(){
-  return ["COIEP GOAL CAPTURE SHEET SUMMARY (Session "+SESSION+"; anonymous names only)",
+  return ["COIEP GOAL DEVELOPMENT SHEET SUMMARY (Session "+SESSION+"; anonymous names only)",
    "Anonymous name: "+val("code").trim(), "Anonymous student name: "+val("case").trim(), "Standard: "+(val("stdcode").trim()||"(none)")+" | grade "+val("grade")+" | "+val("subject"),
    "Target skill: "+val("target").trim(), "Baseline data: "+val("baseline").trim(), "",
    "COMPONENTS SET BEFORE DRAFTING", "Behavior: "+val("c_b").trim(), "Condition: "+val("c_c").trim(), "Mastery criterion: "+val("c_k").trim(), "Retention criterion: "+val("c_r").trim(), "Measure: "+val("c_m").trim(), "Timeframe: "+val("c_t").trim(), "",
@@ -474,7 +474,7 @@ function lockOrig(){
 
 function toText(){
   const L=[]; const d=new Date().toLocaleDateString();
-  L.push("STANDARDS-BASED GOAL CAPTURE SHEET (Session 3)"); L.push("Exported: "+d); L.push("Anonymous name: "+val("code")+"   Anonymous student name: "+val("case")); L.push("");
+  L.push("STANDARDS-BASED GOAL DEVELOPMENT SHEET (Session 3)"); L.push("Exported: "+d); L.push("Anonymous name: "+val("code")+"   Anonymous student name: "+val("case")); L.push("");
   L.push("STEP 1: PLAAFP TO STANDARD"); L.push("PLAAFP: "+val("plaafp")); L.push("Priority need: "+val("need")); L.push("Why this need: "+val("needwhy"));
   L.push("Grade: "+val("grade")+"   Subject: "+val("subject")+"   Standard code: "+val("stdcode")); L.push("Standard: "+val("stdtext")); L.push("Standard deconstructed: "+val("stdwhy")); L.push("");
   L.push("STEP 2: GAP ANALYSIS AND SKILL COMPONENTS"); L.push("Skills the student needs: "+val("g3"));
@@ -489,7 +489,7 @@ function toText(){
   L.push(""); L.push("DATA ROW ("+ROW_VERSION+")"); L.push(dataRow());
   return L.join("\n");
 }
-function downloadTxt(){ const b=new Blob([toText()],{type:"text/plain"}); const a=document.createElement("a"); a.href=URL.createObjectURL(b); a.download="Goal Capture Sheet notes"+(val("code")?" - "+val("code").trim():"")+".txt"; document.body.appendChild(a); a.click(); a.remove(); setStatus("Downloaded"); }
+function downloadTxt(){ const b=new Blob([toText()],{type:"text/plain"}); const a=document.createElement("a"); a.href=URL.createObjectURL(b); a.download="Goal Development Sheet notes"+(val("code")?" - "+val("code").trim():"")+".txt"; document.body.appendChild(a); a.click(); a.remove(); setStatus("Downloaded"); }
 function clearAll(){
   if(!confirm("Clear everything on this sheet? This cannot be undone.")) return;
   document.getElementById("lockc").checked=false; lockComps(); document.getElementById("frozen").checked=false; lockOrig();
@@ -503,7 +503,7 @@ function stateHtml(){
   return html.replace(/<script id="embedded" type="application\/json">[\s\S]*?<\/script>/, '<script id="embedded" type="application/json">'+json+'</script'+'>');
 }
 function openFull(){ const b=new Blob([stateHtml()],{type:"text/html"}); const u=URL.createObjectURL(b); const w=window.open(u,"_blank"); if(!w){ setStatus("Your browser blocked the new tab. Allow pop-ups, or use Save as a reopenable web page."); return; } setStatus("Opened in a new tab. Use Save as PDF there."); }
-function saveSheet(){ const b=new Blob([stateHtml()],{type:"text/html"}); const a=document.createElement("a"); a.href=URL.createObjectURL(b); a.download="Goal Capture Sheet"+(val("code")?" - "+val("code").trim():"")+".html"; document.body.appendChild(a); a.click(); a.remove(); setStatus("Sheet saved as a file. Reopen it in any browser to continue."); }
+function saveSheet(){ const b=new Blob([stateHtml()],{type:"text/html"}); const a=document.createElement("a"); a.href=URL.createObjectURL(b); a.download="Goal Development Sheet"+(val("code")?" - "+val("code").trim():"")+".html"; document.body.appendChild(a); a.click(); a.remove(); setStatus("Sheet saved as a file. Reopen it in any browser to continue."); }
 
 // ---- Built-in PDF writer (no print dialog, no external library) ----
 function pdfEsc(t){
@@ -520,7 +520,7 @@ function pdfWrap(text,max){
 function buildPdfLines(){
   const B=(t)=>({t,b:true}), N=(t)=>({t,b:false}), H=(t)=>({t,b:true,big:true}), S=()=>({t:"",b:false});
   const L=[]; const v=(k)=>val(k)||"(blank)";
-  L.push(H("Standards-Based Goal Capture Sheet (Session 3)"));
+  L.push(H("Standards-Based Goal Development Sheet (Session 3)"));
   L.push(N("Anonymous names only. Exported "+new Date().toLocaleDateString()+"."));
   L.push(N("Anonymous name: "+v("code")+"     Anonymous student name: "+v("case"))); L.push(S());
   L.push(B("Step 1: PLAAFP to standard")); L.push(N("PLAAFP: "+v("plaafp"))); L.push(N("Priority need: "+v("need"))); L.push(N("Why this need: "+v("needwhy")));
@@ -557,7 +557,7 @@ function makePdf(){
   const xref=out.length; out+="xref\n0 "+(objs.length+1)+"\n0000000000 65535 f \n"; offs.forEach(o=>{ out+=String(o).padStart(10,"0")+" 00000 n \n"; });
   out+="trailer\n<< /Size "+(objs.length+1)+" /Root "+cat+" 0 R >>\nstartxref\n"+xref+"\n%%EOF";
   const bytes=new Uint8Array(out.length); for(let i=0;i<out.length;i++) bytes[i]=out.charCodeAt(i)&0xff;
-  const b=new Blob([bytes],{type:"application/pdf"}); const a=document.createElement("a"); a.href=URL.createObjectURL(b); a.download="Goal Capture Sheet"+(val("code")?" - "+val("code").trim():"")+".pdf"; document.body.appendChild(a); a.click(); a.remove();
+  const b=new Blob([bytes],{type:"application/pdf"}); const a=document.createElement("a"); a.href=URL.createObjectURL(b); a.download="Goal Development Sheet"+(val("code")?" - "+val("code").trim():"")+".pdf"; document.body.appendChild(a); a.click(); a.remove();
   setStatus("PDF downloaded. If nothing appeared, click Open in a new tab and use Save as PDF there.");
 }
 function printSheet(){ let fired=false; const mark=()=>{fired=true;}; window.addEventListener("beforeprint",mark,{once:true}); try{ window.print(); }catch(e){} setTimeout(()=>{ if(!fired) setStatus("If no print dialog appeared, click Open in a new tab and use Save as PDF there."); },1500); }

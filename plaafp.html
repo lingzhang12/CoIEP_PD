@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PLAAFP Practice Capture Sheet</title>
+<title>PLAAFP Evaluation Practice Sheet</title>
 <style>
 :root{--navy:#1B365D;--gold:#C9A227;--goldt:#9a7b17;--teal:#2E7D6B;--bg:#f6f7f9;--card:#fff;--text:#212529;--text2:#5f6b7a;--line:#dfe3ea;--r:10px}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -70,7 +70,7 @@ footer{font-size:14px;color:var(--text2);text-align:center;padding-top:6px}
 <body>
 <div class="wrap">
 <header>
-  <h1>PLAAFP Practice Capture Sheet</h1>
+  <h1>PLAAFP Evaluation Practice Sheet</h1>
   <div class="sub">Keep this sheet. You will use it for this month’s reflection prompts and Self-Report Log, and it will make both faster.</div>
   <div class="sub" style="font-style:normal;margin-top:8px">How it works: Round A, predict and then evaluate; Round B, evaluate the reports; Round C, revise; then save your sheet as a PDF and submit it through the Qualtrics form.</div>
   <div class="privacy">Your entries stay on this device only (saved in this browser as you type). Nothing is sent anywhere. Use Save my sheet at the end to keep a copy you can reopen. Use a hypothetical case; no student information.</div>
@@ -189,7 +189,7 @@ document.addEventListener("change",e=>{if(e.target.dataset.k!==undefined) save()
 function val(k){const f=document.querySelector("[data-k="+k+"]"); if(!f) return ""; return f.type==="checkbox"?(f.checked?"Yes":"No"):(f.value||"");}
 function toText(){
   const L=[];
-  L.push("PLAAFP PRACTICE CAPTURE SHEET"); L.push("Date exported: "+new Date().toLocaleDateString());
+  L.push("PLAAFP EVALUATION PRACTICE SHEET"); L.push("Date exported: "+new Date().toLocaleDateString());
   L.push("Name: "+val("name")); L.push("Case (hypothetical): "+val("case")); L.push("");
   L.push("ROUND A: PREDICT, THEN EVALUATE");
   ELEMENTS.forEach((e,i)=>L.push("- "+e+" | How sure: "+val("a_r"+i)+" | Evaluator said: "+val("a_v"+i)+" | Surprised: "+val("a_s"+i)));
@@ -203,7 +203,7 @@ function toText(){
 }
 function downloadTxt(){
   const b=new Blob([toText()],{type:"text/plain"}); const a=document.createElement("a");
-  a.href=URL.createObjectURL(b); a.download="PLAAFP Capture Sheet notes"+(val("case")?" - "+val("case").trim():"")+".txt"; document.body.appendChild(a); a.click(); a.remove();
+  a.href=URL.createObjectURL(b); a.download="PLAAFP Evaluation Practice Sheet notes"+(val("case")?" - "+val("case").trim():"")+".txt"; document.body.appendChild(a); a.click(); a.remove();
   setStatus("Downloaded");
 }
 function copyTxt(){
@@ -248,7 +248,7 @@ function openFull(){
 function saveSheet(){
   const html=stateHtml();
   const b=new Blob([html],{type:"text/html"}); const a=document.createElement("a");
-  a.href=URL.createObjectURL(b); a.download="PLAAFP Capture Sheet"+(val("case")?" - "+val("case").trim():"")+".html"; document.body.appendChild(a); a.click(); a.remove();
+  a.href=URL.createObjectURL(b); a.download="PLAAFP Evaluation Practice Sheet"+(val("case")?" - "+val("case").trim():"")+".html"; document.body.appendChild(a); a.click(); a.remove();
   setStatus("Sheet saved as a file. Reopen it in any browser to continue.");
 }
 
@@ -268,7 +268,7 @@ function pdfWrap(text,max){
 function buildPdfLines(){
   const B=(t)=>({t,b:true}), N=(t)=>({t,b:false}), H=(t)=>({t,b:true,big:true}), S=()=>({t:"",b:false});
   const L=[];
-  L.push(H("PLAAFP Practice Capture Sheet"));
+  L.push(H("PLAAFP Evaluation Practice Sheet"));
   L.push(N("Hypothetical case; no student information. Exported "+new Date().toLocaleDateString()+"."));
   L.push(N("Name: "+val("name")+"     Case: "+val("case"))); L.push(S());
   L.push(B("Round A: Predict, Then Evaluate"));
@@ -314,7 +314,7 @@ function makePdf(){
   out+="trailer\n<< /Size "+(objs.length+1)+" /Root "+cat+" 0 R >>\nstartxref\n"+xref+"\n%%EOF";
   const bytes=new Uint8Array(out.length); for(let i=0;i<out.length;i++) bytes[i]=out.charCodeAt(i)&0xff;
   const b=new Blob([bytes],{type:"application/pdf"}); const a=document.createElement("a");
-  a.href=URL.createObjectURL(b); a.download="PLAAFP Capture Sheet"+(val("case")?" - "+val("case").trim():"")+".pdf"; document.body.appendChild(a); a.click(); a.remove();
+  a.href=URL.createObjectURL(b); a.download="PLAAFP Evaluation Practice Sheet"+(val("case")?" - "+val("case").trim():"")+".pdf"; document.body.appendChild(a); a.click(); a.remove();
   setStatus("PDF downloaded. If nothing appeared, click Open in a new tab and use Save as PDF there.");
 }
 function printSheet(){
