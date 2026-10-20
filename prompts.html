@@ -57,6 +57,7 @@ textarea.blank{display:block;width:100%;min-height:70px;margin-top:6px;resize:ve
 footer{font-size:14px;color:var(--text2);text-align:center;padding-top:14px}
 @media(max-width:860px){.grid,.rules{grid-template-columns:1fr}.bar{position:static}.skill{margin-left:0;text-align:left}}
 @media print{body{background:#fff}.bar,.btn,.msg{display:none}.p,.help{box-shadow:none;border:1px solid #ccc;break-inside:avoid}.grid{grid-template-columns:1fr 1fr}.blank{border:1px solid #999;background:#fff}}
+a.coiep-link{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px}
 </style>
 </head>
 <body>
@@ -238,6 +239,32 @@ document.addEventListener("input",e=>{
   const el=e.target.closest(".blank"); if(el){ const p=PROMPTS.find(x=>x.id===el.dataset.p); const b=(p.blanks||[])[+el.dataset.n]; mem[p.id+"__"+el.dataset.n]=el.value; if(b&&b.keep){ kept[p.id+"__"+el.dataset.n]=el.value; try{localStorage.setItem(KEEP,JSON.stringify(kept));}catch(err){} } }
 });
 render();
+</script>
+<script id="coiep-links">
+(function(){
+  var URL="https://www.coiep.com/", SKIP={A:1,BUTTON:1,OPTION:1,SELECT:1,TEXTAREA:1,SCRIPT:1,STYLE:1,TITLE:1,INPUT:1};
+  function skip(n){ for(var p=n.parentNode;p&&p!==document.body;p=p.parentNode){ if(SKIP[p.nodeName]) return true; } return false; }
+  function run(root){
+    if(!root) return; var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null), list=[], n;
+    while((n=w.nextNode())){ if(n.nodeValue.indexOf("CoIEP")>-1 && !skip(n)) list.push(n); }
+    list.forEach(function(t){
+      var parts=t.nodeValue.split("CoIEP"), f=document.createDocumentFragment();
+      parts.forEach(function(s,i){
+        if(i>0){ var a=document.createElement("a"); a.href=URL; a.target="_blank"; a.rel="noopener"; a.className="coiep-link"; a.textContent="CoIEP"; f.appendChild(a); }
+        if(s) f.appendChild(document.createTextNode(s));
+      });
+      t.parentNode.replaceChild(f,t);
+    });
+  }
+  function start(){
+    run(document.body);
+    new MutationObserver(function(ms){ ms.forEach(function(m){
+      if(m.type==="characterData"){ if(m.target.parentNode) run(m.target.parentNode); return; }
+      m.addedNodes.forEach(function(x){ if(x.nodeType===1) run(x); else if(x.nodeType===3&&x.parentNode) run(x.parentNode); });
+    }); }).observe(document.body,{childList:true,subtree:true,characterData:true});
+  }
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",start); else start();
+})();
 </script>
 </body>
 </html>

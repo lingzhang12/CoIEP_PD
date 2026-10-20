@@ -28,6 +28,7 @@ td{padding:6px 7px;border-bottom:1px solid var(--line);vertical-align:middle}
 td.el{font-weight:600;width:30%}
 .mine{font-weight:600;color:var(--navy)}
 h3{font-size:15.5px;font-weight:600;color:var(--navy);margin:14px 0 4px}
+a.btn{display:inline-block;text-decoration:none}
 td input,td select{padding:6px 8px}
 .tally{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px}
 .tally .box{border:1px solid var(--line);border-radius:8px;padding:10px;text-align:center}
@@ -74,7 +75,7 @@ a.coiep-link{color:inherit;text-decoration:underline;text-decoration-thickness:1
 <div class="wrap">
 <header>
   <h1>PLAAFP Evaluation Practice Sheet</h1>
-  <div class="sub" style="font-style:normal;margin-top:8px">How it works: Round A, paste your ORIGINAL PLAAFP and rate each part yourself; Round B, run the CoIEP PLAAFP Evaluator and compare; Round C, revise the PLAAFP in CoIEP; then save your sheet as a PDF and submit it through the Qualtrics form.</div>
+  <div class="sub" style="font-style:normal;margin-top:8px">How it works: Round A, paste your ORIGINAL PLAAFP and rate each part yourself; Round B, run the CoIEP PLAAFP Evaluator and compare; Round C, revise the PLAAFP in CoIEP; then save your sheet, submit it, and complete the exit ticket, all from the bottom of this page.</div>
   <div class="privacy">Your entries stay on this device only (saved in this browser as you type). Nothing is sent until you submit. Use Save my sheet at the end to keep a copy you can reopen. Use anonymous names only. Before you paste, take out real names and other identifying details.</div>
 </header>
 
@@ -143,12 +144,12 @@ a.coiep-link{color:inherit;text-decoration:underline;text-decoration-thickness:1
 
 <div class="card">
   <h2>Before You Leave</h2>
-  <div class="note">If you have consented to the study: use Print / Save as PDF below. The PDF contains your ORIGINAL and REVISED PLAAFP together with your notes from all three rounds. Upload that file through the artifact submission link (link and QR code from the facilitator). Use anonymous names only, with no real names or identifying details. Keep this sheet for your monthly reflection sitting.</div>
+  <div class="note">Everything you need is on this page, in three steps: paste your REVISED PLAAFP below and save a copy of your sheet; submit your sheet; then complete the exit ticket. Use anonymous names only, with no real names or identifying details. Keep this sheet for your monthly reflection sitting.</div>
   <div class="pair" style="margin-top:10px">
     <div><label class="f" for="origview">ORIGINAL (from Round A, locked)</label><textarea id="origview" readonly class="lock" placeholder="Your ORIGINAL appears here once you paste it in Round A and check the box."></textarea></div>
     <div><label class="f" for="revised">REVISED (paste your final version)</label><textarea id="revised" data-k="revised" placeholder="Paste the PLAAFP after your revisions."></textarea></div>
   </div>
-  <h3>Save a copy</h3>
+  <h3>Step 1. Save a copy</h3>
   <div class="note" style="margin-bottom:6px">Your browser may not keep this sheet. Before you leave, click <b>Save as a reopenable web page</b> and keep the file; it opens in any browser with everything filled in. Print / Save as PDF also gives you the file to upload on the form.</div>
   <div class="actions" style="margin-top:6px">
     <button class="btn" type="button" onclick="printSheet()">Print / Save as PDF</button>
@@ -160,6 +161,12 @@ a.coiep-link{color:inherit;text-decoration:underline;text-decoration-thickness:1
   </div>
   <div class="status" id="status" style="margin-top:6px"></div>
   <div class="note" style="margin-top:8px;margin-bottom:0">Print / Save as PDF opens your browser's print window; choose Save as PDF as the destination. Nothing is sent until you submit.</div>
+  <h3>Step 2. Submit your sheet</h3>
+  <div class="note" style="margin-bottom:6px">If you have consented to the study, upload the PDF you saved in Step 1. It holds your ORIGINAL and REVISED PLAAFP with your notes from all three rounds. The form opens in a new tab, so this sheet stays open.</div>
+  <div class="actions"><a class="btn" href="https://uwyo.sjc1.qualtrics.com/jfe/form/SV_87gwR0wdfl9huTQ" target="_blank" rel="noopener">Open the PLAAFP Evaluation Artifact Submission</a></div>
+  <h3>Step 3. Exit ticket</h3>
+  <div class="note" style="margin-bottom:6px">Tell us how today went: the exit ticket for PLAAFP with the Evaluator. It takes about two minutes and opens in a new tab.</div>
+  <div class="actions"><a class="btn" href="https://uwyo.sjc1.qualtrics.com/jfe/form/SV_6nknjs97SP5vjuu" target="_blank" rel="noopener">Open the exit ticket</a></div>
 </div>
 <footer><a href="index.html" style="color:inherit">All pages</a> &middot; Part of the CoIEP professional learning series &middot; PLAAFP session practice</footer>
 </div>

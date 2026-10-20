@@ -45,6 +45,7 @@ td textarea{min-height:46px}
 .rule{background:#fdf6e3;border-left:4px solid var(--gold);padding:12px 16px;border-radius:6px;font-size:15.5px;margin-bottom:12px}
 .rule b{color:var(--goldt)}
 .actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+a.btn{display:inline-block;text-decoration:none}
 .btn{padding:8px 16px;border:none;border-radius:7px;background:var(--navy);color:#fff;font-size:15.5px;cursor:pointer;font-family:inherit}
 .btn:hover{background:#2d4d7c}
 .btn.sec{background:#fff;color:var(--navy);border:1px solid var(--navy)}
@@ -101,6 +102,7 @@ select:disabled{opacity:1;color:var(--text);background:#eef2f7}
 .src-ex{display:none}
 .rotext{font-size:15px;line-height:1.4;padding:6px 9px;background:#eef2f7;border:1px solid #c9d2df;border-radius:7px;color:#3d4756}
 .comp-row{grid-template-columns:1fr 170px}
+a.coiep-link{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px}
 </style>
 </head>
 <body>
@@ -281,7 +283,7 @@ select:disabled{opacity:1;color:var(--text);background:#eef2f7}
 
 <div class="card" id="leave">
   <h2>Before You Leave</h2>
-  <div class="note">On your own sheet, the Submit my sheet button copies the sheet summary below and opens the form; you paste it, check the attestation, and continue to the exit ticket. You can upload a saved PDF instead. This is what the sheet summary for this example looks like. The last line is the data row: your ratings and checks as codes, with no free text.</div>
+  <div class="note">On your own sheet, the Submit my sheet button copies the sheet summary below and opens the form; you paste it, check the attestation, and submit. You can upload a saved PDF instead. The exit ticket is a separate button on your sheet. This is what the sheet summary for this example looks like. The last line is the data row: your ratings and checks as codes, with no free text.</div>
   <div class="prompt" id="packetbox"></div>
   <div class="actions" style="margin-top:12px">
     <button class="btn sec" type="button" onclick="printSheet()">Print / Save as PDF</button>
@@ -421,9 +423,9 @@ function submitForm(){
   if(!val("code").trim()){ setStatus("Enter your anonymous name first (top of the page)."); document.getElementById("code").focus(); return; }
   if(!val("orig").trim()){ setStatus("Paste the Goal Writer draft and freeze it first."); return; }
   copyPacket();
-  if(!FORM_URL){ setStatus("Sheet summary copied. Open the form from the QR code or link your facilitator shared, paste it into the box that says Paste your sheet summary here, check the attestation, and continue."); return; }
+  if(!FORM_URL){ setStatus("Copied. Open the form from the link your facilitator shared and paste there."); return; }
   const u=FORM_URL+(FORM_URL.includes("?")?"&":"?")+"session="+SESSION;   // the code is not put in the web address
-  const w=window.open(u,"_blank"); setStatus(w?"Sheet summary copied and the form opened in a new tab. Paste it into the box that says Paste your sheet summary here, check the attestation, and continue to the exit ticket.":"Sheet summary copied. Your browser blocked the new tab; open the form from the QR code and paste.");
+  const w=window.open(u,"_blank"); setStatus(w?"Copied, and the form is open in a new tab. Paste into the box, confirm, and submit. Then do Step 3.":"Copied. Your browser blocked the new tab; use the Open the form link below and paste there.");
 }
 let t; function setStatus(m){const s=document.getElementById("status"); s.textContent=m; clearTimeout(t); t=setTimeout(()=>s.textContent="",2500);}
 function save(){ try{localStorage.setItem(KEY,JSON.stringify(collect()));}catch(e){} hints(); buildPrompt(); }
@@ -571,6 +573,32 @@ document.querySelectorAll("button[onclick='addComp()']").forEach(b=>b.remove());
 document.getElementById("packetbox").textContent=packetText();
 function fit(){document.querySelectorAll("textarea").forEach(t=>{t.style.height="auto"; t.style.height=(t.scrollHeight+4)+"px";});}
 fit(); window.addEventListener("resize",fit);
+</script>
+<script id="coiep-links">
+(function(){
+  var URL="https://www.coiep.com/", SKIP={A:1,BUTTON:1,OPTION:1,SELECT:1,TEXTAREA:1,SCRIPT:1,STYLE:1,TITLE:1,INPUT:1};
+  function skip(n){ for(var p=n.parentNode;p&&p!==document.body;p=p.parentNode){ if(SKIP[p.nodeName]) return true; } return false; }
+  function run(root){
+    if(!root) return; var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null), list=[], n;
+    while((n=w.nextNode())){ if(n.nodeValue.indexOf("CoIEP")>-1 && !skip(n)) list.push(n); }
+    list.forEach(function(t){
+      var parts=t.nodeValue.split("CoIEP"), f=document.createDocumentFragment();
+      parts.forEach(function(s,i){
+        if(i>0){ var a=document.createElement("a"); a.href=URL; a.target="_blank"; a.rel="noopener"; a.className="coiep-link"; a.textContent="CoIEP"; f.appendChild(a); }
+        if(s) f.appendChild(document.createTextNode(s));
+      });
+      t.parentNode.replaceChild(f,t);
+    });
+  }
+  function start(){
+    run(document.body);
+    new MutationObserver(function(ms){ ms.forEach(function(m){
+      if(m.type==="characterData"){ if(m.target.parentNode) run(m.target.parentNode); return; }
+      m.addedNodes.forEach(function(x){ if(x.nodeType===1) run(x); else if(x.nodeType===3&&x.parentNode) run(x.parentNode); });
+    }); }).observe(document.body,{childList:true,subtree:true,characterData:true});
+  }
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",start); else start();
+})();
 </script>
 </body>
 </html>
