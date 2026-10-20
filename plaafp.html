@@ -26,6 +26,8 @@ table{width:100%;border-collapse:collapse;font-size:15px;margin-top:6px}
 th{background:var(--navy);color:#fff;text-align:left;padding:8px 9px;font-weight:600;font-size:14.5px}
 td{padding:6px 7px;border-bottom:1px solid var(--line);vertical-align:middle}
 td.el{font-weight:600;width:30%}
+.mine{font-weight:600;color:var(--navy)}
+h3{font-size:15.5px;font-weight:600;color:var(--navy);margin:14px 0 4px}
 td input,td select{padding:6px 8px}
 .tally{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px}
 .tally .box{border:1px solid var(--line);border-radius:8px;padding:10px;text-align:center}
@@ -71,28 +73,50 @@ footer{font-size:14px;color:var(--text2);text-align:center;padding-top:6px}
 <div class="wrap">
 <header>
   <h1>PLAAFP Evaluation Practice Sheet</h1>
-  <div class="sub" style="font-style:normal;margin-top:8px">How it works: Round A, predict and then evaluate; Round B, evaluate the reports; Round C, revise; then save your sheet as a PDF and submit it through the Qualtrics form.</div>
-  <div class="privacy">Your entries stay on this device only (saved in this browser as you type). Nothing is sent anywhere. Use Save my sheet at the end to keep a copy you can reopen. Use a hypothetical case; no student information.</div>
+  <div class="sub" style="font-style:normal;margin-top:8px">How it works: Round A, paste your ORIGINAL PLAAFP and rate each part yourself; Round B, run the CoIEP PLAAFP Evaluator and compare; Round C, revise the PLAAFP in CoIEP; then save your sheet as a PDF and submit it through the Qualtrics form.</div>
+  <div class="privacy">Your entries stay on this device only (saved in this browser as you type). Nothing is sent until you submit. Use Save my sheet at the end to keep a copy you can reopen. Use anonymous names only. Before you paste, take out real names and other identifying details.</div>
 </header>
 
 <div class="card">
   <div class="two">
-    <div><label class="f" for="name">Name (for your own records only; this sheet is yours to keep)</label><input type="text" id="name" data-k="name" placeholder="Your name"></div>
-    <div><label class="f" for="case">Case (hypothetical)</label><input type="text" id="case" data-k="case" placeholder="Case name or code"></div>
+    <div><label class="f" for="name">Your anonymous name</label><input type="text" id="name" data-k="name" placeholder="The name you chose on the consent survey"></div>
+    <div><label class="f" for="case">Your student’s anonymous name</label><input type="text" id="case" data-k="case" placeholder="A made-up name for your student"></div>
   </div>
 </div>
 
 <div class="card">
-  <h2>Round A: Predict, Then Evaluate</h2>
-  <div class="note">Rate how sure you are about each part, run the Evaluator, then record what it said and whether that surprised you.</div>
+  <h2>Round A: Paste and Rate Your ORIGINAL PLAAFP</h2>
+  <div class="note">Do this before you open CoIEP. Lock your ORIGINAL first, then rate each part of it yourself.</div>
+  <div class="freeze"><b>BEFORE YOU CHANGE ANYTHING:</b> save a copy of your PLAAFP exactly as it is now and name it ORIGINAL. If you edit without saving a copy first, the before version is gone and we cannot see your growth.
+    <label class="f" for="orig" style="margin-top:10px">Paste your ORIGINAL PLAAFP here (it locks when you check the box below)</label>
+    <textarea id="orig" data-k="orig" style="min-height:150px;font-family:'Times New Roman',Times,serif;background:#fffdf7" placeholder="Paste the PLAAFP exactly as it stands before any revision."></textarea>
+    <label><input type="checkbox" id="frozen" data-k="frozen" onchange="lockOrig()"> I have saved a copy named ORIGINAL (locks the box above)</label>
+    <div class="locked-note" id="locknote"></div>
+  </div>
+  <label class="f">Rate each part of your ORIGINAL PLAAFP yourself</label>
   <table id="ta">
-    <thead><tr><th>Part of the PLAAFP</th><th>How sure am I?</th><th>What the Evaluator said (fine / needs work: what?)</th><th>Did that surprise me?</th></tr></thead>
+    <thead><tr><th>Part of the PLAAFP</th><th>My rating</th><th>How sure am I?</th></tr></thead>
     <tbody id="tbodyA">
-      <tr><td class='el'>Current performance: data on needs AND strengths</td><td data-l='How sure am I?'><select data-k='a_r0'><option value=''>Select</option><option>Confident</option><option>Unsure</option><option>Guessed</option></select></td><td data-l='What the Evaluator said'><input type='text' data-k='a_v0' placeholder='fine / needs work: what?'></td><td data-l='Did that surprise me?'><select data-k='a_s0'><option value=''>Y/N</option><option>Y</option><option>N</option></select></td></tr>
-      <tr><td class='el'>Parental input included</td><td data-l='How sure am I?'><select data-k='a_r1'><option value=''>Select</option><option>Confident</option><option>Unsure</option><option>Guessed</option></select></td><td data-l='What the Evaluator said'><input type='text' data-k='a_v1' placeholder='fine / needs work: what?'></td><td data-l='Did that surprise me?'><select data-k='a_s1'><option value=''>Y/N</option><option>Y</option><option>N</option></select></td></tr>
-      <tr><td class='el'>Classroom observations included</td><td data-l='How sure am I?'><select data-k='a_r2'><option value=''>Select</option><option>Confident</option><option>Unsure</option><option>Guessed</option></select></td><td data-l='What the Evaluator said'><input type='text' data-k='a_v2' placeholder='fine / needs work: what?'></td><td data-l='Did that surprise me?'><select data-k='a_s2'><option value=''>Y/N</option><option>Y</option><option>N</option></select></td></tr>
-      <tr><td class='el'>Disability impact statement (how the disability affects involvement and progress)</td><td data-l='How sure am I?'><select data-k='a_r3'><option value=''>Select</option><option>Confident</option><option>Unsure</option><option>Guessed</option></select></td><td data-l='What the Evaluator said'><input type='text' data-k='a_v3' placeholder='fine / needs work: what?'></td><td data-l='Did that surprise me?'><select data-k='a_s3'><option value=''>Y/N</option><option>Y</option><option>N</option></select></td></tr>
-      <tr><td class='el'>Bias-free, family-friendly, current language</td><td data-l='How sure am I?'><select data-k='a_r4'><option value=''>Select</option><option>Confident</option><option>Unsure</option><option>Guessed</option></select></td><td data-l='What the Evaluator said'><input type='text' data-k='a_v4' placeholder='fine / needs work: what?'></td><td data-l='Did that surprise me?'><select data-k='a_s4'><option value=''>Y/N</option><option>Y</option><option>N</option></select></td></tr>
+      <tr><td class='el'>Current performance: data on needs AND strengths</td><td data-l='My rating'><select data-k='a_m0'><option value=''>Select</option><option>Fine</option><option>Needs work</option></select></td><td data-l='How sure am I?'><select data-k='a_r0'><option value=''>Select</option><option>Confident</option><option>Unsure</option><option>Guessed</option></select></td></tr>
+      <tr><td class='el'>Parental input included</td><td data-l='My rating'><select data-k='a_m1'><option value=''>Select</option><option>Fine</option><option>Needs work</option></select></td><td data-l='How sure am I?'><select data-k='a_r1'><option value=''>Select</option><option>Confident</option><option>Unsure</option><option>Guessed</option></select></td></tr>
+      <tr><td class='el'>Classroom observations included</td><td data-l='My rating'><select data-k='a_m2'><option value=''>Select</option><option>Fine</option><option>Needs work</option></select></td><td data-l='How sure am I?'><select data-k='a_r2'><option value=''>Select</option><option>Confident</option><option>Unsure</option><option>Guessed</option></select></td></tr>
+      <tr><td class='el'>Disability impact statement (how the disability affects involvement and progress)</td><td data-l='My rating'><select data-k='a_m3'><option value=''>Select</option><option>Fine</option><option>Needs work</option></select></td><td data-l='How sure am I?'><select data-k='a_r3'><option value=''>Select</option><option>Confident</option><option>Unsure</option><option>Guessed</option></select></td></tr>
+      <tr><td class='el'>Bias-free, family-friendly, current language</td><td data-l='My rating'><select data-k='a_m4'><option value=''>Select</option><option>Fine</option><option>Needs work</option></select></td><td data-l='How sure am I?'><select data-k='a_r4'><option value=''>Select</option><option>Confident</option><option>Unsure</option><option>Guessed</option></select></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card">
+  <h2>Round B: Run the CoIEP PLAAFP Evaluator</h2>
+  <div class="note">Run the PLAAFP Evaluator in CoIEP on your ORIGINAL. Record what it said about each part, next to your own rating, and whether that surprised you.</div>
+  <table id="tb">
+    <thead><tr><th>Part of the PLAAFP</th><th>My rating (Round A)</th><th>What the Evaluator said (fine / needs work: what?)</th><th>Did that surprise me?</th></tr></thead>
+    <tbody id="tbodyB">
+      <tr><td class='el'>Current performance: data on needs AND strengths</td><td data-l='My rating'><span class='mine' id='mr0'>not rated</span></td><td data-l='What the Evaluator said'><input type='text' data-k='a_v0' placeholder='fine / needs work: what?'></td><td data-l='Did that surprise me?'><select data-k='a_s0'><option value=''>Y/N</option><option>Y</option><option>N</option></select></td></tr>
+      <tr><td class='el'>Parental input included</td><td data-l='My rating'><span class='mine' id='mr1'>not rated</span></td><td data-l='What the Evaluator said'><input type='text' data-k='a_v1' placeholder='fine / needs work: what?'></td><td data-l='Did that surprise me?'><select data-k='a_s1'><option value=''>Y/N</option><option>Y</option><option>N</option></select></td></tr>
+      <tr><td class='el'>Classroom observations included</td><td data-l='My rating'><span class='mine' id='mr2'>not rated</span></td><td data-l='What the Evaluator said'><input type='text' data-k='a_v2' placeholder='fine / needs work: what?'></td><td data-l='Did that surprise me?'><select data-k='a_s2'><option value=''>Y/N</option><option>Y</option><option>N</option></select></td></tr>
+      <tr><td class='el'>Disability impact statement (how the disability affects involvement and progress)</td><td data-l='My rating'><span class='mine' id='mr3'>not rated</span></td><td data-l='What the Evaluator said'><input type='text' data-k='a_v3' placeholder='fine / needs work: what?'></td><td data-l='Did that surprise me?'><select data-k='a_s3'><option value=''>Y/N</option><option>Y</option><option>N</option></select></td></tr>
+      <tr><td class='el'>Bias-free, family-friendly, current language</td><td data-l='My rating'><span class='mine' id='mr4'>not rated</span></td><td data-l='What the Evaluator said'><input type='text' data-k='a_v4' placeholder='fine / needs work: what?'></td><td data-l='Did that surprise me?'><select data-k='a_s4'><option value=''>Y/N</option><option>Y</option><option>N</option></select></td></tr>
     </tbody>
   </table>
   <div class="gap">
@@ -100,45 +124,41 @@ footer{font-size:14px;color:var(--text2);text-align:center;padding-top:6px}
     <div class="gapfill" id="gaphint"></div>
     <textarea id="gapq" data-k="gap"></textarea>
   </div>
-</div>
-
-<div class="card">
-  <h2>Round B: Evaluate Reports</h2>
-  <div class="freeze"><b>BEFORE YOU CHANGE ANYTHING:</b> save a copy of your PLAAFP exactly as it is now and name it ORIGINAL. If you edit without saving a copy first, the before version is gone and we cannot see your growth.
-    <label class="f" for="orig" style="margin-top:10px">Paste your ORIGINAL PLAAFP here (it locks when you check the box below)</label>
-    <textarea id="orig" data-k="orig" style="min-height:150px;font-family:'Times New Roman',Times,serif;background:#fffdf7" placeholder="Paste the PLAAFP exactly as it stands before any revision."></textarea>
-    <label><input type="checkbox" id="frozen" data-k="frozen" onchange="lockOrig()"> I have saved a copy named ORIGINAL (locks the box above)</label>
-    <div class="locked-note" id="locknote"></div>
-  </div>
   <label class="f">Count the Evaluator’s suggestions</label>
   <div class="tally">
     <div class="box acc"><b>How many suggestions provided</b><div class="row"><button type="button" onclick="tally('acc',-1)" aria-label="minus">&minus;</button><span class="n" id="n_acc">0</span><button type="button" onclick="tally('acc',1)" aria-label="plus">+</button></div></div>
     <div class="box"><b>How many were valid</b><div class="row"><button type="button" onclick="tally('mod',-1)" aria-label="minus">&minus;</button><span class="n" id="n_mod">0</span><button type="button" onclick="tally('mod',1)" aria-label="plus">+</button></div></div>
     <div class="box rej"><b>How many will you implement</b><div class="row"><button type="button" onclick="tally('rej',-1)" aria-label="minus">&minus;</button><span class="n" id="n_rej">0</span><button type="button" onclick="tally('rej',1)" aria-label="plus">+</button></div></div>
   </div>
-  <label class="f" for="pushback">One piece of Evaluator feedback I disagree with, and my reasons (based on the case information or my professional judgment):</label>
+  <label class="f" for="pushback">One piece of Evaluator feedback I disagree with or I won’t use, and my reasons (based on the case information or my professional judgment):</label>
   <textarea id="pushback" data-k="pushback" style="min-height:110px"></textarea>
 </div>
 
 <div class="card">
-  <h2>Round C: Revise</h2>
+  <h2>Round C: Revise PLAAFP in CoIEP</h2>
   <div class="note">Describe how you revised the PLAAFP statement based on the evaluation report.</div>
   <textarea id="revnote" data-k="revnote" style="min-height:130px"></textarea>
 </div>
 
 <div class="card">
   <h2>Before You Leave</h2>
-  <div class="note">If you have consented to the study: use Print / Save as PDF below. The PDF contains your ORIGINAL and REVISED PLAAFP together with your notes from all three rounds. Upload that file through the artifact submission link (link and QR code from the facilitator). Today's drafts are hypothetical-case content with no student information. Keep this sheet for your monthly reflection sitting.</div>
+  <div class="note">If you have consented to the study: use Print / Save as PDF below. The PDF contains your ORIGINAL and REVISED PLAAFP together with your notes from all three rounds. Upload that file through the artifact submission link (link and QR code from the facilitator). Use anonymous names only, with no real names or identifying details. Keep this sheet for your monthly reflection sitting.</div>
   <div class="pair" style="margin-top:10px">
-    <div><label class="f" for="origview">ORIGINAL (from Round B, locked)</label><textarea id="origview" readonly class="lock" placeholder="Your ORIGINAL appears here once you paste it in Round B and check the box."></textarea></div>
+    <div><label class="f" for="origview">ORIGINAL (from Round A, locked)</label><textarea id="origview" readonly class="lock" placeholder="Your ORIGINAL appears here once you paste it in Round A and check the box."></textarea></div>
     <div><label class="f" for="revised">REVISED (paste your final version)</label><textarea id="revised" data-k="revised" placeholder="Paste the PLAAFP after your revisions."></textarea></div>
   </div>
-  <div class="actions" style="margin-top:12px">
+  <h3>Save a copy</h3>
+  <div class="note" style="margin-bottom:6px">Your browser may not keep this sheet. Before you leave, click <b>Save as a reopenable web page</b> and keep the file; it opens in any browser with everything filled in. Print / Save as PDF also gives you the file to upload on the form.</div>
+  <div class="actions" style="margin-top:6px">
     <button class="btn" type="button" onclick="printSheet()">Print / Save as PDF</button>
+    <button class="btn sec" type="button" onclick="makePdf()">Download PDF directly</button>
+    <button class="btn sec" type="button" onclick="saveSheet()">Save as a reopenable web page</button>
     <button class="btn sec" type="button" onclick="openFull()">Open in a new tab</button>
+    <button class="btn sec" type="button" onclick="downloadTxt()">Download my notes (text)</button>
+    <button class="btn danger" type="button" onclick="clearAll()">Clear this sheet</button>
   </div>
-  <div class="status" id="status2" style="margin-top:6px"></div>
-  <div class="note" style="margin-top:8px;margin-bottom:0">Print / Save as PDF opens your browser's print window; choose "Save as PDF" as the destination. Nothing you type leaves this page on its own.</div>
+  <div class="status" id="status" style="margin-top:6px"></div>
+  <div class="note" style="margin-top:8px;margin-bottom:0">Print / Save as PDF opens your browser's print window; choose Save as PDF as the destination. Nothing is sent until you submit.</div>
 </div>
 <footer><a href="index.html" style="color:inherit">All pages</a> &middot; Part of the CoIEP professional learning series &middot; PLAAFP session practice</footer>
 </div>
@@ -169,15 +189,16 @@ function save(){
   hint();
 }
 function hint(){
-  // Surface Round A rows where a Confident rating met a flagged verdict
-  const gaps=[];
+  // Show each Round A rating beside the Evaluator column, and surface the parts where the two differ
+  const diffs=[];
   ELEMENTS.forEach((e,i)=>{
-    const r=(document.querySelector("[data-k=a_r"+i+"]")||{}).value||"";
-    const v=((document.querySelector("[data-k=a_v"+i+"]")||{}).value||"").toLowerCase();
-    if(r==="Confident" && (v.includes("needs work")||v.includes("flag"))) gaps.push(e);
+    const m=val("a_m"+i), r=val("a_r"+i), v=val("a_v"+i).toLowerCase();
+    const cell=document.getElementById("mr"+i); if(cell) cell.textContent=m?(m+(r?" ("+r+")":"")):"not rated";
+    const ev=(v.includes("needs work")||v.includes("flag"))?"Needs work":(v.includes("fine")?"Fine":"");
+    if(m&&ev&&m!==ev) diffs.push(e+" (you: "+m+"; Evaluator: "+ev+")");
   });
   const g=document.getElementById("gaphint");
-  if(gaps.length){g.textContent="You were Confident but the Evaluator said needs work: "+gaps.join("; ")+". Worth starting there."; g.className="gapfill show";}
+  if(diffs.length){g.textContent="Where you and the Evaluator differ: "+diffs.join("; ")+". Worth starting there."; g.className="gapfill show";}
   else g.className="gapfill";
 }
 function tally(k,d){state[k]=Math.max(0,state[k]+d); document.getElementById("n_"+k).textContent=state[k]; save();}
@@ -189,14 +210,16 @@ function val(k){const f=document.querySelector("[data-k="+k+"]"); if(!f) return 
 function toText(){
   const L=[];
   L.push("PLAAFP EVALUATION PRACTICE SHEET"); L.push("Date exported: "+new Date().toLocaleDateString());
-  L.push("Name: "+val("name")); L.push("Case (hypothetical): "+val("case")); L.push("");
-  L.push("ROUND A: PREDICT, THEN EVALUATE");
-  ELEMENTS.forEach((e,i)=>L.push("- "+e+" | How sure: "+val("a_r"+i)+" | Evaluator said: "+val("a_v"+i)+" | Surprised: "+val("a_s"+i)));
-  L.push("Biggest difference: "+val("gap")); L.push("");
-  L.push("ROUND B: EVALUATE REPORTS");
+  L.push("Anonymous name: "+val("name")); L.push("Student’s anonymous name: "+val("case")); L.push("");
+  L.push("ROUND A: PASTE AND RATE THE ORIGINAL PLAAFP");
   L.push("Saved a copy named ORIGINAL: "+val("frozen"));
+  ELEMENTS.forEach((e,i)=>L.push("- "+e+" | My rating: "+val("a_m"+i)+" | How sure: "+val("a_r"+i)));
+  L.push("");
+  L.push("ROUND B: RUN THE CoIEP PLAAFP EVALUATOR");
+  ELEMENTS.forEach((e,i)=>L.push("- "+e+" | Evaluator said: "+val("a_v"+i)+" | Surprised: "+val("a_s"+i)));
+  L.push("Biggest difference: "+val("gap"));
   L.push("Evaluator suggestions: provided "+state.acc+", valid "+state.mod+", will implement "+state.rej);
-  L.push("One piece of Evaluator feedback I disagree with, and my reasons: "+val("pushback")); L.push(""); L.push("ROUND C: REVISE"); L.push(val("revnote")); L.push("");
+  L.push("One piece of Evaluator feedback I disagree with or will not use, and my reasons: "+val("pushback")); L.push(""); L.push("ROUND C: REVISE PLAAFP IN CoIEP"); L.push(val("revnote")); L.push("");
   L.push("BEFORE YOU LEAVE"); L.push("Submitted my sheet: "+val("c1")); L.push("Keeping this sheet for reflection: "+val("c2"));
   return L.join("\n");
 }
@@ -223,7 +246,7 @@ function lockOrig(){
   v.value=f.checked?o.value:""; n.textContent=f.checked?"ORIGINAL locked. Uncheck to edit it (only if you have not started revising).":"";
 }
 function pairText(){
-  return ["PLAAFP PRACTICE PAIR (hypothetical case; no student information)","Case: "+val("case"),"Exported: "+new Date().toLocaleDateString(),"",
+  return ["PLAAFP PRACTICE PAIR (anonymous names only)","Student’s anonymous name: "+val("case"),"Exported: "+new Date().toLocaleDateString(),"",
    "===== ORIGINAL (before any revision) =====",val("orig"),"","===== REVISED (after revision) =====",val("revised"),"",
    "Evaluator suggestions: provided "+state.acc+", valid "+state.mod+", will implement "+state.rej].join("\n");
 }
@@ -268,15 +291,17 @@ function buildPdfLines(){
   const B=(t)=>({t,b:true}), N=(t)=>({t,b:false}), H=(t)=>({t,b:true,big:true}), S=()=>({t:"",b:false});
   const L=[];
   L.push(H("PLAAFP Evaluation Practice Sheet"));
-  L.push(N("Hypothetical case; no student information. Exported "+new Date().toLocaleDateString()+"."));
-  L.push(N("Name: "+val("name")+"     Case: "+val("case"))); L.push(S());
-  L.push(B("Round A: Predict, Then Evaluate"));
-  ELEMENTS.forEach((e,i)=>{ L.push(B(e)); L.push(N("How sure am I: "+(val("a_r"+i)||"(blank)")+"   |   Surprised: "+(val("a_s"+i)||"(blank)"))); L.push(N("What the Evaluator said: "+(val("a_v"+i)||"(blank)"))); });
-  L.push(B("Biggest difference between what I thought and what the Evaluator said:")); L.push(N(val("gap")||"(blank)")); L.push(S());
-  L.push(B("Round B: Evaluate Reports"));
+  L.push(N("Anonymous names only. Exported "+new Date().toLocaleDateString()+"."));
+  L.push(N("Anonymous name: "+val("name")+"     Student’s anonymous name: "+val("case"))); L.push(S());
+  L.push(B("Round A: Paste and Rate Your ORIGINAL PLAAFP"));
   L.push(N("Saved a copy named ORIGINAL: "+val("frozen")));
+  ELEMENTS.forEach((e,i)=>{ L.push(N(e+":  my rating "+(val("a_m"+i)||"(blank)")+"   |   how sure "+(val("a_r"+i)||"(blank)"))); });
+  L.push(S());
+  L.push(B("Round B: Run the CoIEP PLAAFP Evaluator"));
+  ELEMENTS.forEach((e,i)=>{ L.push(B(e)); L.push(N("What the Evaluator said: "+(val("a_v"+i)||"(blank)")+"   |   Surprised: "+(val("a_s"+i)||"(blank)"))); });
+  L.push(B("Biggest difference between what I thought and what the Evaluator said:")); L.push(N(val("gap")||"(blank)"));
   L.push(N("Evaluator suggestions: provided "+state.acc+"   |   valid "+state.mod+"   |   will implement "+state.rej));
-  L.push(B("One piece of Evaluator feedback I disagree with, and my reasons:")); L.push(N(val("pushback")||"(blank)")); L.push(S()); L.push(B("Round C: Revise, how I revised the PLAAFP based on the evaluation report")); L.push(N(val("revnote")||"(blank)")); L.push(S());
+  L.push(B("One piece of Evaluator feedback I disagree with or will not use, and my reasons:")); L.push(N(val("pushback")||"(blank)")); L.push(S()); L.push(B("Round C: Revise PLAAFP in CoIEP, how I revised the PLAAFP based on the evaluation report")); L.push(N(val("revnote")||"(blank)")); L.push(S());
   L.push(B("ORIGINAL PLAAFP (before any revision)")); L.push(N(val("orig")||"(blank)")); L.push(S());
   L.push(B("REVISED PLAAFP")); L.push(N(val("revised")||"(blank)")); L.push(S());
   L.push(N("Submitted my sheet: "+val("c1")+"   |   Keeping this sheet for my reflection sitting: "+val("c2")));
