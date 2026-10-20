@@ -67,6 +67,7 @@ footer{font-size:14px;color:var(--text2);text-align:center;padding-top:6px}
  td[data-l]::before{content:attr(data-l);display:block;font-size:13.5px;color:var(--text2);margin-bottom:2px}}
 @media print{body{background:#fff}.card{box-shadow:none;border:1px solid #ccc;page-break-inside:avoid}.actions,.privacy,.btn,.status,.locked-note{display:none}textarea{overflow:visible;resize:none}.pair{grid-template-columns:1fr}
  input[type=text],textarea,select{border:1px solid #999;background:#fff}}
+a.coiep-link{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px}
 </style>
 </head>
 <body>
@@ -351,6 +352,32 @@ if(window.top!==window.self){ document.addEventListener("DOMContentLoaded",()=>{
 window.addEventListener("beforeprint",()=>{document.querySelectorAll("textarea").forEach(t=>{t.dataset.h=t.style.height; t.style.height="auto"; t.style.height=(t.scrollHeight+4)+"px";});});
 window.addEventListener("afterprint",()=>{document.querySelectorAll("textarea").forEach(t=>{t.style.height=t.dataset.h||"";});});
 load(); lockOrig();
+</script>
+<script id="coiep-links">
+(function(){
+  var URL="https://www.coiep.com/", SKIP={A:1,BUTTON:1,OPTION:1,SELECT:1,TEXTAREA:1,SCRIPT:1,STYLE:1,TITLE:1,INPUT:1};
+  function skip(n){ for(var p=n.parentNode;p&&p!==document.body;p=p.parentNode){ if(SKIP[p.nodeName]) return true; } return false; }
+  function run(root){
+    if(!root) return; var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null), list=[], n;
+    while((n=w.nextNode())){ if(n.nodeValue.indexOf("CoIEP")>-1 && !skip(n)) list.push(n); }
+    list.forEach(function(t){
+      var parts=t.nodeValue.split("CoIEP"), f=document.createDocumentFragment();
+      parts.forEach(function(s,i){
+        if(i>0){ var a=document.createElement("a"); a.href=URL; a.target="_blank"; a.rel="noopener"; a.className="coiep-link"; a.textContent="CoIEP"; f.appendChild(a); }
+        if(s) f.appendChild(document.createTextNode(s));
+      });
+      t.parentNode.replaceChild(f,t);
+    });
+  }
+  function start(){
+    run(document.body);
+    new MutationObserver(function(ms){ ms.forEach(function(m){
+      if(m.type==="characterData"){ if(m.target.parentNode) run(m.target.parentNode); return; }
+      m.addedNodes.forEach(function(x){ if(x.nodeType===1) run(x); else if(x.nodeType===3&&x.parentNode) run(x.parentNode); });
+    }); }).observe(document.body,{childList:true,subtree:true,characterData:true});
+  }
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",start); else start();
+})();
 </script>
 </body>
 </html>
