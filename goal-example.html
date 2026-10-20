@@ -13,6 +13,9 @@ body{font-family:'Times New Roman',Times,Georgia,serif;background:var(--bg);colo
 header{background:var(--navy);color:#fff;padding:22px 26px;border-radius:var(--r);margin-bottom:16px}
 h1{font-size:24px;font-weight:600}
 .sub{font-size:15.5px;color:rgba(255,255,255,.8);margin-top:6px;font-style:italic}
+.task{margin-top:10px;font-size:15.5px;line-height:1.5;color:#fff}
+.task ol{margin:6px 0 6px 22px}
+.task li{margin:3px 0}
 .privacy{margin-top:10px;font-size:14.5px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);border-radius:8px;padding:8px 12px}
 .steps{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 .steps a{color:#fff;text-decoration:none;font-size:14px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);border-radius:20px;padding:4px 12px}
@@ -109,10 +112,19 @@ a.coiep-link{color:inherit;text-decoration:underline;text-decoration-thickness:1
 <div class="wrap">
 <header>
   <h1>Completed Standards-Based Goal Development Example</h1>
-  <div class="sub">Session 3: Goal Writing. Keep this sheet. You will bring it back in November to evaluate and revise the goal you write today.</div>
-  <div class="sub" style="font-style:normal;margin-top:8px"><b>Today’s task.</b> Complete Steps 1 to 3 for one of your students, using an anonymous student name. You will choose one skill to target, decide the goal components, draft with the Goal Writer and keep that draft unchanged, and record your checks. The draft stays as it is for November’s revision. Before you leave, submit your sheet and save a copy. Steps 4 and 5 (objectives and progress monitoring) come in December.</div>
+  <div class="sub">Session 3: Goal Writing. Today you write one IEP goal for one of your students.</div>
+  <div class="task">
+    <b>What you will do</b>
+    <ol>
+      <li><b>Step 1.</b> Choose one need from your student’s PLAAFP and the Wyoming standard it connects to.</li>
+      <li><b>Step 2.</b> Find the gap: which skills your student already has, which are missing, and the one skill your goal will target.</li>
+      <li><b>Step 3.</b> Decide each part of the goal yourself. Then ask the CoIEP Goal Writer for a draft, paste it in exactly as written, and check it against your decisions.</li>
+      <li><b>Before you leave.</b> Save your sheet, submit it, and complete the exit ticket.</li>
+    </ol>
+    <div>Do not fix the draft today. In November you will bring this sheet back to evaluate and revise it. Progress monitoring for this goal comes in December.</div>
+  </div>
   <div class="privacy"><b>This is a completed example for a hypothetical student.</b> It shows what a finished sheet looks like, including checks that did not fully pass, which is normal. It is read-only, and it does not touch your own sheet, which is a separate page. The ORIGINAL goal here is the draft for this example; yours will be whatever the Goal Writer gives you for your student.</div>
-  <div class="steps"><a href="#s0">Warm-up</a><a href="#s1">Step 1: PLAAFP to standard</a><a href="#s2">Step 2: Gap and skill components</a><a href="#s3">Step 3: Goal</a><a href="#next">What comes next</a><a href="#ref">Reference</a><a href="#leave">Before you leave</a></div>
+  <div class="steps"><a href="#s0">Warm-up</a><a href="#s1">Step 1: PLAAFP to standard</a><a href="#s2">Step 2: Gap and skill components</a><a href="#s3">Step 3: Goal</a><a href="#leave">Before you leave</a><a href="#next">What comes next</a><a href="#ref">Reference</a></div>
 </header>
 
 <div class="card">
@@ -233,6 +245,17 @@ a.coiep-link{color:inherit;text-decoration:underline;text-decoration-thickness:1
   </div>
 </div>
 
+<div class="card" id="leave">
+  <h2>Before You Leave</h2>
+  <div class="note">On your own sheet, Step 1 downloads a PDF and Step 2 opens the form so you can upload it. Below is this example’s sheet summary: the decisions that matter most and, on the last line, the data row. Your PDF carries the same data row as its last line.</div>
+  <div class="prompt" id="packetbox"></div>
+  <div class="actions" style="margin-top:12px">
+    <button class="btn sec" type="button" onclick="printSheet()">Print / Save as PDF</button>
+    <button class="btn sec" type="button" onclick="makePdf()">Download PDF directly</button>
+  </div>
+  <div class="status" id="status"></div>
+</div>
+
 <div class="card" id="next">
   <h2>What Comes Next</h2>
   <div class="next">
@@ -281,16 +304,6 @@ a.coiep-link{color:inherit;text-decoration:underline;text-decoration-thickness:1
   <div class="note" style="margin-top:10px;margin-bottom:0">Adapted from a Kansas standards-based IEP professional learning handout; the Richie example is from that handout. Alternate-assessment language follows IDEA (34 CFR 300.320(a)(2)(ii)).</div>
 </div>
 
-<div class="card" id="leave">
-  <h2>Before You Leave</h2>
-  <div class="note">On your own sheet, the Submit my sheet button copies the sheet summary below and opens the form; you paste it, check the attestation, and submit. You can upload a saved PDF instead. The exit ticket is a separate button on your sheet. This is what the sheet summary for this example looks like. The last line is the data row: your ratings and checks as codes, with no free text.</div>
-  <div class="prompt" id="packetbox"></div>
-  <div class="actions" style="margin-top:12px">
-    <button class="btn sec" type="button" onclick="printSheet()">Print / Save as PDF</button>
-    <button class="btn sec" type="button" onclick="makePdf()">Download PDF directly</button>
-  </div>
-  <div class="status" id="status"></div>
-</div>
 <footer><a href="index.html" style="color:inherit">All pages</a> &middot; Part of the CoIEP professional learning series &middot; Session 3, goal writing &middot; completed example</footer>
 </div>
 
