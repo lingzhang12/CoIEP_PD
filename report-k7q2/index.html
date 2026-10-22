@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>CoIEP in Wyoming Schools</title>
+<script>document.documentElement.className="js";</script>
+<style>
+:root{
+  --navy:#1B365D; --navy2:#26487a; --gold:#C9A227; --goldt:#7a5f0e; --teal:#2E7D6B;
+  --slate:#6b7a90; --bg:#f6f7f9; --card:#ffffff; --line:#e3e7ee;
+  --text:#212529; --text2:#5f6b7a; --radius:12px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Times New Roman',Times,Georgia,serif;background:var(--bg);color:var(--text);line-height:1.55;font-size:18px}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+/* top bar */
+.bar{position:sticky;top:0;z-index:5;background:rgba(27,54,93,.97);color:#fff}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;height:52px}
+.brand{font-weight:700;letter-spacing:.3px;font-size:18px;text-decoration:none}
+.brand span{color:var(--gold)}
+.nav{display:flex;gap:18px;align-items:center;font-size:16.5px}
+.nav a{text-decoration:none;color:rgba(255,255,255,.8)}
+.nav a:hover{color:#fff}
+.mbtn{padding:4px 10px;border:1px solid rgba(255,255,255,.35);border-radius:6px;background:rgba(255,255,255,.1);color:#fff;font:inherit;font-size:15.5px;cursor:pointer}
+@media(max-width:820px){.nav a{display:none}}
+
+/* hero */
+.hero{background:var(--navy);color:#fff;padding:72px 0 64px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;border:2px solid rgba(201,162,39,.25)}
+.eyebrow{font-size:17px;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:14px}
+.hero h1{font-size:48px;line-height:1.12;font-weight:700;max-width:820px}
+.hero p.lead{font-size:21px;color:rgba(255,255,255,.82);max-width:720px;margin-top:18px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:44px}
+.stat{border-top:2px solid var(--gold);padding-top:12px}
+.stat .n{font-size:46px;font-weight:700;line-height:1}
+.period{display:flex;gap:28px;flex-wrap:wrap;margin-top:34px;padding-top:14px;border-top:1px solid rgba(255,255,255,.18);font-size:18px;color:rgba(255,255,255,.78)}
+.period b{color:var(--gold);font-weight:700}
+.stat .t{font-size:18px;color:rgba(255,255,255,.78);margin-top:6px}
+@media(max-width:820px){.hero h1{font-size:36px}.stats{grid-template-columns:1fr 1fr}}
+
+/* sections */
+section.s,.close{scroll-margin-top:52px}
+section.s{padding:64px 0;border-bottom:1px solid var(--line)}
+section.s.alt{background:#fff}
+.kicker{font-size:17px;letter-spacing:1.4px;text-transform:uppercase;color:var(--goldt);font-weight:700;margin-bottom:8px}
+h2{font-size:34px;line-height:1.2;color:var(--navy);margin-bottom:14px;max-width:820px}
+.intro{font-size:19.5px;color:var(--text2);max-width:760px;margin-bottom:30px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:820px){.grid2,.grid3{grid-template-columns:1fr}h2{font-size:28px}}
+.card{background:var(--card);border-radius:var(--radius);padding:24px 26px;box-shadow:0 1px 3px rgba(0,0,0,.08);border-top:3px solid var(--navy)}
+section.alt .card{background:var(--bg);box-shadow:none}
+.card h3{font-size:21px;color:var(--navy);margin-bottom:6px;line-height:1.3}
+.card p{font-size:18px;color:var(--text)}
+.card .meta{font-size:17px;color:var(--text2);margin-top:10px}
+
+/* challenge */
+.bign{font-size:64px;font-weight:700;color:var(--navy);line-height:1}
+.bign small{font-size:24px;color:var(--text2);font-weight:600}
+.cap{font-size:18px;color:var(--text2);margin-top:8px}
+.brow{display:flex;align-items:center;gap:12px;margin:10px 0}
+.blab{flex:0 0 46%;font-size:17px;text-align:right;line-height:1.25}
+.btrack{flex:1;background:#eef1f5;border-radius:5px;height:22px;overflow:hidden}
+.bfill{height:100%;width:0;border-radius:5px;transition:width .9s var(--ease)}
+.bval{flex:0 0 40px;font-weight:700;color:var(--navy);opacity:0;transition:opacity .4s ease .7s}
+.in .bval{opacity:1}
+.js .brow .bfill{transition-delay:calc(var(--r,0)*90ms + 150ms)}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:st}
+.step{background:var(--card);border-radius:var(--radius);padding:26px;box-shadow:0 1px 3px rgba(0,0,0,.08);position:relative}
+.step .num{width:44px;height:44px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;margin-bottom:14px}
+.step.ai .num{background:var(--gold);color:var(--navy)}
+.step.ok .num{background:var(--teal)}
+.step h3{font-size:21px;color:var(--navy);margin-bottom:6px}
+.step p{font-size:18px}
+.who{display:inline-block;font-size:15px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;padding:2px 9px;border-radius:10px;margin-top:12px;background:#eef2f7;color:var(--navy)}
+.step.ai .who{background:#fdf6e3;color:var(--goldt)}
+.step.ok .who{background:#e8f4f1;color:var(--teal)}
+@media(max-width:820px){.steps{grid-template-columns:1fr}}
+.note{background:#eef2f7;border-left:4px solid var(--navy);border-radius:6px;padding:12px 18px;font-size:18px;margin-top:24px;max-width:860px}
+
+/* partners */
+.partner .tag{display:inline-block;font-size:15px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;padding:2px 9px;border-radius:10px;background:var(--teal);color:#fff;margin-bottom:12px}
+.partner .pn{font-size:40px;font-weight:700;color:var(--navy);line-height:1;margin-top:10px}
+.partner .pn small{font-size:18px;color:var(--text2);font-weight:600}
+.partner ul{list-style:none;margin-top:12px}
+.partner li{font-size:18px;padding:5px 0 5px 20px;position:relative;border-top:1px solid var(--line)}
+.partner li:before{content:"";position:absolute;left:2px;top:13px;width:8px;height:8px;border-radius:50%;background:var(--teal)}
+.partner.soon{border:2px dashed #c3ccd8;border-top:3px dashed var(--gold);background:transparent;box-shadow:none}
+.partner.soon .tag{background:var(--gold);color:var(--navy)}
+.partner.soon li:before{background:var(--gold)}
+
+/* results */
+.seg{display:flex;height:30px;border-radius:7px;overflow:hidden;background:#eef1f5;margin-top:14px}
+.seg div{height:100%;width:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;font-weight:700;white-space:nowrap;overflow:hidden;transition:width .9s var(--ease)}
+.seglab{display:flex;gap:16px;flex-wrap:wrap;font-size:17px;color:var(--text2);margin-top:8px}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}
+.quote{font-size:21px;font-style:italic;color:var(--navy);line-height:1.45;border-left:4px solid var(--gold);padding:4px 0 4px 20px}
+.quote .by{display:block;font-style:normal;font-size:16.5px;color:var(--text2);margin-top:8px}
+.loop{margin-top:30px;background:var(--card);border-radius:var(--radius);box-shadow:0 1px 3px rgba(0,0,0,.08);padding:8px 26px}
+.lrow{display:grid;grid-template-columns:1fr 36px 1.15fr;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.lrow:last-child{border-bottom:none}
+.lrow .said{font-style:italic;font-size:18.5px}
+.lrow .arrow{color:var(--gold);font-size:24px;text-align:center}
+.lrow .did{font-size:18.5px}
+.lrow .did b{color:var(--teal)}
+.lhead{display:grid;grid-template-columns:1fr 36px 1.15fr;gap:12px;padding:14px 0 8px;border-bottom:2px solid var(--line);font-size:16px;letter-spacing:.6px;text-transform:uppercase;font-weight:700;color:var(--text2)}
+@media(max-width:820px){.lrow,.lhead{grid-template-columns:1fr}.lrow .arrow{display:none}.lhead div:nth-child(2){display:none}}
+
+/* year */
+.tl{position:relative;margin-top:10px}
+.tl:before{content:"";position:absolute;left:0;right:0;top:22px;height:3px;background:#dfe4ec}
+.tlfill{position:absolute;left:0;top:22px;height:3px;width:0;background:var(--gold);transition:width 1.4s var(--ease) .2s}
+.tlrow{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;position:relative}
+.tlitem .pin{width:20px;height:20px;border-radius:50%;background:#fff;border:3px solid var(--navy);margin:13px 0 16px}
+.tlitem.now .pin{background:var(--gold);border-color:var(--gold);box-shadow:0 0 0 6px rgba(201,162,39,.2)}
+.tlitem h3{font-size:20px;color:var(--navy)}
+.tlitem .when{font-size:16px;letter-spacing:1px;text-transform:uppercase;color:var(--goldt);font-weight:700}
+.tlitem p{font-size:18px;margin-top:4px}
+@media(max-width:820px){.tlrow{grid-template-columns:1fr}.tl:before,.tlfill{display:none}}
+
+/* tools */
+.tools{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+@media(max-width:1000px){.tools{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.tools{grid-template-columns:1fr}}
+.tool{display:block;text-decoration:none;background:var(--card);border-radius:10px;padding:18px 20px;box-shadow:0 1px 3px rgba(0,0,0,.08);border-left:4px solid var(--navy);transition:transform .2s var(--ease),box-shadow .2s}
+.tool:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(27,54,93,.12)}
+.tool b{display:block;color:var(--navy);font-size:18px}
+.tool span{font-size:16.5px;color:var(--text2)}
+
+/* close */
+.close{background:var(--navy);color:#fff;padding:72px 0}
+.close h2{color:#fff}
+.close .intro{color:rgba(255,255,255,.82)}
+.next3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.next3 div{border-top:2px solid var(--gold);padding-top:12px;font-size:18.5px;color:rgba(255,255,255,.9)}
+.next3 b{display:block;color:#fff;font-size:20px;margin-bottom:4px}
+@media(max-width:820px){.next3{grid-template-columns:1fr}}
+.thanks{font-size:26px;margin-top:44px;color:var(--gold);font-weight:700}
+footer{padding:22px 0 30px;font-size:16px;color:var(--text2);text-align:center}
+
+/* ============ MOTION ============
+   Arrive in reading order, numbers count up, bars and the timeline grow. Everything ends still. */
+.js .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s var(--ease);transition-delay:calc(var(--i,0)*90ms)}
+.js .reveal.in{opacity:1;transform:none}
+.tlitem.now.in .pin{animation:ring 1.6s ease-out 1s 2}
+@keyframes ring{0%{box-shadow:0 0 0 0 rgba(201,162,39,.6)}100%{box-shadow:0 0 0 18px rgba(201,162,39,0)}}
+.nomotion *,.nomotion *::before,.nomotion *::after{transition:none!important;animation:none!important}
+.nomotion .reveal{opacity:1!important;transform:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}.js .reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
+@media print{.bar{display:none}.js .reveal{opacity:1;transform:none}section.s,.close,.hero{break-inside:avoid;padding:28px 0}.hero,.close{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="wrap">
+    <a class="brand" href="#top">CoIEP <span>&middot;</span> Wyoming</a>
+    <div class="nav">
+      <a href="#why">Why it matters</a>
+      <a href="#how">How it works</a>
+      <a href="#where">Where we work</a>
+      <a href="#seeing">What we see</a>
+      <a href="#next">What&rsquo;s next</a>
+      <button class="mbtn" type="button" id="mtoggle" onclick="M.toggle()">Motion: on</button>
+    </div>
+  </div>
+</div>
+
+<!-- 1. HERO -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="eyebrow reveal" style="--i:0">University of Wyoming &middot; Progress Report &middot; 2026&ndash;27 School Year</div>
+    <h1 class="reveal" style="--i:1">Helping Wyoming educators write better IEPs, with AI as a careful assistant.</h1>
+    <p class="lead reveal" style="--i:2">Every student with a disability has an IEP, the plan that sets their goals and services. We work side by side with educators, month by month, so those plans get clearer, stronger, and easier to write.</p>
+    <div class="stats">
+      <div class="stat reveal" style="--i:3"><div class="n" data-count="3">3</div><div class="t">school partners in Wyoming</div></div>
+      <div class="stat reveal" style="--i:4"><div class="n" data-count="25">25</div><div class="t">educators taking part so far</div></div>
+      <div class="stat reveal" style="--i:5"><div class="n" data-count="10">10</div><div class="t">monthly sessions across the year</div></div>
+      <div class="stat reveal" style="--i:6"><div class="n" data-count="5">5</div><div class="t">practice tools built for the sessions</div></div>
+    </div>
+    <!-- REPORT PERIOD: update these two lines for each new report -->
+    <div class="period reveal" style="--i:7"><span><b>Report period:</b> August to October 2026</span><span><b>Updated:</b> October 22, 2026</span></div>
+  </div>
+</header>
+
+<!-- 2. WHY IT MATTERS -->
+<section class="s alt" id="why">
+  <div class="wrap">
+    <div class="kicker reveal">Why it matters</div>
+    <h2 class="reveal" style="--i:1">An IEP is a promise to a student. Many educators are asked to keep it with little support.</h2>
+    <p class="intro reveal" style="--i:2">Writing a strong IEP takes time, training, and confidence. Many of the educators we serve are new to special education. Before we began, we asked them how ready they felt.</p>
+    <div class="grid2">
+      <div class="card reveal" style="--i:3">
+        <div class="bign"><span data-count="2.5" data-dec="1">2.5</span> <small>out of 5</small></div>
+        <div class="cap">Average comfort with AI and IEP writing, from the 13 LCSD1 educators who rated it in our opening survey (September 2026). A 5 means very confident.</div>
+      </div>
+      <div class="card reveal" style="--i:4">
+        <h3>Where they felt least ready</h3>
+        <div id="c-low"></div>
+        <div class="meta">Average comfort, 1 to 5. Opening survey, September 2026.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. HOW IT WORKS -->
+<section class="s" id="how">
+  <div class="wrap">
+    <div class="kicker reveal">How it works</div>
+    <h2 class="reveal" style="--i:1">The educator decides. <a href="https://www.coiep.com/" target="_blank" rel="noopener">CoIEP</a> drafts. The educator checks.</h2>
+    <p class="intro reveal" style="--i:2">Each one-hour session is hands-on. Educators work on a real part of an IEP, using the CoIEP platform and a practice sheet we built for that month.</p>
+    <div class="steps">
+      <div class="step reveal" style="--i:3"><div class="num">1</div><h3>Decide first</h3><p>The educator sets the plan: the student&rsquo;s need, the skill to target, and what success looks like.</p><span class="who">The educator</span></div>
+      <div class="step ai reveal" style="--i:4"><div class="num">2</div><h3>Draft with AI</h3><p>CoIEP drafts from those decisions and gives feedback against special education law and research.</p><span class="who">CoIEP</span></div>
+      <div class="step ok reveal" style="--i:5"><div class="num">3</div><h3>Check and revise</h3><p>The educator judges the draft, keeps what fits, fixes what does not, and saves both versions.</p><span class="who">The educator</span></div>
+    </div>
+    <div class="note reveal" style="--i:6"><b>Privacy comes first.</b> Educators use anonymous names only. Our practice pages keep work on the educator&rsquo;s own device until they choose to submit it.</div>
+  </div>
+</section>
+
+<!-- 4. WHERE WE WORK -->
+<section class="s alt" id="where">
+  <div class="wrap">
+    <div class="kicker reveal">Where we work</div>
+    <h2 class="reveal" style="--i:1">Three Wyoming partners, each with its own starting point.</h2>
+    <p class="intro reveal" style="--i:2">We shape each series around what its educators tell us they need.</p>
+    <div class="grid3">
+      <div class="card partner reveal" style="--i:3">
+        <span class="tag">Underway since August 2026</span>
+        <h3>Coyote Ridge</h3>
+        <div class="pn"><span data-count="9">9</span> <small>educators</small></div>
+        <ul>
+          <li>Monthly one-hour sessions, all year</li>
+          <li>Present levels (the PLAAFP) in August and September</li>
+          <li>Writing IEP goals in October</li>
+        </ul>
+      </div>
+      <div class="card partner reveal" style="--i:4">
+        <span class="tag">Starting fall 2026</span>
+        <h3>LCSD1</h3>
+        <div class="meta" style="margin-top:0">Laramie County School District 1 &middot; survey, September 2026</div>
+        <div class="pn"><span data-count="16">16</span> <small>educators surveyed</small></div>
+        <ul>
+          <li>Special educators and teacher apprentices</li>
+          <li>Top priority: using AI to write IEPs</li>
+          <li>Behavior support built into every step</li>
+        </ul>
+      </div>
+      <div class="card partner soon reveal" style="--i:5">
+        <span class="tag">Joining next</span>
+        <h3>Sweetwater</h3>
+        <div class="pn"><small>Planning now</small></div>
+        <ul>
+          <li>An opening survey to hear from educators</li>
+          <li>A series built from what they tell us</li>
+          <li>The same tools, ready on day one</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. WHAT WE ARE SEEING -->
+<section class="s" id="seeing">
+  <div class="wrap">
+    <div class="kicker reveal">What we are seeing</div>
+    <h2 class="reveal" style="--i:1">Educators tell us it helps, and we change the plan when they tell us what they need.</h2>
+    <div class="grid2" style="margin-top:26px">
+      <div class="card reveal" style="--i:2">
+        <div class="bign"><span data-count="8">8</span> <small>of 8</small></div>
+        <div class="cap">Coyote Ridge educators who responded after Session 2 (September 15, 2026) said it addressed their concerns, fully or in part.</div>
+        <div class="seg" id="k-conc"></div>
+        <div class="seglab" id="k-conc-l"></div>
+        <div class="meta" style="margin-top:14px">4 of 8 named using the CoIEP Evaluator on their own students&rsquo; plans as their next step.</div>
+      </div>
+      <div class="card reveal" style="--i:3;display:flex;flex-direction:column;justify-content:center;gap:22px">
+        <div class="quote">&ldquo;This PD is especially helpful to me in writing the IEPs I have this fall&hellip;&rdquo;<span class="by">LCSD1 educator, opening survey, September 2026</span></div>
+        <div class="quote">&ldquo;&hellip;IEPs that are compliant but also written in a way that can be followed and implemented effectively.&rdquo;<span class="by">LCSD1 educator, asked about concerns with AI, September 2026</span></div>
+      </div>
+    </div>
+
+    <div class="loop reveal" style="--i:1">
+      <div class="lhead"><div>Educators told us</div><div></div><div>So we</div></div>
+      <div class="lrow"><div class="said">They wanted more time on present levels before moving on</div><div class="arrow">&rarr;</div><div class="did">Made Session 2 a <b>deep dive with the CoIEP Evaluator</b></div></div>
+      <div class="lrow"><div class="said">They asked how to tell families and teams that they used AI</div><div class="arrow">&rarr;</div><div class="did">Built a <b>disclosure practice page</b></div></div>
+      <div class="lrow"><div class="said">They needed faster ways to get case information into CoIEP</div><div class="arrow">&rarr;</div><div class="did">Wrote a <b>Prompt Library</b> of 14 ready-to-use prompts</div></div>
+      <div class="lrow"><div class="said">LCSD1 rated behavior plans among their least confident areas</div><div class="arrow">&rarr;</div><div class="did">Built <b>behavior goals and supports</b> into their goal and instruction sessions</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. THE YEAR AND THE TOOLS -->
+<section class="s alt" id="year">
+  <div class="wrap">
+    <div class="kicker reveal">The year ahead</div>
+    <h2 class="reveal" style="--i:1">One IEP, built part by part, across the school year.</h2>
+    <p class="intro reveal" style="--i:2">Each educator saves their draft before and after revising it, so growth in IEP quality can be measured, not just felt.</p>
+    <div class="tl reveal" style="--i:3">
+      <div class="tlfill" data-w="22"></div>
+      <div class="tlrow">
+        <div class="tlitem now"><div class="pin"></div><div class="when">Fall 2026 &middot; now</div><h3>Present levels and goals</h3><p>Describe where the student is today, then write measurable goals tied to Wyoming standards.</p></div>
+        <div class="tlitem"><div class="pin"></div><div class="when">Winter 2026&ndash;27</div><h3>Progress and instruction</h3><p>Track progress toward each goal and plan the specially designed instruction that gets the student there.</p></div>
+        <div class="tlitem"><div class="pin"></div><div class="when">Spring 2027</div><h3>Families and the full IEP</h3><p>Proven practices, partnering with families, and a complete IEP that brings the year together.</p></div>
+      </div>
+    </div>
+
+    <h3 class="reveal" style="color:var(--navy);font-size:22px;margin:44px 0 14px">See the tools educators use</h3>
+    <div class="tools">
+      <a class="tool reveal" style="--i:1" href="https://lingzhang12.github.io/CoIEP_PD/plaafp.html" target="_blank" rel="noopener"><b>PLAAFP Evaluation Practice Sheet</b><span>Rate a draft, compare with the Evaluator, revise.</span></a>
+      <a class="tool reveal" style="--i:2" href="https://lingzhang12.github.io/CoIEP_PD/goal.html" target="_blank" rel="noopener"><b>Goal Development Sheet</b><span>From a student&rsquo;s need to a measurable goal.</span></a>
+      <a class="tool reveal" style="--i:3" href="https://lingzhang12.github.io/CoIEP_PD/goal-example.html" target="_blank" rel="noopener"><b>Completed Example</b><span>A filled-in goal sheet for a practice student.</span></a>
+      <a class="tool reveal" style="--i:4" href="https://lingzhang12.github.io/CoIEP_PD/prompts.html" target="_blank" rel="noopener"><b>Prompt Library</b><span>Ready-to-use prompts for CoIEP.</span></a>
+      <a class="tool reveal" style="--i:5" href="https://lingzhang12.github.io/CoIEP_PD/disclosure.html" target="_blank" rel="noopener"><b>Disclosing AI Use</b><span>Practice telling families and teams.</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- 7. CLOSE -->
+<section class="close" id="next">
+  <div class="wrap">
+    <div class="eyebrow reveal">What&rsquo;s next</div>
+    <h2 class="reveal" style="--i:1">Your support helps more Wyoming educators write IEPs that students can count on.</h2>
+    <p class="intro reveal" style="--i:2">The sessions, tools, and lessons from Coyote Ridge and LCSD1 now carry forward to the next partner.</p>
+    <div class="next3">
+      <div class="reveal" style="--i:3"><b>Reach more schools</b>Bring the series to Sweetwater and to more Wyoming districts.</div>
+      <div class="reveal" style="--i:4"><b>Measure what changes</b>Show growth in IEP quality and educator confidence across the year.</div>
+      <div class="reveal" style="--i:5"><b>Build the next tools</b>Add practice tools for progress monitoring and specially designed instruction, the next parts of the IEP.</div>
+    </div>
+    <div class="thanks reveal" style="--i:6">Thank you.</div>
+  </div>
+</section>
+
+<footer>Ling Zhang &middot; University of Wyoming &middot; <a href="https://www.coiep.com/" target="_blank" rel="noopener">CoIEP</a><br>Progress report for August to October 2026, updated October 22, 2026. Group results only. No student information appears on this page.</footer>
+
+<script>
+const PAL={navy:"#1B365D",gold:"#C9A227",teal:"#2E7D6B",slate:"#6b7a90"};
+const $=id=>document.getElementById(id);
+function bars(id,items,max,color,fmt){
+  $(id).innerHTML=items.map((it,i)=>{
+    const pct=Math.max(3,Math.round(100*it.v/max));
+    return "<div class='brow' style='--r:"+i+"'><div class='blab'>"+it.label+"</div><div class='btrack'><div class='bfill' data-w='"+pct+"' style='background:"+color+"'></div></div><span class='bval'>"+fmt(it.v)+"</span></div>";
+  }).join("");
+}
+function seg(id,lid,parts){
+  const tot=parts.reduce((a,p)=>a+p.n,0)||1;
+  $(id).innerHTML=parts.filter(p=>p.n>0).map(p=>"<div data-w='"+(100*p.n/tot)+"' style='background:"+p.c+"'>"+p.n+"</div>").join("");
+  $(lid).innerHTML=parts.map(p=>"<span><span class='dot' style='background:"+p.c+"'></span>"+p.l+": "+p.n+"</span>").join("");
+}
+bars("c-low",[{label:"Talking with families and teams about AI use",v:1.92},{label:"Behavior assessments and plans",v:2.08},{label:"Choosing tools to track progress",v:2.15}],5,PAL.navy,v=>v.toFixed(1));
+seg("k-conc","k-conc-l",[{n:6,l:"Yes",c:PAL.teal},{n:2,l:"Partly",c:PAL.gold},{n:0,l:"Not yet",c:PAL.slate}]);
+
+// ================= MOTION (same system as the CoIEP dashboards) =================
+const M={
+  on:true, io:null,
+  reduced(){return window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;},
+  init(){ let pref=null; try{pref=localStorage.getItem("coiep_dash_motion");}catch(e){}
+    this.on=pref?pref==="on":!this.reduced(); this.apply(); this.observe(); },
+  apply(){ document.body.classList.toggle("nomotion",!this.on); $("mtoggle").textContent="Motion: "+(this.on?"on":"off"); },
+  toggle(){ this.on=!this.on; try{localStorage.setItem("coiep_dash_motion",this.on?"on":"off");}catch(e){} this.apply(); this.settle(); },
+  enter(el){ el.classList.add("in");
+    el.querySelectorAll("[data-w]").forEach(b=>{b.style.width=b.dataset.w+"%";});
+    if(el.dataset.w) el.style.width=el.dataset.w+"%";
+    el.querySelectorAll("[data-count]").forEach(n=>this.count(n)); },
+  count(n){
+    const to=parseFloat(n.dataset.count)||0, dec=parseInt(n.dataset.dec||"0",10);
+    if(!this.on||document.hidden){n.textContent=to.toFixed(dec);return;}
+    const t0=performance.now(), dur=1100; const id=(n._cid=(n._cid||0)+1);
+    const done=()=>{ if(n._cid===id) n.textContent=to.toFixed(dec); };
+    const step=t=>{ if(n._cid!==id) return; const p=Math.min(1,(t-t0)/dur), e=1-Math.pow(1-p,3); n.textContent=(to*e).toFixed(dec); if(p<1) requestAnimationFrame(step); else done(); };
+    requestAnimationFrame(step); setTimeout(done,dur+150);
+  },
+  observe(){
+    const els=document.querySelectorAll(".reveal");
+    if(!this.on||!("IntersectionObserver" in window)){els.forEach(e=>this.enter(e));return;}
+    this.io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){this.enter(x.target);this.io.unobserve(x.target);}}),{threshold:.2});
+    els.forEach(e=>this.io.observe(e));
+    setTimeout(()=>this.sweep(),1800);
+  },
+  settle(){document.querySelectorAll(".reveal").forEach(e=>this.enter(e));},
+  // anything on screen or already scrolled past arrives, so a fast jump never leaves a blank block
+  sweep(){document.querySelectorAll(".reveal:not(.in)").forEach(e=>{const b=e.getBoundingClientRect(); if(b.top<window.innerHeight) this.enter(e);});}
+};
+M.init();
+window.addEventListener("scroll",()=>M.sweep(),{passive:true});
+window.addEventListener("beforeprint",()=>M.settle());
+window.addEventListener("load",()=>setTimeout(()=>M.sweep(),400));
+document.addEventListener("visibilitychange",()=>{ document.querySelectorAll(".reveal.in [data-count]").forEach(n=>{n._cid=(n._cid||0)+1; n.textContent=(parseFloat(n.dataset.count)||0).toFixed(parseInt(n.dataset.dec||"0",10));}); if(!document.hidden) setTimeout(()=>M.sweep(),300); });
+</script>
+</body>
+</html>
