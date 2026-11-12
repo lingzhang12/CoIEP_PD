@@ -2,439 +2,81 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="robots" content="noindex, nofollow">
-<title>Introducing CoIEP</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CoIEP Professional Learning Series</title>
 <style>
-:root{
-  --navy:#1B365D; --navy2:#22426f; --gold:#C9A227; --goldt:#7a5f0e; --goldbg:#fdf6e3; --teal:#2E7D6B; --tealbg:#e8f4f1;
-  --bg:#f6f7f9; --card:#fff; --line:#dfe3ea; --text:#212529; --text2:#5f6b7a; --r:14px; --bar:64px;
-}
+:root{--navy:#1B365D;--gold:#C9A227;--teal:#2E7D6B;--bg:#f6f7f9;--card:#fff;--text:#212529;--text2:#5f6b7a;--line:#dfe3ea;--r:10px}
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%}
-body{font-family:'Times New Roman',Times,Georgia,serif;background:var(--bg);color:var(--text);line-height:1.45;overflow:hidden}
-a{color:var(--navy)}
-
-/* ---------- deck ---------- */
-.deck{position:fixed;inset:0 0 var(--bar) 0}
-.slide{position:absolute;inset:0;overflow-y:auto;-webkit-overflow-scrolling:touch;opacity:0;visibility:hidden;transition:opacity .35s ease,visibility 0s linear .35s}
-.slide.on{opacity:1;visibility:visible;transition:opacity .35s ease}
-.inner{max-width:1040px;margin:0 auto;padding:clamp(22px,5vh,56px) clamp(18px,4vw,48px) 36px;min-height:100%;display:flex;flex-direction:column;justify-content:center}
-.slide.top .inner{justify-content:flex-start}
-.kick{font-size:clamp(14px,1.6vw,17px);font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--goldt);margin-bottom:8px}
-.slide h1{font-size:clamp(30px,4.6vw,54px);line-height:1.12;color:var(--navy);margin-bottom:clamp(14px,3vh,28px)}
-.slide h2{font-size:clamp(22px,2.6vw,30px);color:var(--navy);margin:6px 0 10px;line-height:1.2}
-.slide h3{font-size:clamp(18px,1.9vw,22px);color:var(--navy);margin:14px 0 6px}
-.lead{font-size:clamp(19px,2.2vw,26px);color:var(--text2);margin-bottom:18px}
-.big-list{list-style:none;counter-reset:n}
-.big-list li{counter-increment:n;position:relative;padding:12px 0 12px clamp(48px,5vw,64px);font-size:clamp(21px,2.6vw,32px);border-bottom:1px solid var(--line)}
-.big-list li:last-child{border-bottom:none}
-.big-list li:before{content:counter(n);position:absolute;left:0;top:50%;transform:translateY(-50%);width:clamp(34px,3.6vw,46px);height:clamp(34px,3.6vw,46px);border-radius:50%;background:var(--navy);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:clamp(17px,1.9vw,22px)}
-.big-list.teal li:before{background:var(--teal)}
-ul.dots{list-style:none}
-ul.dots li{position:relative;padding:6px 0 6px 22px;font-size:clamp(17px,1.9vw,22px)}
-ul.dots li:before{content:"";position:absolute;left:3px;top:.85em;width:9px;height:9px;border-radius:50%;background:var(--navy)}
-.cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2.5vw,32px)}
-@media(max-width:760px){.cols{grid-template-columns:1fr}}
-.panel{background:var(--card);border-radius:var(--r);box-shadow:0 1px 3px rgba(0,0,0,.08);padding:clamp(16px,2.4vw,26px);border-top:4px solid var(--navy)}
-.panel.teal{border-top-color:var(--teal)}
-.panel.gold{border-top-color:var(--gold)}
-.idea{background:var(--goldbg);border-left:5px solid var(--gold);border-radius:8px;padding:clamp(12px,2vw,20px) clamp(14px,2.4vw,24px);font-size:clamp(20px,2.6vw,32px);color:var(--navy);font-weight:700;margin:4px 0 18px}
-.quote{font-style:italic;color:var(--navy);border-left:4px solid var(--gold);padding:4px 0 4px 14px;margin:8px 0;font-size:clamp(17px,2vw,23px)}
-.pending{background:#eef1f5;border-radius:8px;padding:12px 14px;font-size:clamp(17px,1.9vw,21px);color:var(--text2)}
-.means{background:var(--goldbg);border-radius:8px;padding:12px 14px;margin-top:14px;font-size:clamp(17px,1.9vw,21px)}
-.src{font-size:15px;color:var(--text2);margin-top:8px}
-.note{font-size:16px;color:var(--text2)}
-.btn{font:inherit;font-size:18px;font-weight:700;padding:11px 18px;border-radius:9px;border:2px solid var(--navy);background:var(--navy);color:#fff;cursor:pointer;margin:6px 8px 6px 0;text-decoration:none;display:inline-block}
-.btn.lt{background:#fff;color:var(--navy)}
-.btn.gold{background:var(--gold);border-color:var(--gold);color:var(--navy)}
-.embed{position:relative;width:100%;padding-top:56.25%;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.08)}
-.embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.embedwrap{max-width:900px;width:100%;margin:0 auto}
-input[type=text],textarea{width:100%;font:inherit;font-size:18px;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;margin-top:6px;background:#fff}
-.chk{display:flex;flex-wrap:wrap;gap:4px 18px}
-.chk label{display:flex;gap:8px;align-items:center;font-size:18px;padding:5px 0;cursor:pointer}
-.chk input{width:21px;height:21px;accent-color:var(--navy)}
-.field{margin:14px 0}
-.field > b{display:block;font-size:19px;color:var(--navy)}
-.ex{background:var(--goldbg);border-left:4px solid var(--gold);border-radius:8px;padding:12px 16px;margin:10px 0}
-.ex dt{font-weight:700;color:var(--navy);margin-top:6px}
-.summary{background:#fff;border:2px solid var(--navy);border-radius:var(--r);padding:clamp(16px,2.4vw,26px)}
-.summary dt{font-weight:700;color:var(--navy);margin-top:8px;font-size:18px}
-.summary dd{font-size:18px}
-.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
-
-/* fit fixes */
-.inner>.btn{align-self:flex-start}
-.embedwrap{max-width:min(900px,calc((100vh - var(--bar) - 330px) * 1.7778))}
-@supports (height:100dvh){.embedwrap{max-width:min(900px,calc((100dvh - var(--bar) - 330px) * 1.7778))}}
-@media(max-width:760px){.embedwrap{max-width:100%}}
-.slide.top .inner{padding-top:clamp(16px,3.5vh,40px);padding-bottom:18px}
-.slide.top h1{margin-bottom:clamp(8px,1.6vh,16px)}
-.slide.top .panel{padding:clamp(12px,1.8vw,20px)}
-.slide.top ul.dots li{font-size:clamp(16px,1.75vw,20px);padding:4px 0 4px 22px}
-.slide.top .quote{font-size:clamp(16px,1.8vw,21px);margin:6px 0}
-.means{margin-top:10px}
-
-/* title slide */
-.slide.title{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);color:#fff}
-.slide.title h1{color:#fff;font-size:clamp(28px,4.2vw,52px);max-width:960px}
-.slide.title .rule{width:90px;height:5px;background:var(--gold);border-radius:3px;margin:0 0 clamp(16px,3vh,30px)}
-.people{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 36px;margin-top:clamp(10px,2vh,20px)}
-.people b{display:block;font-size:clamp(19px,2.1vw,25px)}
-.people span{display:block;font-size:clamp(15px,1.6vw,19px);color:rgba(255,255,255,.78)}
-@media(max-width:640px){.people{grid-template-columns:1fr}}
-.slide.title .hint{margin-top:clamp(20px,5vh,48px);font-size:16px;color:rgba(255,255,255,.7)}
-.slide.end{background:var(--navy);color:#fff}
-.slide.end h1{color:#fff}
-.slide.end .lead{color:rgba(255,255,255,.8)}
-.slide.end .btn.lt{border-color:#fff}
-
-/* decision log document view */
-.docview{max-height:min(62vh,640px);overflow:auto;background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:16px 18px 20px;font-size:16px;line-height:1.45;box-shadow:inset 0 -12px 12px -12px rgba(0,0,0,.12)}
-.docview h4.d1{font-size:20px;color:var(--navy);margin:14px 0 6px;text-align:center}
-.docview h4.d1:first-child{margin-top:0}
-.docview h4.d2{font-size:17.5px;color:var(--navy);margin:16px 0 4px;border-top:1px solid var(--line);padding-top:10px}
-.docview h5{font-size:16px;color:var(--navy);margin:10px 0 2px}
-.docview p{margin:4px 0}
-.docview ul{padding-left:20px;margin:4px 0}
-.docview li{margin:3px 0}
-.docview .box{border:1px solid #c9d1dc;border-radius:4px;min-height:34px;margin:4px 0 8px;background:#fbfcfd}
-.docview .tw{overflow-x:auto;margin:6px 0 10px}
-.docview table{border-collapse:collapse;min-width:520px;width:100%;font-size:15px}
-.docview th{background:var(--navy);color:#fff;text-align:left;padding:5px 7px}
-.docview td{border:1px solid #c9d1dc;padding:5px 7px;height:28px;vertical-align:top}
-
-/* ---------- control bar ---------- */
-.bar{position:fixed;left:0;right:0;bottom:0;height:var(--bar);background:#fff;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 clamp(10px,3vw,28px) env(safe-area-inset-bottom);z-index:5}
-.bar button{font:inherit;font-size:17px;font-weight:700;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:9px;padding:8px 16px;cursor:pointer;min-width:92px}
-.bar button.next{background:var(--navy);color:#fff}
-.bar button:disabled{opacity:.3;cursor:default}
-.mid{display:flex;align-items:center;gap:12px;font-size:16px;color:var(--text2)}
-.dotsnav{display:flex;gap:6px}
-.dotsnav i{width:8px;height:8px;border-radius:50%;background:#cfd6e0;display:block}
-.dotsnav i.on{background:var(--gold)}
-.fs{border:none!important;min-width:0!important;padding:6px!important;font-size:15px!important;font-weight:400!important;color:var(--text2)!important;text-decoration:underline}
-@media(max-width:560px){.dotsnav,.fs{display:none}.bar button{min-width:76px;padding:8px 12px}}
-.hide{display:none!important}
-
-@media print{
-  body{overflow:visible;background:#fff}
-  .bar,.slide:not(.printme){display:none!important}
-  .deck,.slide.printme{position:static;opacity:1;visibility:visible;overflow:visible}
-  .slide.printme .noprint{display:none!important}
-  .summary{border:none;padding:0}
-}
+body{font-family:'Times New Roman',Times,Georgia,serif;background:var(--bg);color:var(--text);line-height:1.5}
+.wrap{max-width:900px;margin:0 auto;padding:18px 20px 40px}
+header{background:var(--navy);color:#fff;padding:24px 26px;border-radius:var(--r);margin-bottom:18px}
+h1{font-size:25px;font-weight:600}
+.sub{font-size:16px;color:rgba(255,255,255,.82);margin-top:6px}
+h2{font-size:15px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.6px;margin:20px 0 8px}
+a.card{display:block;background:var(--card);border-radius:var(--r);padding:16px 20px;box-shadow:0 1px 3px rgba(0,0,0,.08);border-left:4px solid var(--navy);margin-bottom:10px;text-decoration:none;color:inherit}
+a.card:hover,a.card:focus{border-left-color:var(--gold);box-shadow:0 2px 8px rgba(0,0,0,.12);outline:none}
+a.card.now{border-left-color:var(--gold)}
+div.card.soon{display:block;background:var(--card);border-radius:var(--r);padding:16px 20px;border-left:4px dashed #c9d0da;margin-bottom:10px;color:var(--text2)}
+div.card.soon b{display:block;font-size:17px;color:var(--text2)}
+div.card.soon span{display:block;font-size:15.5px;margin-top:2px}
+a.card b{display:block;font-size:18.5px;color:var(--navy)}
+a.card > span{display:block;font-size:15.5px;color:var(--text2);margin-top:2px}
+.tag{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:1px 8px;border-radius:10px;background:var(--gold);color:var(--navy);margin-left:8px;vertical-align:middle}
+.note{background:#e8f4f1;border-left:4px solid var(--teal);border-radius:8px;padding:12px 16px;font-size:15.5px;color:#1d5145;margin-top:20px}
+footer{font-size:14px;color:var(--text2);text-align:center;padding-top:18px}
+a.coiep-link{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px}
 </style>
 </head>
 <body>
-<main class="deck" id="deck"></main>
-<nav class="bar" aria-label="Slide navigation">
-  <button type="button" id="prev" onclick="nav(-1)">&larr; Back</button>
-  <div class="mid"><span id="count"></span><span class="dotsnav" id="dots"></span><button type="button" class="fs" onclick="fullscreen()">Full screen</button></div>
-  <button type="button" class="next" id="next" onclick="nav(1)">Next &rarr;</button>
-</nav>
-<!--LOG-START-->
-<template id='logdoc'>
-<h4 class='d1'>Instructional Decision Log</h4>
-<p>This one document holds all four of your Log entries. Submit it each time you turn in a part: complete the entry for that part and leave your earlier entries in place, so the Log grows across the term. In Unit 15 you will polish all four, add the closing reflection, and submit the Log as a whole.</p>
-<p>Using an AI tool is not required. You may use CoIEP, another GenAI system, or none at all, and you may choose differently for different parts. What this Log asks for is the same either way: what you were looking for before you started, how sure you are on each of the five critique questions, what you used to check each one, and what you did about the ones you were not sure of.</p>
-<h4 class='d1'>Quick Reference</h4>
-<h4 class='d2'>The five critique questions</h4>
-<ul>
-<li><b>Alignment. </b>Does the draft match this student’s documented characteristics and needs from Part 1, and does it connect to the grade-level content standards the student is working toward? Where does it not fit, and what does it leave out?</li>
-<li><b>Evidence for instruction.</b> Is each strategy or adaptation genuinely evidence-based for this population and this outcome? What supports it, and what is simply asserted?</li>
-<li><b>Source.</b> If the draft named or implied a source, does that source exist, did you retrieve or review it, and does it actually say what is claimed?</li>
-<li><b>Practice standards.</b> Does it reflect the relevant HLP(s) and the IDEA definition of SDI, which is adapting the content, methodology, or delivery of instruction to meet the unique needs of the child?</li>
-<li><b>Individualization and feasibility.</b> Could this draft apply to almost any student with this disability? Could it actually be delivered in the setting, schedule, and staffing described in your Part 1 profile?</li>
-</ul>
-<h4 class='d2'>The three source checks</h4>
-<h5>With AI assistance:</h5>
-<ul>
-<li><b>Existence</b>. You located the actual article, chapter, clearinghouse report, or course reading that the AI output named, through the course materials, the IRIS Center, the What Works Clearinghouse, ERIC, or UW Libraries. If you searched and found nothing, say so and treat the citation as fabricated. If it clearly exists but you could not obtain it in time, name where you looked and say what you did instead of relying on it.</li>
-<li><b>Fidelity.</b> You read enough of it to confirm it supports the specific claim, not merely that it is on a related topic.</li>
-<li><b>Fit.</b> The population, setting, and outcome are close enough to your student to justify the inference, and you say so when they are not.</li>
-</ul>
-<h5>Without AI assistance:</h5>
-<ul>
-<li>Support. Every claim you keep names a source you can produce. If your draft named a citation, confirm it exists in the course materials, the IRIS Center, the What Works Clearinghouse, ERIC, or UW Libraries; if you searched and found nothing, treat it as fabricated. If a claim rests on nothing you can point to, treat it as unsupported until you find one. Both are findings, not failures.</li>
-<li>Fidelity. You read enough of it to confirm it supports your specific claim, not merely that it is on a related topic. Reading the IRIS module about a study is not reading the study.</li>
-<li>Fit. The population, setting, and outcome are close enough to your student to justify the inference, and you say so when they are not.</li>
-</ul>
-<h4 class='d2'>How to fill the decision record</h4>
-<p>Every entry has one table, and its rows are the five critique questions. Work down them in order. </p>
-<p>The “How sure am I?” column is about your own judgment, not about whether the draft passed. Use one of three words:</p>
-<ul>
-<li>Confident: I can defend this judgment against a named standard or my Part 1 data.</li>
-<li>Unsure: I could argue it either way.</li>
-<li>Guessed: I had nothing to go on yet. Guessed is an honest and scoreable answer, and it is expected early in the term.</li>
-</ul>
-<p>The “What I used to check it” column is where your evidence goes: a reading, an HLP, the student profile, a database search, a colleague, or nothing yet.</p>
-<p>The “What I did next” column is what you did with that judgment, including what you did about the rows you were not sure of. Guessed is never a place to stop.</p>
-<div class='tw'><table><tr><th>Critique question</th><th>How sure am I?</th><th>What I used to check it</th><th>What I did next</th></tr><tr><td>Alignment</td><td>Unsure</td><td>The student’s Part 1 profile; the grade-4 content standard</td><td>Rewrote the goal to name expository text</td></tr><tr><td>Evidence for instruction</td><td>Confident</td><td>WWC grades 4 to 9 guide, read it</td><td>Kept the strategy as drafted</td></tr><tr><td>Source</td><td>Confident</td><td>Searched UW Libraries, ERIC, Scholar</td><td>Citation not found; dropped the claim</td></tr><tr><td>Practice standards</td><td>Guessed</td><td>Nothing yet, I could not tell which HLP applied</td><td>Asked in the discussion board; still open</td></tr><tr><td>Individualization and feasibility</td><td>Unsure</td><td>The student schedule and my caseload</td><td>Cut one session; flagged para coverage</td></tr></table></div>
-<p>Some fields will not apply in some entries, which is fine. Write one line saying why rather than leaving the space blank. These may be empty, with a reason: which part you expect to be hardest, and any critique question that does not apply to this part. These are never empty: how you made this draft, your criteria, the decision record, and the four Looking back and Next time questions.</p>
-<h4 class='d2'>Before you submit each entry, confirm that</h4>
-<p>☐  I wrote my criteria before I started drafting.</p>
-<p>☐  At least one row is something I changed or something I was not sure about, and the last column says what I did about it.</p>
-<p>☐  Every source is accounted for: retrieved and confirmed, not found and treated as fabricated, or real but unobtainable with what I did instead.</p>
-<p>☐  I named specific HLPs, IDEA provisions, or content standards, not just “course readings.”</p>
-<p>☐  No identifying information about a real student appears anywhere in this Log.</p>
-<h4 class='d2'><b>Entry 1: Part 2-Designing Instructional Goals</b></h4>
-<h5>How you made this draft</h5>
-<p><i>Name everything that fed into it: a tool and the prompt you gave it, the readings or template you worked from, your own prior writing.  </i></p>
-<div class='box'></div>
-<h5>Before I started</h5>
-<p><i>What a strong version of this component must include. These are your criteria. Name where in the course materials they come from.</i></p>
-<div class='box'></div>
-<p><i>What part of this component do you expect to be hardest to get right, and why?</i></p>
-<div class='box'></div>
-<h5>Decision record</h5>
-<p><i>Work down the five critique questions. For each one, say how sure you are of your own judgment, what you used to check it, and what you did next. If a question does not apply to this part, write one line saying why. At least one row should be something you changed or were unsure about, and the last column says what you did about it.</i></p>
-<div class='tw'><table><tr><th>Critique question</th><th>How sure am I?</th><th>What I used to check it</th><th>What I did next</th></tr><tr><td>Alignment</td><td></td><td></td><td></td></tr><tr><td>Evidence for instruction</td><td></td><td></td><td></td></tr><tr><td>Source</td><td></td><td></td><td></td></tr><tr><td>Practice standards</td><td></td><td></td><td></td></tr><tr><td>Individualization and feasibility</td><td></td><td></td><td></td></tr></table></div>
-<h5>Looking back</h5>
-<p><i>Of the five critique questions, which was hardest to answer for this part, and why?</i></p>
-<div class='box'></div>
-<p><i>Of the cycle steps (Plan, Draft, Critique, Correct), which took more work than you expected on this part?</i></p>
-<div class='box'></div>
-<h5>Next time</h5>
-<p><i>Name one thing you will do at the Plan step of the next part that you did not do this time.</i></p>
-<div class='box'></div>
-<p><i>If a classmate started this same part tomorrow, what would you tell them to do before they draft?</i></p>
-<div class='box'></div>
-<h4 class='d2'><b>Entry 2: Part 3-1-SDI: Content Adaptations</b></h4>
-<h5>How you made this draft</h5>
-<p><i>Name everything that fed into it: a tool and the prompt you gave it, the readings or template you worked from, your own prior writing.  </i></p>
-<div class='box'></div>
-<h5>Before I started</h5>
-<p><i>What a strong version of this component must include. These are your criteria. Name where in the course materials they come from.</i></p>
-<div class='box'></div>
-<p><i>What part of this component do you expect to be hardest to get right, and why?</i></p>
-<div class='box'></div>
-<h5>Decision record</h5>
-<p><i>Work down the five critique questions. For each one, say how sure you are of your own judgment, what you used to check it, and what you did next. If a question does not apply to this part, write one line saying why. At least one row should be something you changed or were unsure about, and the last column says what you did about it.</i></p>
-<div class='tw'><table><tr><th>Critique question</th><th>How sure am I?</th><th>What I used to check it</th><th>What I did next</th></tr><tr><td>Alignment</td><td></td><td></td><td></td></tr><tr><td>Evidence for instruction</td><td></td><td></td><td></td></tr><tr><td>Source</td><td></td><td></td><td></td></tr><tr><td>Practice standards</td><td></td><td></td><td></td></tr><tr><td>Individualization and feasibility</td><td></td><td></td><td></td></tr></table></div>
-<h5>Looking back</h5>
-<p><i>Of the five critique questions, which was hardest to answer for this part, and why?</i></p>
-<div class='box'></div>
-<p><i>Of the cycle steps (Plan, Draft, Critique, Correct), which took more work than you expected on this part?</i></p>
-<div class='box'></div>
-<h5>Next time</h5>
-<p><i>Name one thing you will do at the Plan step of the next part that you did not do this time.</i></p>
-<div class='box'></div>
-<p><i>If a classmate started this same part tomorrow, what would you tell them to do before they draft?</i></p>
-<div class='box'></div>
-<h4 class='d2'><b>Entry 3: Part 3-2-SDI: Methodological Strategies</b></h4>
-<h5>How you made this draft</h5>
-<p><i>Name everything that fed into it: a tool and the prompt you gave it, the readings or template you worked from, your own prior writing.  </i></p>
-<div class='box'></div>
-<h5>Before I started</h5>
-<p><i>What a strong version of this component must include. These are your criteria. Name where in the course materials they come from.</i></p>
-<div class='box'></div>
-<p><i>What part of this component do you expect to be hardest to get right, and why?</i></p>
-<div class='box'></div>
-<h5>Decision record</h5>
-<p><i>Work down the five critique questions. For each one, say how sure you are of your own judgment, what you used to check it, and what you did next. If a question does not apply to this part, write one line saying why. At least one row should be something you changed or were unsure about, and the last column says what you did about it.</i></p>
-<div class='tw'><table><tr><th>Critique question</th><th>How sure am I?</th><th>What I used to check it</th><th>What I did next</th></tr><tr><td>Alignment</td><td></td><td></td><td></td></tr><tr><td>Evidence for instruction</td><td></td><td></td><td></td></tr><tr><td>Source</td><td></td><td></td><td></td></tr><tr><td>Practice standards</td><td></td><td></td><td></td></tr><tr><td>Individualization and feasibility</td><td></td><td></td><td></td></tr></table></div>
-<h5>Looking back</h5>
-<p><i>Of the five critique questions, which was hardest to answer for this part, and why?</i></p>
-<div class='box'></div>
-<p><i>Of the cycle steps (Plan, Draft, Critique, Correct), which took more work than you expected on this part?</i></p>
-<div class='box'></div>
-<h5>Next time</h5>
-<p><i>Name one thing you will do at the Plan step of the next part that you did not do this time.</i></p>
-<div class='box'></div>
-<p><i>If a classmate started this same part tomorrow, what would you tell them to do before they draft?</i></p>
-<div class='box'></div>
-<h4 class='d2'><b>Entry 4: Part 3-3-SDI: Delivery Decision</b></h4>
-<h5>How you made this draft</h5>
-<p><i>Name everything that fed into it: a tool and the prompt you gave it, the readings or template you worked from, your own prior writing.  </i></p>
-<div class='box'></div>
-<h5>Before I started</h5>
-<p><i>What a strong version of this component must include. These are your criteria. Name where in the course materials they come from.</i></p>
-<div class='box'></div>
-<p><i>What part of this component do you expect to be hardest to get right, and why?</i></p>
-<div class='box'></div>
-<h5>Decision record</h5>
-<p><i>Work down the five critique questions. For each one, say how sure you are of your own judgment, what you used to check it, and what you did next. If a question does not apply to this part, write one line saying why. At least one row should be something you changed or were unsure about, and the last column says what you did about it.</i></p>
-<div class='tw'><table><tr><th>Critique question</th><th>How sure am I?</th><th>What I used to check it</th><th>What I did next</th></tr><tr><td>Alignment</td><td></td><td></td><td></td></tr><tr><td>Evidence for instruction</td><td></td><td></td><td></td></tr><tr><td>Source</td><td></td><td></td><td></td></tr><tr><td>Practice standards</td><td></td><td></td><td></td></tr><tr><td>Individualization and feasibility</td><td></td><td></td><td></td></tr></table></div>
-<h5>Looking back</h5>
-<p><i>Of the five critique questions, which was hardest to answer for this part, and why?</i></p>
-<div class='box'></div>
-<p><i>Of the cycle steps (Plan, Draft, Critique, Correct), which took more work than you expected on this part?</i></p>
-<div class='box'></div>
-<h5>Next time</h5>
-<p><i>Name one thing you will do at the Plan step of the next part that you did not do this time.</i></p>
-<div class='box'></div>
-<p><i>If a classmate started this same part tomorrow, what would you tell them to do before they draft?</i></p>
-<div class='box'></div>
-<h4 class='d1'>Closing Reflection (Unit 15)</h4>
-<p>One to two pages, written after your four entries are complete. Reread all four first. Reflect across the whole project rather than summarizing each entry. Honesty scores better than a tidy story: naming a blind spot you did not resolve earns more than reporting uniform success.</p>
-<ul>
-<li>How did your ability to evaluate goals and instructional proposals change from Part 2 to Part 3-3, whatever their source? Point to something specific in your entries that shows the change.</li>
-<li>Look at your “How sure?” columns across the four entries. What moved from Guessed or Unsure toward Confident, and what did not?</li>
-<li>What did your drafts consistently do well, and where did they consistently need correction? Look for the pattern across parts, not the one memorable failure.</li>
-<li>What kinds of problems were easy to catch, and what kinds nearly got past you? What made the difference?</li>
-<li>What is your professional position on using AI tools for IEP work, what informs it, and what is the strongest consideration against it?</li>
-<li>How would you advise a colleague or your building, and where should human professional judgment remain non-negotiable?</li>
-</ul>
-</template>
-<!--LOG-END-->
-<script>
-// ===================== CONTENT: edit here =====================
-const CONTENT={
- intro:{
-  title:"Preparing Educators to Leverage GenAI for Individualized Education Programs and Evidence-Based Practices: Introducing CoIEP",
-  people:[["Ling Zhang, PhD","University of Wyoming"],["Tiffany Hunt","University of Wyoming"],["Haidee A. Jackson, Ph.D.","University of Texas Permian Basin"],["Sohyun Yang, PhD","Fort Hays State University"]]},
- links:{board:"",survey:"",materials:"https://lingzhang12.github.io/CoIEP_PD/",coiep:"https://www.coiep.com/"},
- share:{prompts:["Where have you used GenAI in IEP courses?","What worked?","What got in the way?","Not yet? What would you need?"]},
- coiep:{what:"An AI system for IEPs, built at the University of Wyoming.",
-  chain:["Present levels","Goals","SDI","Accommodations"],
-  idea:"The writer drafts. The evaluator checks. The educator decides.",
-  watch:["What the educator puts in","How each part builds on the last","Where the educator accepts, edits, or rejects"],
-  // Canva: paste the Smart embed link (Share > More > Embed) as embed. view is optional (a public view link).
-  embed:"https://www.canva.com/design/DAHauL09Cr0/pclB3O4YsjBlgac4FifC1g/view?embed",view:"https://www.canva.com/design/DAHauL09Cr0/pclB3O4YsjBlgac4FifC1g/view"},
- studies:[
-  {course:"IEP development course",title:"The IEP course study",who:"9 pre-service teachers",
-   how:["3 sessions, one IEP part each","Thinking aloud, then interviews"],
-   found:["Rated it above 6 of 7 for user experience","Valued the cited evidence, and said to check every source","Their thinking shifted from recalling to evaluating"],
-   quotes:["I trust this AI system because it was built for IEPs.","I\u2019m not so sure where exactly this data is coming from."],
-   means:"Teach candidates to judge AI output against IEP quality criteria.",source:"Manuscripts under review",pending:""},
-  {course:"SDI course",title:"The SDI course study",who:"EDEX 3072 (undergraduate) and EDEX 5071 (graduate), fall 2026",
-   how:["Plan \u2192 Draft \u2192 Critique \u2192 Revise \u2192 Reflect","A graded Decision Log: how sure am I, how I checked, what I did next","Check every source: does it exist, say it, and fit?"],
-   found:[],quotes:[],
-   means:"Grade the critique and the checking, not the draft. AI is optional, and everyone meets the same standard.",source:"",pending:"Results after the term.",
-   log:{rows:[["Alignment","Unsure"],["Evidence for instruction","Confident"],["Source","Confident"],["Practice standards","Guessed"],["Individualization and feasibility","Unsure"]],
-        file:"Decision-Log-Template.docx"}}],
- logFile:"Decision-Log-Template.docx",
- // Canva: Smart embed link for the one-slide studies design (Share > More > Embed)
- studiesEmbed:"https://www.canva.com/design/DAHaue60faU/mYUYyU5Yw34awoNTYyN-ug/view?embed",studiesView:"https://www.canva.com/design/DAHaue60faU/mYUYyU5Yw34awoNTYyN-ug/view",
- example:{level:"Undergraduate",course:"EDEX 3072: one SDI case study across the semester",enters:["Draft","Critique"],
-  graded:"A Decision Log, 100 points on its own: criteria first, how sure, how checked",privacy:"Hypothetical, or a fully anonymized placement student",
-  challenge:"Citations can look right and be wrong",response:"Check every source. Unverified means no citation."}
-};
+<div class="wrap">
+<header>
+  <h1>CoIEP Professional Learning Series</h1>
+  <div class="sub">Practice pages for our monthly sessions. Choose the page your facilitator names.</div>
+</header>
 
-// ===================== STATE (this device only) =====================
-const KEY="coiep_ted2026_v2";
-let S={share:{},plan:{}};
-try{ const s=JSON.parse(localStorage.getItem(KEY)||"null"); if(s) S=Object.assign(S,s); }catch(e){}
-function save(){ try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){} }
-const $=s=>document.querySelector(s);
-function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");}
-const li=a=>"<ul class='dots'>"+a.map(x=>"<li>"+esc(x)+"</li>").join("")+"</ul>";
-const link=(u,t,cls)=>u?"<a "+(cls?"class='"+cls+"' ":"")+"href='"+esc(u)+"' target='_blank' rel='noopener'>"+t+"</a>":"";
-function canvaSrc(s){ const m=/src="([^"]+)"/.exec(s||""); let u=(m?m[1]:(s||"")).trim(); if(!u) return "";
-  if(!/^https:\/\/(www\.)?canva\.com\//.test(u)) return ""; if(!/[?&]embed\b/.test(u)) u+=(u.includes("?")?"&":"?")+"embed"; return u; }
-function canvaBlock(e,v,title){ const s=canvaSrc(e); if(!s) return ""; const view=v||s.replace(/([?&])embed\b/,"$1").replace(/[?&]$/,"");
-  return "<div class='embedwrap'><div class='embed'><iframe src='"+esc(s)+"' title='"+esc(title)+"' allow='fullscreen' allowfullscreen loading='lazy'></iframe></div><p class='note' style='margin-top:6px'>"+link(view,"Open in Canva")+"</p></div>"; }
-function logDoc(){ const t=document.getElementById("logdoc"); return t?"<div class='docview' tabindex='0' aria-label='Instructional Decision Log template'>"+t.innerHTML+"</div>":""; }
-const kick=t=>"<div class='kick'>"+esc(t)+"</div>";
+<h2>PLAAFP</h2>
+<a class="card" href="plaafp.html"><b>PLAAFP Evaluation Practice Sheet</b><span>Session 2: predict, run the Evaluator, revise, and keep your notes.</span></a>
 
-// ===================== SLIDES =====================
-const SLIDES=[
- {id:"title",cls:"title",html:()=>{ const I=CONTENT.intro;
-   return "<div class='rule'></div><h1>"+esc(I.title)+"</h1><ul class='people'>"+
-     I.people.map(p=>"<li><b>"+esc(p[0])+"</b>"+(p[1]?"<span>"+esc(p[1])+"</span>":"")+"</li>").join("")+"</ul>"+
-     "<div class='hint'>Tap Next, or swipe, to follow along.</div>"; }},
- {id:"share",html:()=>kick("Part 1")+"<h1>Share your experience</h1>"+
-   "<ol class='big-list'>"+CONTENT.share.prompts.map(p=>"<li>"+esc(p)+"</li>").join("")+"</ol>"+
-   "<div class='cols' style='margin-top:18px'><div class='panel teal'><b>One success</b><input type='text' value='"+esc(S.share.success||"")+"' oninput=\"S.share.success=this.value;save()\"></div>"+
-   "<div class='panel gold'><b>One challenge</b><input type='text' value='"+esc(S.share.challenge||"")+"' oninput=\"S.share.challenge=this.value;save()\"></div></div>"+
-   (CONTENT.links.board?"<p style='margin-top:12px'>"+link(CONTENT.links.board,"Post to the shared board","btn lt")+"</p>":"")},
- {id:"coiep",html:()=>{ const C=CONTENT.coiep;
-   return kick("Part 2")+"<h1>Meet CoIEP</h1><div class='idea'>"+esc(C.idea)+"</div>"+canvaBlock(C.embed,C.view,"CoIEP slides"); }},
- {id:"demo",html:()=>{ const C=CONTENT.coiep;
-   return kick("Part 2 · Demo")+"<h1>Watch for</h1><ol class='big-list teal'>"+C.watch.map(w=>"<li>"+esc(w)+"</li>").join("")+"</ol>"+
-     "<p style='margin-top:16px'>"+link(CONTENT.links.coiep,"Open CoIEP","btn lt")+"</p>"; }},
- {id:"studies",html:()=>kick("Part 3")+"<h1>Two studies</h1>"+(canvaBlock(CONTENT.studiesEmbed,CONTENT.studiesView,"CoIEP studies")||
-   "<div class='cols'>"+CONTENT.studies.map(s=>"<div class='panel'><h2>"+esc(s.title)+"</h2><div class='note'>"+esc(s.who)+"</div></div>").join("")+"</div>")},
- ...[0,1].map(k=>({id:"study"+(k+1),cls:"top",html:()=>{ const s=CONTENT.studies[k];
-   return kick("Part 3 · "+s.course)+"<h1>"+esc(s.title)+"</h1><div class='note' style='margin:-10px 0 14px;font-size:18px'>"+esc(s.who)+"</div>"+
-    "<div class='cols'><div class='panel'><h2>How</h2>"+li(s.how)+"</div>"+
-    "<div class='panel teal'><h2>Found</h2>"+(s.found.length?li(s.found):"<div class='pending'>"+esc(s.pending)+"</div>")+
-      s.quotes.map(q=>"<div class='quote'>&ldquo;"+esc(q)+"&rdquo;</div>").join("")+"</div></div>"+
-    "<div class='means'><b>For your course:</b> "+esc(s.means)+"</div>"+(s.source?"<div class='src'>"+esc(s.source)+"</div>":""); }})),
- {id:"log",cls:"top",html:()=>{ const s=CONTENT.studies[1];
-   return kick("Part 3 · SDI course study")+"<h1>The Decision Log</h1>"+logDoc()+
-     "<p style='margin-top:10px'><a class='btn lt' href='"+esc(s.log.file)+"' download>Download the template (Word)</a></p>"; }},
- {id:"plan",cls:"top",html:()=>planHTML()},
- {id:"myplan",cls:"top printme",html:()=>summaryHTML()},
- {id:"end",cls:"end",html:()=>{ const L=CONTENT.links;
-   return "<h1>Thank you</h1><p class='lead'>Questions? Find any of us after the session.</p><div class='links'>"+
-     link(L.survey,"Get on the CoIEP access list","btn gold")+link(L.coiep,"CoIEP","btn lt")+link(L.materials,"Professional learning pages","btn lt")+"</div>"; }}
-];
+<h2>IEP Goals</h2>
+<a class="card" href="goal.html"><b>Standards-Based Goal Development Sheet</b><span>Session 3: link your student&rsquo;s PLAAFP to a standard, find the gap, set the parts of the goal, then draft with the Goal Writer.</span></a>
+<a class="card" href="goal-example.html"><b>Completed Standards-Based Goal Development Example</b><span>A finished goal sheet for a made-up student, to see what one looks like. Read-only.</span></a>
 
-// ===================== PLAN =====================
-const LEVELS=["Undergraduate","Graduate","Alternative licensure","In-service PD"];
-const STEPS=["Plan","Draft","Critique","Revise","Reflect"];
-const PRIV=["Fictional cases only","De-identified real cases"];
-function planHTML(){
-  const p=S.plan, E=CONTENT.example;
-  if(p.challenge==null&&S.share.challenge) p.challenge=S.share.challenge;
-  const radio=(n,o)=>"<div class='chk'>"+o.map(x=>"<label><input type='radio' name='"+n+"' "+(p[n]===x?"checked":"")+" onchange=\"S.plan['"+n+"']='"+x+"';save()\">"+x+"</label>").join("")+"</div>";
-  const multi=(n,o)=>"<div class='chk'>"+o.map(x=>"<label><input type='checkbox' "+((p[n]||[]).includes(x)?"checked":"")+" onchange=\"tog('"+n+"','"+x+"',this.checked)\">"+x+"</label>").join("")+"</div>";
-  const txt=(n,ph)=>"<input type='text' placeholder='"+esc(ph)+"' value='"+esc(p[n]||"")+"' oninput=\"S.plan['"+n+"']=this.value;save()\">";
-  return kick("Part 4")+"<h1>Your action plan</h1><p class='lead' style='margin-top:-8px'>One course. Any GenAI tool.</p>"+
-   "<button class='btn lt' onclick=\"$('#ex').classList.toggle('hide')\">See an example</button>"+
-   "<div class='ex hide' id='ex'><dl><dt>Course</dt><dd>"+esc(E.course)+" ("+esc(E.level)+")</dd><dt>GenAI enters</dt><dd>"+esc(E.enters.join(", "))+"</dd>"+
-    "<dt>Points for</dt><dd>"+esc(E.graded)+"</dd><dt>Privacy</dt><dd>"+esc(E.privacy)+"</dd><dt>Challenge &rarr; fix</dt><dd>"+esc(E.challenge)+" &rarr; "+esc(E.response)+"</dd></dl>"+
-    "<a href='"+esc(CONTENT.logFile)+"' download>Download the Decision Log template (Word)</a></div>"+
-   "<div class='cols'><div>"+
-    "<div class='field'><b>1. Level</b>"+radio("level",LEVELS)+"</div>"+
-    "<div class='field'><b>2. Course and assignment</b>"+txt("course","")+"</div>"+
-    "<div class='field'><b>3. Where GenAI enters</b>"+multi("enters",STEPS)+"</div>"+
-    "<div class='field'><b>4. What earns the points</b>"+txt("graded","e.g., the critique")+"</div></div><div>"+
-    "<div class='field'><b>5. Privacy rule</b>"+radio("privacy",PRIV)+"</div>"+
-    "<div class='field'><b>6. One challenge, and your fix</b>"+txt("challenge","Challenge")+txt("response","Fix")+"</div>"+
-    "<div class='field'><b>7. First step, and when</b>"+txt("first","")+"</div></div></div>"+
-   "<button class='btn gold' onclick=\"go('myplan')\">Make my plan &rarr;</button>";
-}
-function tog(n,x,on){ const a=S.plan[n]||[]; S.plan[n]=on?[...new Set(a.concat(x))]:a.filter(y=>y!==x); save(); }
-function planRows(){ const p=S.plan; return [["Level",p.level],["Course and assignment",p.course],["Where GenAI enters",(p.enters||[]).join(", ")],
-  ["What earns the points",p.graded],["Privacy rule",p.privacy],["Challenge",p.challenge],["Fix",p.response],["First step",p.first]]; }
-function summaryHTML(){
-  return "<div class='kick noprint'>Part 4</div><div class='summary'><h1 style='margin-bottom:6px'>My GenAI course plan</h1><div class='note'>"+
-   new Date().toLocaleDateString("en-US",{month:"long",day:"numeric",year:"numeric"})+"</div><dl>"+
-   planRows().map(([k,v])=>"<dt>"+k+"</dt><dd>"+(v?esc(v):"<span class='note'>&ndash;</span>")+"</dd>").join("")+
-   "</dl><p class='note' style='margin-top:12px'>CoIEP: www.coiep.com</p></div>"+
-   "<div class='noprint' style='margin-top:12px'><button class='btn' onclick='window.print()'>Save as PDF</button><button class='btn lt' onclick='copyPlan(this)'>Copy text</button><button class='btn lt' onclick=\"go('plan')\">Edit</button></div>";
-}
-function copyPlan(b){
-  const t="My GenAI course plan\n"+planRows().map(([k,v])=>k+": "+(v||"")).join("\n");
-  const done=()=>{b.textContent="Copied";setTimeout(()=>b.textContent="Copy text",1800);};
-  if(navigator.clipboard&&window.isSecureContext) navigator.clipboard.writeText(t).then(done,()=>fb(t,done)); else fb(t,done);
-}
-function fb(t,done){ const a=document.createElement("textarea"); a.value=t; document.body.appendChild(a); a.select(); try{document.execCommand("copy");done();}catch(e){} a.remove(); }
+<h2>SDI and Accommodations</h2>
+<div class="card soon"><b>Coming later in the series</b><span>Practice pages for specially designed instruction and accommodations will appear here.</span></div>
 
-// ===================== DECK ENGINE =====================
-const deck=$("#deck"); let cur=0;
-deck.innerHTML=SLIDES.map((s,i)=>"<section class='slide "+(s.cls||"")+"' id='s-"+s.id+"' aria-label='Slide "+(i+1)+"'><div class='inner'></div></section>").join("");
-$("#dots").innerHTML=SLIDES.map(()=>"<i></i>").join("");
-function render(i){ const el=deck.children[i]; el.firstChild.innerHTML=SLIDES[i].html(); }
-function show(i,push){
-  i=Math.max(0,Math.min(SLIDES.length-1,i));
-  // live slides re-render on entry so the plan picks up Part 1 and the summary is current
-  if(["plan","myplan","share"].includes(SLIDES[i].id)||!deck.children[i].firstChild.innerHTML) render(i);
-  [...deck.children].forEach((s,k)=>s.classList.toggle("on",k===i));
-  deck.children[i].scrollTop=0; cur=i;
-  $("#count").textContent=(i+1)+" / "+SLIDES.length;
-  [...$("#dots").children].forEach((d,k)=>d.classList.toggle("on",k===i));
-  $("#prev").disabled=i===0; $("#next").disabled=i===SLIDES.length-1;
-  const h="#"+SLIDES[i].id; if(location.hash!==h) history[push?"pushState":"replaceState"](null,"",h);
-}
-function nav(d){ show(cur+d,true); }
-function go(id){ const i=SLIDES.findIndex(s=>s.id===id); if(i>=0) show(i,true); }
-function fullscreen(){ const d=document.documentElement; if(!document.fullscreenElement){ (d.requestFullscreen||d.webkitRequestFullscreen||function(){}).call(d); } else { document.exitFullscreen&&document.exitFullscreen(); } }
-document.addEventListener("keydown",e=>{
-  if(/INPUT|TEXTAREA|SELECT/.test((e.target.tagName||""))) return;
-  if(e.key==="ArrowRight"||e.key==="PageDown"){ e.preventDefault(); nav(1); }
-  else if(e.key==="ArrowLeft"||e.key==="PageUp"){ e.preventDefault(); nav(-1); }
-});
-let tx=null,ty=null;
-deck.addEventListener("touchstart",e=>{ if(e.target.closest(".docview,input,textarea,.tw")){tx=null;return;} tx=e.touches[0].clientX; ty=e.touches[0].clientY; },{passive:true});
-deck.addEventListener("touchend",e=>{ if(tx==null) return; const dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty;
-  if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*1.5) nav(dx<0?1:-1); tx=null; },{passive:true});
-window.addEventListener("popstate",()=>{ const i=SLIDES.findIndex(s=>"#"+s.id===location.hash); show(i<0?0:i,false); });
-(function(){ const i=SLIDES.findIndex(s=>"#"+s.id===location.hash); show(i<0?0:i,false); })();
+<h2>Supplemental Materials</h2>
+<a class="card" href="prompts.html"><b>Prompt Library</b><span>Prompts to type in the CoIEP chat: shape a PLAAFP, check it, share it, and get ready for goals.</span></a>
+<a class="card" href="disclosure.html"><b>Disclosing GenAI use: practice page</b><span>Practice saying how GenAI supported your work, for colleagues and families.</span></a>
+
+<div class="note"><b>Your work stays with you.</b> What you type on these pages is saved only in the browser on your own device. Nothing is sent anywhere until you choose to submit. Use hypothetical or de-identified cases only: no student, family, staff, or school names.</div>
+<footer>CoIEP Professional Learning Series</footer>
+</div>
+<script id="coiep-links">
+(function(){
+  var URL="https://www.coiep.com/", SKIP={A:1,BUTTON:1,OPTION:1,SELECT:1,TEXTAREA:1,SCRIPT:1,STYLE:1,TITLE:1,INPUT:1};
+  function skip(n){ for(var p=n.parentNode;p&&p!==document.body;p=p.parentNode){ if(SKIP[p.nodeName]) return true; } return false; }
+  function run(root){
+    if(!root) return; var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null), list=[], n;
+    while((n=w.nextNode())){ if(n.nodeValue.indexOf("CoIEP")>-1 && !skip(n)) list.push(n); }
+    list.forEach(function(t){
+      var parts=t.nodeValue.split("CoIEP"), f=document.createDocumentFragment();
+      parts.forEach(function(s,i){
+        if(i>0){ var a=document.createElement("a"); a.href=URL; a.target="_blank"; a.rel="noopener"; a.className="coiep-link"; a.textContent="CoIEP"; f.appendChild(a); }
+        if(s) f.appendChild(document.createTextNode(s));
+      });
+      t.parentNode.replaceChild(f,t);
+    });
+  }
+  function start(){
+    run(document.body);
+    new MutationObserver(function(ms){ ms.forEach(function(m){
+      if(m.type==="characterData"){ if(m.target.parentNode) run(m.target.parentNode); return; }
+      m.addedNodes.forEach(function(x){ if(x.nodeType===1) run(x); else if(x.nodeType===3&&x.parentNode) run(x.parentNode); });
+    }); }).observe(document.body,{childList:true,subtree:true,characterData:true});
+  }
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",start); else start();
+})();
 </script>
 </body>
 </html>
