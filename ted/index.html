@@ -83,7 +83,16 @@ input[type=text],textarea{width:100%;font:inherit;font-size:18px;padding:10px 12
 .qrcard b{display:block;font-size:18px;margin-top:8px}
 .qrcard small{display:block;font-size:14px;color:var(--text2);margin-top:4px}
 .qrcard .short{display:block;font-size:clamp(17px,1.7vw,21px);font-weight:700;color:var(--navy);word-break:break-all;margin-top:1px}
-@media(max-width:900px){.titlegrid{grid-template-columns:1fr}.qrcard{display:none}}
+.qrcard .short{white-space:nowrap}
+@media(max-width:900px){
+ .titlegrid{grid-template-columns:1fr;gap:16px}
+ .qrcard{justify-self:start;width:auto;max-width:100%;display:grid;grid-template-columns:auto auto;grid-template-rows:auto auto auto;column-gap:14px;align-items:center;text-align:left;padding:10px 16px 10px 10px}
+ .qrcard img{grid-row:1 / span 3;width:clamp(96px,26vw,124px)}
+ .qrcard b{font-size:16px;margin-top:0;align-self:end}
+ .qrcard small{margin-top:0}
+ .qrcard .short{font-size:18px;align-self:start}
+ .slide.title .hint{margin-top:14px}
+}
 
 /* title slide */
 .slide.title{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);color:#fff}
