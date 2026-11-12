@@ -76,6 +76,17 @@ input[type=text],textarea{width:100%;font:inherit;font-size:18px;padding:10px 12
 .slide.top .quote{font-size:clamp(16px,1.8vw,21px);margin:6px 0}
 .means{margin-top:10px}
 
+/* wide slides: Canva viewers as large as the screen allows */
+.slide.wide .inner{max-width:1500px;padding:clamp(10px,2vh,22px) clamp(14px,2.5vw,32px) 10px;justify-content:flex-start}
+.slide.wide .kick{margin-bottom:2px}
+.slide.wide h1{font-size:clamp(24px,3vw,36px);margin-bottom:8px}
+.slide.wide .idea{font-size:clamp(16px,1.8vw,22px);padding:8px 14px;margin:0 0 10px;border-left-width:4px}
+.slide.wide .embedwrap{max-width:min(100%,calc((100vh - var(--bar) - var(--chrome,175px)) * 1.7778))}
+@supports (height:100dvh){.slide.wide .embedwrap{max-width:min(100%,calc((100dvh - var(--bar) - var(--chrome,175px)) * 1.7778))}}
+#s-coiep{--chrome:215px}
+#s-studies{--chrome:160px}
+.slide.wide .embedwrap .note{margin-top:4px}
+
 /* QR */
 .titlegrid{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(24px,4vw,56px);align-items:center;width:100%}
 .qrcard{background:#fff;color:var(--navy);border-radius:16px;padding:16px 16px 14px;text-align:center;box-shadow:0 6px 24px rgba(0,0,0,.25);width:clamp(190px,19vw,250px)}
@@ -362,12 +373,12 @@ const SLIDES=[
    "<div class='cols' style='margin-top:18px'><div class='panel teal'><b>One success</b><input type='text' value='"+esc(S.share.success||"")+"' oninput=\"S.share.success=this.value;save()\"></div>"+
    "<div class='panel gold'><b>One challenge</b><input type='text' value='"+esc(S.share.challenge||"")+"' oninput=\"S.share.challenge=this.value;save()\"></div></div>"+
    (CONTENT.links.board?"<p style='margin-top:12px'>"+link(CONTENT.links.board,"Post to the shared board","btn lt")+"</p>":"")},
- {id:"coiep",html:()=>{ const C=CONTENT.coiep;
+ {id:"coiep",cls:"wide",html:()=>{ const C=CONTENT.coiep;
    return kick("Part 2")+"<h1>Meet CoIEP</h1><div class='idea'>"+esc(C.idea)+"</div>"+canvaBlock(C.embed,C.view,"CoIEP slides"); }},
  {id:"demo",html:()=>{ const C=CONTENT.coiep;
    return kick("Part 2 · Demo")+"<h1>Watch for</h1><ol class='big-list teal'>"+C.watch.map(w=>"<li>"+esc(w)+"</li>").join("")+"</ol>"+
      "<p style='margin-top:16px'>"+link(CONTENT.links.coiep,"Open CoIEP","btn lt")+"</p>"; }},
- {id:"studies",html:()=>kick("Part 3")+"<h1>Two studies</h1>"+(canvaBlock(CONTENT.studiesEmbed,CONTENT.studiesView,"CoIEP studies")||
+ {id:"studies",cls:"wide",html:()=>kick("Part 3")+"<h1>Two studies</h1>"+(canvaBlock(CONTENT.studiesEmbed,CONTENT.studiesView,"CoIEP studies")||
    "<div class='cols'>"+CONTENT.studies.map(s=>"<div class='panel'><h2>"+esc(s.title)+"</h2><div class='note'>"+esc(s.who)+"</div></div>").join("")+"</div>")},
  ...[0,1].map(k=>({id:"study"+(k+1),cls:"top",html:()=>{ const s=CONTENT.studies[k];
    return kick("Part 3 · "+s.course)+"<h1>"+esc(s.title)+"</h1><div class='note' style='margin:-10px 0 14px;font-size:18px'>"+esc(s.who)+"</div>"+
