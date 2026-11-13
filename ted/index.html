@@ -87,6 +87,10 @@ input[type=text],textarea{width:100%;font:inherit;font-size:18px;padding:10px 12
 #s-studies{--chrome:160px}
 .slide.wide .embedwrap .note{margin-top:4px}
 
+/* action plan: one column */
+.plancol{max-width:760px;width:100%}
+#s-plan .inner{max-width:860px}
+
 /* QR */
 .titlegrid{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(24px,4vw,56px);align-items:center;width:100%}
 .qrcard{background:#fff;color:var(--navy);border-radius:16px;padding:16px 16px 14px;text-align:center;box-shadow:0 6px 24px rgba(0,0,0,.25);width:clamp(190px,19vw,250px)}
@@ -411,14 +415,14 @@ function planHTML(){
    "<div class='ex hide' id='ex'><dl><dt>Course</dt><dd>"+esc(E.course)+" ("+esc(E.level)+")</dd><dt>GenAI enters</dt><dd>"+esc(E.enters.join(", "))+"</dd>"+
     "<dt>Points for</dt><dd>"+esc(E.graded)+"</dd><dt>Privacy</dt><dd>"+esc(E.privacy)+"</dd><dt>Challenge &rarr; fix</dt><dd>"+esc(E.challenge)+" &rarr; "+esc(E.response)+"</dd></dl>"+
     "<a href='"+esc(CONTENT.logFile)+"' download>Download the Decision Log template (Word)</a></div>"+
-   "<div class='cols'><div>"+
+   "<div class='plancol'>"+
     "<div class='field'><b>1. Level</b>"+radio("level",LEVELS)+"</div>"+
     "<div class='field'><b>2. Course and assignment</b>"+txt("course","")+"</div>"+
     "<div class='field'><b>3. Where GenAI enters</b>"+multi("enters",STEPS)+"</div>"+
-    "<div class='field'><b>4. What earns the points</b>"+txt("graded","e.g., the critique")+"</div></div><div>"+
+    "<div class='field'><b>4. What earns the points</b>"+txt("graded","e.g., the critique")+"</div>"+
     "<div class='field'><b>5. Privacy rule</b>"+radio("privacy",PRIV)+"</div>"+
     "<div class='field'><b>6. One challenge, and your fix</b>"+txt("challenge","Challenge")+txt("response","Fix")+"</div>"+
-    "<div class='field'><b>7. First step, and when</b>"+txt("first","")+"</div></div></div>"+
+    "<div class='field'><b>7. First step, and when</b>"+txt("first","")+"</div></div>"+
    "<button class='btn gold' onclick=\"go('myplan')\">Make my plan &rarr;</button>";
 }
 function tog(n,x,on){ const a=S.plan[n]||[]; S.plan[n]=on?[...new Set(a.concat(x))]:a.filter(y=>y!==x); save(); }
