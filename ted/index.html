@@ -57,6 +57,8 @@ input[type=text],textarea{width:100%;font:inherit;font-size:18px;padding:10px 12
 .chk input{width:21px;height:21px;accent-color:var(--navy)}
 .field{margin:14px 0}
 .field > b{display:block;font-size:19px;color:var(--navy)}
+.field .hint{display:block;font-size:16px;color:var(--text2)}
+.plancol textarea{min-height:58px;resize:vertical}
 .ex{background:var(--goldbg);border-left:4px solid var(--gold);border-radius:8px;padding:12px 16px;margin:10px 0}
 .ex dt{font-weight:700;color:var(--navy);margin-top:6px}
 .summary{background:#fff;border:2px solid var(--navy);border-radius:var(--r);padding:clamp(16px,2.4vw,26px)}
@@ -341,9 +343,13 @@ const CONTENT={
  logFile:"Decision-Log-Template.docx",
  // Canva: Smart embed link for the one-slide studies design (Share > More > Embed)
  studiesEmbed:"https://www.canva.com/design/DAHaue60faU/mYUYyU5Yw34awoNTYyN-ug/view?embed",studiesView:"https://www.canva.com/design/DAHaue60faU/mYUYyU5Yw34awoNTYyN-ug/view",
- example:{level:"Undergraduate",course:"EDEX 3072: one SDI case study across the semester",enters:["Draft","Critique"],
-  graded:"A Decision Log, 100 points on its own: criteria first, how sure, how checked",privacy:"Hypothetical, or a fully anonymized placement student",
-  challenge:"Citations can look right and be wrong",response:"Check every source. Unverified means no citation."}
+ example:{course:"EDEX 3072 (undergraduate): one SDI case study across the semester, from goals to specially designed instruction",
+  should:"CoIEP drafts a first version only after candidates write their own criteria, and acts as a second reader they critique against IDEA and the HLPs.",
+  shouldnt:"It never replaces candidates' criteria or judgment, never sees real student data, and its text is never graded as their work. Using AI is optional.",
+  guidance:["Metacognition (plan, monitor, evaluate)","CEC standards and HLPs","IDEA requirements"],
+  guidanceNote:"Criteria first, then a \u201cHow sure am I?\u201d rating on each critique question, so candidates monitor their own judgment, not just the draft.",
+  challenge:"Candidates over-trust the output: AI citations can look right and be wrong.",
+  response:"Three checks on every source (support, fidelity, fit). An unverified citation counts as no citation, and the Decision Log is graded on its own."}
 };
 
 // ===================== STATE (this device only) =====================
@@ -401,33 +407,31 @@ const SLIDES=[
 ];
 
 // ===================== PLAN =====================
-const LEVELS=["Undergraduate","Graduate","Alternative licensure","In-service PD"];
-const STEPS=["Plan","Draft","Critique","Revise","Reflect"];
-const PRIV=["Fictional cases only","De-identified real cases"];
+const GUIDES=["Metacognition (plan, monitor, evaluate)","Cognitive load and worked examples","Deliberate practice with feedback","Self-regulated learning","CEC standards and HLPs","IDEA requirements","AI literacy frameworks","Other"];
 function planHTML(){
   const p=S.plan, E=CONTENT.example;
   if(p.challenge==null&&S.share.challenge) p.challenge=S.share.challenge;
-  const radio=(n,o)=>"<div class='chk'>"+o.map(x=>"<label><input type='radio' name='"+n+"' "+(p[n]===x?"checked":"")+" onchange=\"S.plan['"+n+"']='"+x+"';save()\">"+x+"</label>").join("")+"</div>";
-  const multi=(n,o)=>"<div class='chk'>"+o.map(x=>"<label><input type='checkbox' "+((p[n]||[]).includes(x)?"checked":"")+" onchange=\"tog('"+n+"','"+x+"',this.checked)\">"+x+"</label>").join("")+"</div>";
-  const txt=(n,ph)=>"<input type='text' placeholder='"+esc(ph)+"' value='"+esc(p[n]||"")+"' oninput=\"S.plan['"+n+"']=this.value;save()\">";
-  return kick("Part 4")+"<h1>Your action plan</h1><p class='lead' style='margin-top:-8px'>One course. Any GenAI tool.</p>"+
+  const area=(n,ph)=>"<textarea rows='2' placeholder='"+esc(ph)+"' oninput=\"S.plan['"+n+"']=this.value;save()\">"+esc(p[n]||"")+"</textarea>";
+  const chips=(n,o)=>"<div class='chk'>"+o.map(x=>"<label><input type='checkbox' "+((p[n]||[]).includes(x)?"checked":"")+" onchange=\"tog('"+n+"','"+x+"',this.checked)\">"+x+"</label>").join("")+"</div>";
+  const q=(k,t,hint,body)=>"<div class='field'><b>"+k+". "+t+"</b>"+(hint?"<span class='hint'>"+hint+"</span>":"")+body+"</div>";
+  return kick("Part 4")+"<h1>Your action plan</h1><p class='lead' style='margin-top:-8px'>One course. Think it through.</p>"+
    "<button class='btn lt' onclick=\"$('#ex').classList.toggle('hide')\">See an example</button>"+
-   "<div class='ex hide' id='ex'><dl><dt>Course</dt><dd>"+esc(E.course)+" ("+esc(E.level)+")</dd><dt>GenAI enters</dt><dd>"+esc(E.enters.join(", "))+"</dd>"+
-    "<dt>Points for</dt><dd>"+esc(E.graded)+"</dd><dt>Privacy</dt><dd>"+esc(E.privacy)+"</dd><dt>Challenge &rarr; fix</dt><dd>"+esc(E.challenge)+" &rarr; "+esc(E.response)+"</dd></dl>"+
+   "<div class='ex hide' id='ex'><dl><dt>Focus area</dt><dd>"+esc(E.course)+"</dd><dt>GenAI should</dt><dd>"+esc(E.should)+"</dd>"+
+    "<dt>GenAI should not</dt><dd>"+esc(E.shouldnt)+"</dd><dt>Guidance</dt><dd>"+esc(E.guidance.join("; "))+". "+esc(E.guidanceNote)+"</dd>"+
+    "<dt>Challenge</dt><dd>"+esc(E.challenge)+"</dd><dt>How we address it</dt><dd>"+esc(E.response)+"</dd></dl>"+
     "<a href='"+esc(CONTENT.logFile)+"' download>Download the Decision Log template (Word)</a></div>"+
    "<div class='plancol'>"+
-    "<div class='field'><b>1. Level</b>"+radio("level",LEVELS)+"</div>"+
-    "<div class='field'><b>2. Course and assignment</b>"+txt("course","")+"</div>"+
-    "<div class='field'><b>3. Where GenAI enters</b>"+multi("enters",STEPS)+"</div>"+
-    "<div class='field'><b>4. What earns the points</b>"+txt("graded","e.g., the critique")+"</div>"+
-    "<div class='field'><b>5. Privacy rule</b>"+radio("privacy",PRIV)+"</div>"+
-    "<div class='field'><b>6. One challenge, and your fix</b>"+txt("challenge","Challenge")+txt("response","Fix")+"</div>"+
-    "<div class='field'><b>7. First step, and when</b>"+txt("first","")+"</div></div>"+
-   "<button class='btn gold' onclick=\"go('myplan')\">Make my plan &rarr;</button>";
+    q(1,"Focus area","Which course, assignment, and IEP skill or component?",area("focus","e.g., IEP methods course, goal-writing assignment"))+
+    q(2,"How GenAI should be embedded","Where it enters, and what it does for candidates.",area("should",""))+
+    q(3,"How GenAI should not be embedded","What stays human, and what is off-limits.",area("shouldnt",""))+
+    q(4,"Based on what guidance?","Learning theories, standards, or frameworks behind your design.",chips("guidance",GUIDES)+area("guidanceNote","How it shapes your design"))+
+    q(5,"Potential challenges","",area("challenge",""))+
+    q(6,"How you will address them","",area("response",""))+
+   "</div><button class='btn gold' onclick=\"go('myplan')\">Make my plan &rarr;</button>";
 }
 function tog(n,x,on){ const a=S.plan[n]||[]; S.plan[n]=on?[...new Set(a.concat(x))]:a.filter(y=>y!==x); save(); }
-function planRows(){ const p=S.plan; return [["Level",p.level],["Course and assignment",p.course],["Where GenAI enters",(p.enters||[]).join(", ")],
-  ["What earns the points",p.graded],["Privacy rule",p.privacy],["Challenge",p.challenge],["Fix",p.response],["First step",p.first]]; }
+function planRows(){ const p=S.plan; return [["Focus area",p.focus],["GenAI should be embedded",p.should],["GenAI should not be embedded",p.shouldnt],
+  ["Guidance",[(p.guidance||[]).join("; "),p.guidanceNote].filter(Boolean).join(". ")],["Potential challenges",p.challenge],["How I will address them",p.response]]; }
 function summaryHTML(){
   return "<div class='kick noprint'>Part 4</div><div class='summary'><h1 style='margin-bottom:6px'>My GenAI course plan</h1><div class='note'>"+
    new Date().toLocaleDateString("en-US",{month:"long",day:"numeric",year:"numeric"})+"</div><dl>"+
